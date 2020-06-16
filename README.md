@@ -9,6 +9,6 @@
 
 ## About Laravel
 
-composer update
-php artisan key:generate 
-php artisan migrate --seed
+<p>composer update</p>
+<p>php artisan key:generate </p>
+<p>php artisan migrate --seed</p>

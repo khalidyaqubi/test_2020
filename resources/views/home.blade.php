@@ -15,24 +15,7 @@
                             </div>
                         @endif
 
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">city</th>
-                                <th scope="col">hospital count</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($cities as $item)
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->hospitals_count}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+
                     </div>
                 </div>
             </div>

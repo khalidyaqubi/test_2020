@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Donation extends Model
 {
     //
     /**
@@ -13,8 +13,10 @@ class City extends Model
     protected $guarded = [];
 
 
-    public function hospitals()
+
+    public function project()
     {
-        return $this->hasMany(Hospital::class);
+        return $this->belongsTo(Project::class);
     }
+
 }

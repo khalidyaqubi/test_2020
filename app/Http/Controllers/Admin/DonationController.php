@@ -14,7 +14,7 @@ class DonationController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.donation.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class DonationController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.donation.show');
     }
 
     /**
@@ -81,5 +81,10 @@ class DonationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete($id)
+    {
+
     }
 }

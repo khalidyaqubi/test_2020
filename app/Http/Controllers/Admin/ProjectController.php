@@ -15,6 +15,8 @@ class ProjectController extends Controller
     public function index()
     {
         //
+
+        return view('admin.project.index');
     }
 
     /**
@@ -25,6 +27,8 @@ class ProjectController extends Controller
     public function create()
     {
         //
+
+        return view('admin.project.create');
     }
 
     /**
@@ -58,6 +62,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         //
+        return view('admin.project.edit');
     }
 
     /**
@@ -81,5 +86,10 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete($id)
+    {
+
     }
 }

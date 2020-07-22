@@ -15,6 +15,8 @@ class P_CategoryController extends Controller
     public function index()
     {
         //
+
+        return view('admin.p_category.index');
     }
 
     /**
@@ -25,6 +27,8 @@ class P_CategoryController extends Controller
     public function create()
     {
         //
+
+        return view('admin.p_category.create');
     }
 
     /**
@@ -58,6 +62,7 @@ class P_CategoryController extends Controller
     public function edit($id)
     {
         //
+        return view('admin.p_category.edit');
     }
 
     /**
@@ -81,5 +86,10 @@ class P_CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete($id)
+    {
+
     }
 }

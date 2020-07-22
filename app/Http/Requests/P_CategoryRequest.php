@@ -23,8 +23,20 @@ class P_CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $rules = [];
+        if ($this->isMethod('post')) {
+            $rules['name_en'] = 'required|max:100|unique:p_categories,name_en,NULL,id';
+            $rules['name_ar'] = 'required|max:100|unique:p_categories,name_ar,NULL,id';
+            $rules['name_tr'] = 'required|max:100|unique:p_categories,name_tr,NULL,id';
+        }
+        if ($this->isMethod('put') || $this->isMethod('patch')) {
+
+            $id = $this->route('p_category');
+
+            $rules['name_en'] = 'required|max:100|unique:p_categories,name_en,' . $id . ',id';
+            $rules['name_ar'] = 'required|max:100|unique:p_categories,name_ar,' . $id . ',id';
+            $rules['name_tr'] = 'required|max:100|unique:p_categories,name_tr,' . $id . ',id';
+        }
+        return $rules;
     }
 }

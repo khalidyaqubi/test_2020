@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.home.home');
     }
 
     /**
@@ -46,7 +46,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -57,7 +57,7 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.home.edit');
     }
 
     /**
@@ -81,5 +81,11 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function noAccess()
+    {
+        //
+        return view('admin.home.noAccess');
     }
 }

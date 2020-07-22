@@ -15,11 +15,11 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('titel_ar');
+            $table->string('title_ar');
             $table->longText('details_ar');
-            $table->string('titel_en')->nullable();
+            $table->string('title_en')->nullable();
             $table->longText('details_en')->nullable();
-            $table->string('titel_tr')->nullable();
+            $table->string('title_tr')->nullable();
             $table->longText('details_tr')->nullable();
             $table->boolean('fixing');
             $table->integer('user_id');

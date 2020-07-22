@@ -15,6 +15,7 @@ class A_CategoryController extends Controller
     public function index()
     {
         //
+        return view('admin.a_catefory.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class A_CategoryController extends Controller
     public function create()
     {
         //
+        return view('admin.a_catefory.create');
     }
 
     /**
@@ -58,6 +60,7 @@ class A_CategoryController extends Controller
     public function edit($id)
     {
         //
+        return view('admin.a_catefory.edit');
     }
 
     /**
@@ -81,5 +84,10 @@ class A_CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete($id)
+    {
+
     }
 }

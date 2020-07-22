@@ -23,8 +23,12 @@ class MediaRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+
+        if (request()->img)
+            $rules['img'] ='required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        else
+            $rules['link'] ='required|string|max:255';
+
+        return $rules;
     }
 }

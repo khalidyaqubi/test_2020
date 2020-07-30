@@ -15,9 +15,16 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('img')->nullable();
-            $table->string('img_media')->nullable();
-            $table->string('video')->nullable();
+            $table->string('about_us_img')->nullable();
+            $table->string('about_us_img2')->nullable();
+            $table->string('media_img')->nullable();
+            $table->string('our_vision_img')->nullable();
+            $table->string('icon_img')->nullable();
+            $table->string('page_img')->nullable();
+            $table->string('main_img')->nullable();
+            $table->string('donate_img')->nullable();
+            $table->string('main_video')->nullable();
+            $table->string('about_us_video')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('youtube')->nullable();

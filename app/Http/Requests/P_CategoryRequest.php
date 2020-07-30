@@ -13,7 +13,7 @@ class P_CategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

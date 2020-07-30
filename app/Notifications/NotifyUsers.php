@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Action;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,7 +11,6 @@ use Illuminate\Notifications\Notification;
 class NotifyUsers extends Notification
 {
     use Queueable;
-    use App\Action;
     public $action;
     /**
      * Create a new notification instance.

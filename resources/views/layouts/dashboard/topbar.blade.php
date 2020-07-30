@@ -106,8 +106,12 @@
                 <div class="kt-header__topbar-user">
                     <span class="kt-header__topbar-welcome kt-hidden-mobile">أهلا وسهلا بالموظف</span>
                     <span class="kt-header__topbar-username kt-hidden-mobile">{{ $user->name }}</span>
-                    
+
+                    @if(((!is_null($user->image)) && (!is_null($user->image)) && (($user->image != ''))))
+                        <img class="" alt="Pic" src="{{ asset($user->image) }}"/>
+                    @else
                         <img class="" alt="Pic" src="{{asset('new_theme/assets/media/users/default.jpg')}}"/>
+                    @endif
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
@@ -116,15 +120,23 @@
                      style="background-image: url({{asset('new_theme/assets/media/misc/bg-1.jpg')}})">
                     <div class=" kt-user-card__avatar
                             ">
-                       
+
+                        @if(((!is_null($user->image)) && (!is_null($user->image)) && (($user->image != ''))))
+
+                            <img class="kt-hidden" alt="Pic"
+                                 src="{{ asset($user->image) }}"/>
+                        @else
                             <img class="kt-hidden" alt="Pic"
                                  src="{{asset('new_theme/assets/media/users/default.jpg')}}"/>
-                      
+                    @endif
                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                         <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">
-						 
-                            <img alt="Pic" src="{{asset('new_theme/assets/media/users/default.jpg')}}"/></span>
+						  @if(((!is_null($user->image)) && (!is_null($user->image)) && (($user->image != ''))))
+                                <img alt="Pic" src="{{ asset($user->image) }}"/></span>
+                            @else
+                                <img alt="Pic" src="{{asset('new_theme/assets/media/users/default.jpg')}}"/></span>
 
+                            @endif
                     </div>
                     <div class="kt-user-card__name">{{ $user->name }}
                     </div>
@@ -146,7 +158,7 @@
                     <div class="kt-notification__custom kt-space-between">
                         <a href="{{ route('logout') }}"
                            class="btn btn-label btn-label-brand btn-sm btn-bold">تسجيل خروج</a>
-                        <a href="{{ url('admin/home/edit') }}" target="_blank"
+                        <a href="{{ url('admin/home/'.auth()->user()->id.'/edit') }}" target="_blank"
                            class="btn btn-clean btn-sm btn-bold">تغيير كلمة المرور</a>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SittingRequest extends FormRequest
+class SettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class SittingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +29,8 @@ class SittingRequest extends FormRequest
             'twitter' => 'required',
             'youtube' => 'required',
             'instagram' => 'required',
+            'main_video' => 'required',
+            'about_us_video' => 'required',
             'our_object_ar' => 'required',
             'our_mission_ar' => 'required',
             'our_active_ar' => 'required',
@@ -51,17 +53,31 @@ class SittingRequest extends FormRequest
             'our_vision_quotes_tr' => 'required',
             'our_vision_content_tr' => 'required',
         ];
-        if (request()->img)
-            $rules['img'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
-        if (request()->img_media)
-            $rules['img_media'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        if (request()->about_us_img)
+            $rules['about_us_img'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        if (request()->about_us_img2)
+            $rules['about_us_img2'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        if (request()->media_img)
+            $rules['media_img'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        if (request()->our_vision_img)
+            $rules['our_vision_img'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        if (request()->icon_img)
+            $rules['icon_img'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
 
-       /* $file = Input::file('video');
+        if (request()->page_img)
+            $rules['page_img'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        if (request()->main_img)
+            $rules['main_img'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        if (request()->donate_img)
+            $rules['donate_img'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:6448';
+        /* $file = Input::file('video');
         $mime = $file->getMimeType();
 
         if ($mime == "video/x-flv" || $mime == "video/mp4" || $mime == "application/x-mpegURL" || $mime == "video/MP2T" || $mime == "video/3gpp" || $mime == "video/quicktime" || $mime == "video/x-msvideo" || $mime == "video/x-ms-wmv") {
             // process upload
         }*/
+
+        return $rules;
 
 
     }

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
 
-@section('pageTitle','')
+@section('pageTitle','إدارة المستخدمين')
 @section('headerCSS')
     <link href="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}"
           rel="stylesheet"
@@ -8,9 +8,9 @@
 @endsection
 
 @section('navigation1','الرئيسية')
-@section('navigation2','')
+@section('navigation2','إدارة المستخدمين')
 @section('navigation1_link','/admin/home')
-@section('navigation2_link','')
+@section('navigation2_link','/admin/users')
 @section('content')
 
     <div class="col-lg-12 col-xl-12">
@@ -20,7 +20,7 @@
                 <div class="kt-portlet__head-label">
                     <span class="fa fa-pen icon-padding"></span>
                     <h3 class="kt-portlet__head-title">
-                        
+                        إدارة المستخدمين
                     </h3>
                 </div>
             </div>
@@ -29,29 +29,36 @@
                 <form id="zmain_form">
                     <div class="row">
                        <!-- Start col -->
-                        <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label class="col-form-label col-lg-12">تصال</label>
-                                <div >
-                                    <input class="form-control" placeholder=" اتصال  " 
-                                           name=""
-                                           value=""
+                                <label class="col-form-label col-lg-12">اسم المستخدم </label>
+                                <div style="width: 95%;">
+                                    <input class="form-control"
+                                           placeholder="اكتب  اسم المستخدم" id="name" name="name"
+                                           value="{{$name}}"
                                            type="text">
                                 </div>
                             </div>
                         </div>
                         <!-- End col -->
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="col-form-label col-lg-12">البريد  الإلكتروني</label>
+                                <div style="width: 95%;">
+                                    <input class="form-control" placeholder=" اكتب الإيميل  " id="email" name="email"
+                                           value="{{$email}}"
+                                           >
+                                </div>
+                            </div>
+                        </div>
                         <!-- Start col -->
-                        <div class="col-md-4">
-                             <button type="submit"
-                            class="btn btn-success btn-elevate btn-block ">بحث
-                                <span id="wating" class="" style="display: none">                            &nbsp;&nbsp;
-                                <span class="spinner-border text-primary" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </span>
-                                <span class="text-primary">&nbsp;&nbsp; الرجاء الانتظار...</span>
-                                </span>
-                            </button>
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <button type="submit"
+                                        class="btn btn-success  col mr-3" name="theaction"
+                                        value="search">بحث
+                                </button>
+                            </div>
                         </div>
 						<!-- End col -->
                     </div>
@@ -78,14 +85,23 @@
                           <th style="width: 5%">
                                     #
                                 </th>
-								 <th style="width: 5%">
-                                    #
+								 <th >
+                                    اسم المستخدم
                                 </th>
+                            <th >
+                                البريد الإلكتروني
+                            </th>
+                            <th >
+                                العمليات
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($items as $item)
                        <tr class="text-center">
-                           <td>1</td>
+                           <td>{{ $item->id }}</td>
+                           <td>{{ $item->name }}</td>
+                           <td>{{ $item->email }}</td>
                                     <td>
                                         <div class="dropdown dropdown-inline">
                                             <button type="button"
@@ -95,15 +111,22 @@
                                                 <i class="la la-cog"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#"><i
+                                                <a class="dropdown-item" href="/admin/users/{{$item->id}}/edit"><i
                                                             class="fa fa-pen"></i>
                                                     تعديل
                                                 </a>
+                                                <a class="dropdown-item" href="/admin/users/permission/{{$item->id}}">
+                                                    <i class="fa fa-shopping-bag"></i>
+                                                    صلاحيات</a>
+                                                <a class="dropdown-item Confirm" href="/admin/users/delete/{{$item->id}}">
+                                                    <i class="fa fa-trash"></i>
+                                                    حذف</a>
                                             </div>
                                         </div>
                                     </td>
 
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

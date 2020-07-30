@@ -1,0 +1,43 @@
+.table th, .table td {
+            vertical-align: inherit;
+        }
+
+        .select2 {
+            width: 100% !important
+        }
+
+        @media (max-width: 781px) {
+            .kt-badge.kt-badge--danger,
+            .kt-badge.kt-badge--success {
+                background-color: transparent;
+                color: #000
+            }
+
+            .kt-widget17__items {
+                flex-direction: column;
+            }
+        }
+
+        #table_length {
+            display: none;
+        }
+
+        /*الهوامش العلوية والسفلية*/
+        .kt-content {
+            padding: 20px 0 0;
+        }
+
+        /*الهوامش الخارجية السفلية للحقول اضافة الاتصال*/
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .kt-portlet .kt-portlet__body {
+            padding: 10px 25px;
+        }
+        .dropdown-menu{
+    /*transform: translate3d(32px, 35px, 0px)!important;*/
+        transform: translate3d(32px, 20px, 0px)!important;
+
+    
+}

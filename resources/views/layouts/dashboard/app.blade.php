@@ -15,82 +15,13 @@
     <!--begin::Fonts -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
-    <link href="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{asset('new_theme/assets/plugins/general/socicon/css/socicon.css')}}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{asset('new_theme/assets/plugins/general/plugins/line-awesome/css/line-awesome.css')}}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{asset('new_theme/assets/plugins/general/plugins/flaticon/flaticon.css')}}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{asset('new_theme/assets/plugins/general/plugins/flaticon2/flaticon.css')}}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{asset('new_theme/assets/plugins/general/@fortawesome/fontawesome-free/css/all.min.css')}}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{asset('new_theme/assets/plugins/general/bootstrap-select/dist/css/bootstrap-select.css')}}"
-          rel="stylesheet" type="text/css"/>
-    <link href="{{asset('new_theme/assets/plugins/general/select2/dist/css/select2.css')}}" rel="stylesheet"
-          type="text/css"/>
 
+    <link rel="stylesheet"  href="{{  asset('css/app_2.css') }}"/>
 
-    <!--end:: Vendor Plugins -->
-    <link href="{{asset('new_theme/assets/css/style.bundle.rtl.css')}}" rel="stylesheet" type="text/css"/>
-
-    <!--begin::Layout Skins(used by all pages) -->
-    <link href="{{asset('new_theme/assets/css/skins/header/base/dark.rtl.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('new_theme/assets/css/skins/header/menu/dark.rtl.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('new_theme/assets/css/skins/brand/dark.rtl.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('new_theme/assets/css/skins/aside/dark.rtl.min.css')}}" rel="stylesheet" type="text/css"/>
-    <!--end::Layout Skins -->
     <link rel="shortcut icon" href="{{asset('new_theme/assets/media/logo-icon.png')}}"/>
-    <style media="screen">
-        .table th, .table td {
-            vertical-align: inherit;
-        }
 
-        .select2 {
-            width: 100% !important
-        }
-
-        @media (max-width: 781px) {
-            .kt-badge.kt-badge--danger,
-            .kt-badge.kt-badge--success {
-                background-color: transparent;
-                color: #000
-            }
-
-            .kt-widget17__items {
-                flex-direction: column;
-            }
-        }
-
-        #table_length {
-            display: none;
-        }
-
-        /*الهوامش العلوية والسفلية*/
-        .kt-content {
-            padding: 20px 0 0;
-        }
-
-        /*الهوامش الخارجية السفلية للحقول اضافة الاتصال*/
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .kt-portlet .kt-portlet__body {
-            padding: 10px 25px;
-        }
-        .dropdown-menu{
-    /*transform: translate3d(32px, 35px, 0px)!important;*/
-        transform: translate3d(32px, 20px, 0px)!important;
-
-    
-}
-
-    </style>
     @yield('headerCSS')
-    <link href="{{asset('new_theme/assets/css/new-style.css')}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet"  href="{{  asset('css/app_3.css') }}"/>
 
     @yield('headerJS')
 </head>
@@ -273,51 +204,7 @@
 
 <!--begin::Global Theme Bundle(used by all pages) -->
 <!--begin:: Vendor Plugins -->
-<script src="{{asset('new_theme/assets/plugins/general/jquery/dist/jquery.js')}}" type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/popper.js/dist/umd/popper.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/js-cookie/src/js.cookie.js')}}" type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/moment/min/moment.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/tooltip.js/dist/umd/tooltip.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/perfect-scrollbar/dist/perfect-scrollbar.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/sticky-js/dist/sticky.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/jquery-form/dist/jquery.form.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/js/global/integration/plugins/bootstrap-datepicker.init.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/bootstrap-select/dist/js/bootstrap-select.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/bootstrap-switch/dist/js/bootstrap-switch.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/js/global/integration/plugins/bootstrap-switch.init.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/select2/dist/js/select2.full.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/handlebars/dist/handlebars.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/js/global/integration/plugins/jquery-validation.init.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/toastr/build/toastr.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/morris.js/morris.js')}}" type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/sweetalert2/dist/sweetalert2.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/js/global/integration/plugins/sweetalert2.init.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('new_theme/assets/plugins/general/chart.js/dist/Chart.bundle.js')}}"
-        type="text/javascript"></script>
-
-<!--end:: Vendor Plugins -->
-<script src="{{asset('new_theme/assets/js/scripts.bundle.js')}}" type="text/javascript"></script>
+<script src="{{  asset('js/app_2.js') }}"></script>
 <!-- Start Custom Select 2 Selector -->
 <script>
     $('.select2-multi').select2({
@@ -334,73 +221,48 @@
 <script src="{{asset('new_theme/assets/js/myjs.js')}}" type="text/javascript"></script>
 <script src="{{  asset('js/app.js') }}"></script>
 
-<script>
-
-   
-    function formatDate(date) {
-        var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
-
-        return [year, month, day].join('-');
-    }
-
-  
-
-
-</script>
-
 
 <script>
-
-
-    $(function () {
-        //$("#Confirm").modal("show");
-        $(".Confirm").click(function () {
-            $("#kt_modal_1").modal("show");
-            $("#kt_modal_1 .btn-danger").attr("href", $(this).attr("href"));
-            return false;
-        });
+    var userId = $('meta[name="userId"]').attr('content');
+    Echo.private('App.User.' + userId).notification((notification) => {
+        console.log('test2020');
+        var action = notification.data.action;
+        var the_id = notification.id;
+        var a = document.createElement("a");
+        a.setAttribute("href", action.link);
+        a.setAttribute("onclick", 'pop(this)');
+        a.setAttribute("the_id", the_id);
+        a.setAttribute("the_href", action.link);
+        a.innerHTML = "  <a  class=\"kt-notification__item\"\n" +
+            "                                <div class=\"kt-notification__item-icon\">\n" +
+            "                                    " + action.type + "\n" +
+            "                                </div>\n" +
+            "                                <div class=\"kt-notification__item-details\">\n" +
+            "                                    <div class=\"kt-notification__item-title\">\n" +
+            "                                        " + action.title + "\n" +
+            "                                    </div>\n" +
+            "                                    <div class=\"kt-notification__item-time\">\n" +
+            "                                        " + formatDate(action.created_at) + "\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "                            </a>";
+        document.getElementById("notif").prepend(a);
+        var num_notif = document.querySelectorAll(".num_notif");
+        var num_notif_count = 1 + parseInt(document.querySelector(".num_notif").innerText);
+        for (i = 0; i < num_notif.length; i++) {
+            num_notif[i].innerHTML = "<span>" + num_notif_count + "</span>";
+        }
+        var audio = new Audio('{{asset('audio/unsure.mp3')}}');
+        audio.play();
     });
+
+
 </script>
+
+<script src="{{  asset('js/app_3.js') }}"></script>
 @yield('footerCSS')
 @yield('footerJS')
-<script>
-    $(document).ready(function () {
 
-
-        $('ul.pagination').css({"margin": "auto"});
-
-        function arabicInput(event) {
-            var value = String.fromCharCode(event.which);
-            var pattern = new RegExp(/^[\u0621-\u064A\u0660-\u0669\-_@&]+$/i);
-            return pattern.test(value);
-        }
-
-        function turkeyInput(event) {
-            var value = String.fromCharCode(event.which);
-            var pattern = new RegExp(/[a-zåäöığüşöçĞÜŞÖÇİ\-_@& ]/i);
-            return pattern.test(value);
-        }
-
-        function numbersInput(event) {
-            var value = String.fromCharCode(event.which);
-            var pattern = new RegExp(/^-?\d*\.?\d*$/i);
-            return pattern.test(value);
-        }
-
-        $('.arabic').bind('keypress', arabicInput);
-        $('.turkey').bind('keypress', turkeyInput);
-        $(".numbers").bind('keypress', numbersInput);
-    
-
-
-    });
-</script>
 
 <!--end::Page Scripts -->
 </body>

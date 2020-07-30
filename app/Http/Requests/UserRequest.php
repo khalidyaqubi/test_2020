@@ -13,7 +13,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -30,16 +30,17 @@ class UserRequest extends FormRequest
 
             $rules['password'] = 'required|string|min:8|confirmed';
 
-            $rules['user_name'] = 'required|max:30|without_spaces|unique:users,user_name,NULL,id';
 
             $rules['email'] = 'required|email|max:30|unique:users,email,NULL,id';
         }
 
         if ($this->isMethod('put') || $this->isMethod('patch')) {
 
+            if(request()->password)
+                $rules['password'] = 'required|string|min:8|confirmed';
+
             $id = $this->route('user');
 
-            $rules['user_name'] = 'required|max:30|without_spaces|unique:users,user_name,' . $id . ',id';
             $rules['email'] = 'required|email|max:30|unique:users,email,' . $id . ',id';
         }
         return $rules;

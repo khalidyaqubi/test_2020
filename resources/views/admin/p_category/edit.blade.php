@@ -1,18 +1,15 @@
 @extends('layouts.dashboard.app')
 
-@section('pageTitle','')
+@section('pageTitle','تعديل فئة')
 @section('headerCSS')
-    <link href="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}"
-          rel="stylesheet"
-          type="text/css"/>
 @endsection
 
 @section('navigation1','الرئيسية')
-@section('navigation2','')
-@section('navigation3','')
+@section('navigation2','إدارة فئات المشاريع')
+@section('navigation3','تعديل فئة')
 @section('navigation1_link','/admin/home')
-@section('navigation2_link','')
-@section('navigation3_link','')
+@section('navigation2_link','/admin/p_categories')
+@section('navigation3_link','/admin/p_categories/'.$item->id.'/edit')
 @section('content')
 
     <div class="col-lg-12 col-xl-12">
@@ -22,30 +19,50 @@
                 <div class="kt-portlet__head-label">
                     <span class="fa fa-pen icon-padding"></span>
                     <h3 class="kt-portlet__head-title">
-                        
+                        تعديل الفئة {{$item->name_r}}
                     </h3>
                 </div>
             </div>
-            <form class="kt-portlet__body" method="post" action="/admin/calls/{{$call->id}}">
+            <form class="kt-portlet__body"
+                  enctype="multipart/form-data"
+                  method="post" action="/admin/p_categories/{{$item->id}}">
             @csrf
             @method('put')
             <!-- Start Row -->
                 <div class="row">
                     <!-- Start col -->
-                    <!-- End col -->
-                    <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-12">حقل<span
-                                        style="color:red;">*</span></label>
-                            <input class="form-control numbers"
-                                   
-                                   name="" 
-                                   value="" placeholder="">
+                            <label class="col-form-label col-lg-12">الاسم بالعربي<span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="name_ar" type="text" name="name_ar"
+                                       value="{{ $item->name_ar }}" placeholder="إسم المستخدم">
+                            </div>
                         </div>
                     </div>
-               <!-- End col -->
-                
-
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">الاسم بالتركي<span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="name_tr" type="text" name="name_tr"
+                                       value="{{ $item->name_tr }}" placeholder="إسم المستخدم">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">الاسم بالإنجليزي<span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="name_en" type="text" name="name_en"
+                                       value="{{ $item->name_en }}" placeholder="إسم المستخدم">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
                 </div>
                 <!-- End Row -->
 
@@ -60,6 +77,7 @@
                             <span class="text-primary">&nbsp;&nbsp; الرجاء الانتظار...</span>
                         </span>
                     </button>
+                </div>
                 <!-- End Button Confirm -->
             </form>
         </div>
@@ -72,15 +90,4 @@
 
 @endsection
 @section('footerJS')
-
-    <script src="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/plugins/general/js/global/integration/plugins/bootstrap-datepicker.init.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/plugins/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}"
-            type="text/javascript"></script>
-
-    <script src="{{asset('new_theme/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js')}}"
-            type="text/javascript"></script>
-
 @endsection

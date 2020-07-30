@@ -20,6 +20,7 @@ Route::get('/configClear', function () {
 });
 
 Route::get('/cacheClear', function () {
+
     \Illuminate\Support\Facades\Artisan::call('cache:clear');
     return redirect('/');
 });
@@ -29,39 +30,42 @@ Route::namespace('Admin')->prefix('admin')
     ->middleware(['auth', 'checkPermission'])
     ->group(function () {
 
-        Route::resource('/home', 'HomeController');
+        Route::resource('/home', 'HomeController')->only(['index', 'edit', 'update']);
         Route::get('noAccess', 'HomeController@noAccess');
-
 
         Route::resource('users', 'UserController');
         Route::get('users/delete/{id}', 'UserController@delete');
         Route::get('users/permission/{id}', 'UserController@permission');
         Route::post('users/permission/{id}', 'UserController@permission_post');
 
-        Route::resource('articles', 'ArticleController');
-        Route::get('articles/delete/{id}', 'ArticleController@delete');
 
-        Route::resource('a_categories', 'A_categoryController');
-        Route::get('a_categories/delete/{id}', 'A_categoryController@delete');
-
-        Route::resource('donations', 'DonationController');
-        Route::get('donations/delete/{id}', 'DonationController@delete');
-
-        Route::resource('medias', 'MediaController');
-        Route::get('medias/delete/{id}', 'MediaController@delete');
-
-        Route::resource('projects', 'ProjectController');
-        Route::get('projects/delete/{id}', 'ProjectController@delete');
-
-        Route::resource('p_categories', 'P_categoryController');
-        Route::get('p_categories/delete/{id}', 'P_categoryController@delete');
-
-        Route::resource('setting', 'SettingController');
 
         Route::get('/notifications/get', 'NotificationController@get');
         Route::get('/notifications', 'NotificationController@index');
         Route::get('/notifications/delete/{id}', 'NotificationController@delete');
         Route::get('/getnotfiy/{id}', 'NotificationController@read');
+
+        Route::resource('a_categories', 'A_categoryController');
+        Route::get('a_categories/delete/{id}', 'A_categoryController@delete');
+
+        Route::resource('p_categories', 'P_categoryController');
+        Route::get('p_categories/delete/{id}', 'P_categoryController@delete');
+
+        Route::resource('settings', 'SettingController')->only(['edit', 'update']);
+
+        Route::resource('medias', 'MediaController');
+        Route::get('medias/delete/{id}', 'MediaController@delete');
+
+        Route::resource('articles', 'ArticleController');
+        Route::get('articles/delete/{id}', 'ArticleController@delete');
+
+
+        Route::resource('projects', 'ProjectController');
+        Route::get('projects/delete/{id}', 'ProjectController@delete');
+
+        Route::resource('donations', 'DonationController');
+        Route::get('donations/delete/{id}', 'DonationController@delete');
+
     });
 
 

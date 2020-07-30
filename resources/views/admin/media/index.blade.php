@@ -1,16 +1,13 @@
 @extends('layouts.dashboard.app')
 
-@section('pageTitle','')
+@section('pageTitle','إدارة الوسائط')
 @section('headerCSS')
-    <link href="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}"
-          rel="stylesheet"
-          type="text/css"/>
 @endsection
 
 @section('navigation1','الرئيسية')
-@section('navigation2','')
+@section('navigation2','إدارة الوسائط')
 @section('navigation1_link','/admin/home')
-@section('navigation2_link','')
+@section('navigation2_link','/admin/medias')
 @section('content')
 
     <div class="col-lg-12 col-xl-12">
@@ -20,7 +17,7 @@
                 <div class="kt-portlet__head-label">
                     <span class="fa fa-pen icon-padding"></span>
                     <h3 class="kt-portlet__head-title">
-                        
+                        إدارة الوسائط
                     </h3>
                 </div>
             </div>
@@ -28,32 +25,31 @@
                 <!-- Start Row -->
                 <form id="zmain_form">
                     <div class="row">
-                       <!-- Start col -->
-                        <div class="col-lg-4 col-md-6 col-sm-12">
+                        <!-- Start col -->
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="col-form-label col-lg-12">تصال</label>
-                                <div >
-                                    <input class="form-control" placeholder=" اتصال  " 
-                                           name=""
-                                           value=""
-                                           type="text">
+                                <label class="col-form-label col-lg-12">نوع الوسائط </label>
+                                <div style="width: 95%;">
+                                    <select  class="form-control kt-select2 select2-multi"
+                                            name="type" id="type" onchange="change_type()">
+                                        <option  value="" selected>نوع الوسائط</option>
+                                        <option value="1" @if($type == 1)selected @endif> صورة</option>
+                                        <option value="2" @if($type == 2)selected @endif> فيديو</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <!-- End col -->
                         <!-- Start col -->
-                        <div class="col-md-4">
-                             <button type="submit"
-                            class="btn btn-success btn-elevate btn-block ">بحث
-                                <span id="wating" class="" style="display: none">                            &nbsp;&nbsp;
-                                <span class="spinner-border text-primary" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </span>
-                                <span class="text-primary">&nbsp;&nbsp; الرجاء الانتظار...</span>
-                                </span>
-                            </button>
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <button type="submit"
+                                        class="btn btn-success  col mr-3" name="theaction"
+                                        value="search">بحث
+                                </button>
+                            </div>
                         </div>
-						<!-- End col -->
+                        <!-- End col -->
                     </div>
                 </form>
             </div>
@@ -64,7 +60,7 @@
                 <div class="kt-portlet__head-label">
                     <span class="fa fa-sign icon-padding"></span>
                     <h3 class="kt-portlet__head-title">
-                        عرض 
+                        عرض
                     </h3>
                 </div>
             </div>
@@ -75,41 +71,60 @@
                     <table class="table table-bordered table-hover ">
                         <thead>
                         <tr class="text-center">
-                          <th style="width: 5%">
-                                    #
-                                </th>
-								 <th style="width: 5%">
-                                    #
-                                </th>
+                            <th style="width: 5%">
+                                #
+                            </th>
+                            <th >
+                                النوع
+                            </th>
+                            <th >
+                                المعاينة
+                            </th>
+                            <th >
+                                العمليات
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
-                       <tr class="text-center">
-                           <td>1</td>
-                                    <td>
-                                        <div class="dropdown dropdown-inline">
-                                            <button type="button"
-                                                    class="btn btn-success btn-hover-success btn-elevate-hover btn-icon btn-sm btn-icon-md btn-circle"
-                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                <i class="la la-cog"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#"><i
-                                                            class="fa fa-pen"></i>
-                                                    تعديل
-                                                </a>
-                                            </div>
+                        @foreach($items as $item)
+                            <tr class="text-center">
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->type==1?'صورة':'فيديو' }}</td>
+                                <td>@if($item->type==1)
+                                        <image width='122px' height='100px' src='{{asset($item->the_media)}}'/>
+                                @else
+                                        <iframe width="122" height="100" src="{{$item->the_media}}">
+                                        </iframe>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="dropdown dropdown-inline">
+                                        <button type="button"
+                                                class="btn btn-success btn-hover-success btn-elevate-hover btn-icon btn-sm btn-icon-md btn-circle"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="la la-cog"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="/admin/medias/{{$item->id}}/edit"><i
+                                                        class="fa fa-pen"></i>
+                                                تعديل
+                                            </a>
+                                            <a class="dropdown-item Confirm" href="/admin/medias/delete/{{$item->id}}">
+                                                <i class="fa fa-trash"></i>
+                                                حذف</a>
                                         </div>
-                                    </td>
+                                    </div>
+                                </td>
 
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
                 <!-- End Table  -->
 
-            <!--end: Pagination-->
+                <!--end: Pagination-->
             </div>
         </div>
         <!--end::Portlet-->
@@ -120,12 +135,4 @@
 
 @section('footerJS')
 
-    <script src="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/plugins/general/js/global/integration/plugins/bootstrap-datepicker.init.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/plugins/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js')}}"
-            type="text/javascript"></script>
 @endsection

@@ -3,7 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MediaRequest;
+use App\Media;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use App\Action;
+use App\Notifications\NotifyUsers;
+use App\User;
+use Notification;
+use Spatie\Permission\Models\Permission;
 
 class MediaController extends Controller
 {
@@ -12,10 +20,16 @@ class MediaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return view('admin.media.index');
+        $type = $request["type"] ?? "";
+
+        $items = Media::when($type, function ($query) use ($type) {
+            return $query->where('type', $type);
+        })->orderBy("media.id")->paginate(20)
+            ->appends(["type" => $type]);
+
+        return view('admin.media.index', compact('items','type'));
     }
 
     /**
@@ -35,9 +49,35 @@ class MediaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MediaRequest $request)
     {
-        //
+        if($request['link']){
+            $request['link'] = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","http://www.youtube.com/embed/$1",$request['link']);
+        }
+
+        $request['the_media']=$request['img']??$request['link'];
+        $item = Media::create($request->except('img','link'));
+
+        if ($request->hasFile('img')) {
+
+
+            $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
+            $path = 'uploads/medias/';
+             Image::make($request['img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+            $item->the_media = $path . $filename;
+            $item->save();
+
+        }
+
+        /**************start Notification*******************/
+        $action = Action::create(['title' => 'تم إضافة وسائط ' . $item->name_ar, 'type' => Permission::findByName('list medias')->title, 'link' =>Permission::findByName('list medias')->link . "/" . $item->id."/edit"]);
+        $users = User::permission('users')->whereNotIn('id', [auth()->user()->id])->get();
+
+        if ($users->first())
+            Notification::send($users, new NotifyUsers($action));
+        /**************end Notification*******************/
+        return redirect("/admin/medias/create")->with('success', 'تم إضافة البيانات بنجاح');
+
     }
 
     /**
@@ -59,8 +99,12 @@ class MediaController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('admin.media.edit');
+        $item = Media::find($id);
+        if($item)
+        return view('admin.media.edit',compact('item'));
+        else
+            return redirect("/admin/medias")->with('error', 'الوسائط غير موجودة');
+
     }
 
     /**
@@ -72,7 +116,42 @@ class MediaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Media::find($id);
+        if($request['link']){
+            $request['link'] = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","http://www.youtube.com/embed/$1",$request['link']);
+        }
+        $request['the_media']=$request['img']??$request['link'];
+        if($item){
+            $tempreroy=$item->the_media;
+
+            $item->update(array_filter($request->except('img','link')));
+            if ($request->hasFile('img')) {
+
+
+                $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
+                $path = 'uploads/medias/';
+
+                $mypath = public_path() . "/" .$tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
+                if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
+                    unlink($mypath);//يقوم بحذف القديم
+                }
+                Image::make($request['the_media']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                $item->the_media = $path . $filename;
+                $item->save();
+
+            }
+
+            /**************start Notification*******************/
+            $action = Action::create(['title' => 'تم تعديل الوسائط ' . $item->_ar, 'type' => Permission::findByName('list medias')->title, 'link' =>Permission::findByName('list medias')->link . "/" . $item->id."/edit"]);
+            $users = User::permission('users')->whereNotIn('id', [auth()->user()->id])->get();
+
+            if ($users->first())
+                Notification::send($users, new NotifyUsers($action));
+            /**************end Notification*******************/
+            return redirect("/admin/medias/" . $item->id . "/edit")->with('success', 'تم تعديل البيانات بنجاح');
+        }else{
+            return redirect("/admin/medias")->with('error', 'الوسائط غير موجودة');
+        }
     }
 
     /**
@@ -88,6 +167,19 @@ class MediaController extends Controller
 
     public function delete($id)
     {
-
+        $item = Media::find($id);
+        if($item)
+        {
+            if($item->type==1){
+                $mypath = public_path() . "/" .$item->the_media; // مكان التخزين في البابليك ثم مجلد ابلودز
+                if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
+                    unlink($mypath);//يقوم بحذف القديم
+                }
+            }
+            $item->delete();
+            return redirect("/admin/medias")->with('success', 'تم حذف وسائط بنجاح');
+        }
+        else
+            return redirect("/admin/medias")->with('error', 'الوسائط غير موجودة');
     }
 }

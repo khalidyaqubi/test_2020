@@ -70,7 +70,7 @@ class MediaController extends Controller
         }
 
         /**************start Notification*******************/
-        $action = Action::create(['title' => 'تم إضافة وسائط ' . $item->name_ar, 'type' => Permission::findByName('list medias')->title, 'link' =>Permission::findByName('list medias')->link . "/" . $item->id."/edit"]);
+        $action = Action::create(['title' => 'تم إضافة وسائط ' , 'type' => Permission::findByName('list medias')->title, 'link' =>Permission::findByName('list medias')->link . "/" . $item->id."/edit"]);
         $users = User::permission('users')->whereNotIn('id', [auth()->user()->id])->get();
 
         if ($users->first())
@@ -142,7 +142,7 @@ class MediaController extends Controller
             }
 
             /**************start Notification*******************/
-            $action = Action::create(['title' => 'تم تعديل الوسائط ' . $item->_ar, 'type' => Permission::findByName('list medias')->title, 'link' =>Permission::findByName('list medias')->link . "/" . $item->id."/edit"]);
+            $action = Action::create(['title' => 'تم تعديل الوسائط ', 'type' => Permission::findByName('list medias')->title, 'link' =>Permission::findByName('list medias')->link . "/" . $item->id."/edit"]);
             $users = User::permission('users')->whereNotIn('id', [auth()->user()->id])->get();
 
             if ($users->first())

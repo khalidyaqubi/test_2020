@@ -24,15 +24,11 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'status'=>'required|digits_between:1,1',
             'fixing'=>'required|digits_between:1,1',
-            'user_id'=>'required|digits_between:1,3',
+            'p_categories_ids'=>'required',
             'details_ar'=>'required',
-            'the_file_ar'=>'required',
             'details_en'=>'required',
-            'the_file_en'=>'required',
             'details_tr'=>'required',
-            'the_file_tr'=>'required',
             'need_amount'=>'numeric',
             'come_amount'=>'numeric',
         ];

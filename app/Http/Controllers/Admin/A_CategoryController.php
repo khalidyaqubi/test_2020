@@ -31,7 +31,7 @@ class A_CategoryController extends Controller
             $query->where('name_ar', 'like', '%' . $name_ar . '%');
         })->when($name_tr, function ($query) use ($name_tr) {
             $query->where('name_tr', 'like', '%' . $name_tr . '%');
-        })->orderBy("a__categories.name_ar")->paginate(20)
+        })->orderBy("a_categories.name_ar")->paginate(20)
             ->appends(["name_en" => $name_en, "name_ar" => $name_ar, "name_tr" => $name_tr]);
 
         return view('admin.a_category.index', compact('items','name_en','name_ar','name_tr'));

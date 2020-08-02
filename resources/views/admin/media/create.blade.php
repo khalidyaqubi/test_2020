@@ -61,7 +61,7 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    <div id="type1" class="col-md-12 d-" style="display: none" >
+                    <div id="type1" class="col-md-12 " style="display: none" >
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 صورة

@@ -24,6 +24,8 @@ class P_CategoryController extends Controller
         $name_en = $request["name_en"] ?? "";
         $name_ar = $request["name_ar"] ?? "";
         $name_tr = $request["name_tr"] ?? "";
+        $from_number_of_sponsers = $request["from_number_of_sponsers"] ?? "";
+        $to_number_of_sponsers = $request["to_number_of_sponsers"] ?? "";
 
         $items = P_Category::when($name_en, function ($query) use ($name_en) {
             return $query->where('name_en', 'like', '%' . $name_en . '%');
@@ -31,10 +33,14 @@ class P_CategoryController extends Controller
             $query->where('name_ar', 'like', '%' . $name_ar . '%');
         })->when($name_tr, function ($query) use ($name_tr) {
             $query->where('name_tr', 'like', '%' . $name_tr . '%');
-        })->orderBy("p__categories.name_ar")->paginate(20)
-            ->appends(["name_en" => $name_en, "name_ar" => $name_ar, "name_tr" => $name_tr]);
+        })->when($from_number_of_sponsers && $to_number_of_sponsers, function ($query) use ($from_number_of_sponsers, $to_number_of_sponsers) {
+            return $query->whereBetween('number_of_sponsers', [$from_number_of_sponsers, $to_number_of_sponsers]);
+        })->orderBy("p_categories.name_ar")->paginate(20)
+            ->appends(["name_en" => $name_en, "name_ar" => $name_ar, "name_tr" => $name_tr
+                , "from_number_of_sponsers" => $from_number_of_sponsers, "to_number_of_sponsers" => $to_number_of_sponsers]);
 
-        return view('admin.p_category.index', compact('items','name_en','name_ar','name_tr'));
+        return view('admin.p_category.index', compact('items','name_en','name_ar','name_tr'
+            ,"from_number_of_sponsers", "to_number_of_sponsers"));
 
     }
 

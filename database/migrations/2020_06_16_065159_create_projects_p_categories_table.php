@@ -13,11 +13,10 @@ class CreateProjectsPCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects_p__categories', function (Blueprint $table) {
+        Schema::create('projects_p_categories', function (Blueprint $table) {
             $table->id();
             $table->integer('p_category_id');
             $table->integer('project_id');
-            $table->integer('number_of_sponsers');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateProjectsPCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects_p__categories');
+        Schema::dropIfExists('projects_p_categories');
     }
 }

@@ -13,7 +13,7 @@ class CreateArticlesACategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles_a__categories', function (Blueprint $table) {
+        Schema::create('articles_a_categories', function (Blueprint $table) {
             $table->id();
             $table->integer('a_category_id');
             $table->integer('article_id');
@@ -28,6 +28,6 @@ class CreateArticlesACategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles_a__categories');
+        Schema::dropIfExists('articles_a_categories');
     }
 }

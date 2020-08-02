@@ -10,6 +10,7 @@ class ProjectP_Category extends Model
     /**
      * @var array
      */
+    protected $table = 'projects_p_categories';
     protected $guarded = [];
 
     public function project()
@@ -19,7 +20,7 @@ class ProjectP_Category extends Model
 
     public function p_project()
     {
-        return $this->belongsTo(P_Category::class);
+        return $this->belongsTo(P_Category::class,'p_category_id','id');
     }
 
 }

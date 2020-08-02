@@ -21,7 +21,7 @@ class Article extends Model
 
     public function a_categories()
     {
-        return $this->belongsToMany(A_Category::class);
+        return $this->belongsToMany(A_Category::class,'articles_a_categories', 'a_category_id', 'article_id');
     }
 
     public function article_a_categories()

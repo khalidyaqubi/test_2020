@@ -21,10 +21,18 @@ Route::get('/configClear', function () {
 
 Route::get('/cacheClear', function () {
 
+    $item = \App\Article::find(2);
+    //dd($item->article_a_categories()->get());
+    dd($item->a_categories()->get());
+    $item->a_categories()->sync(array_filter([1]));
+    dd('test');
     \Illuminate\Support\Facades\Artisan::call('cache:clear');
     return redirect('/');
 });
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 Route::namespace('Admin')->prefix('admin')
     ->middleware(['auth', 'checkPermission'])

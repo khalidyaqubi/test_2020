@@ -13,11 +13,12 @@ class CreatePCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('p__categories', function (Blueprint $table) {
+        Schema::create('p_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name_en');
             $table->string('name_ar');
             $table->string('name_tr');
+            $table->integer('number_of_sponsers')->nullable()->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreatePCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('p__categories');
+        Schema::dropIfExists('p_categories');
     }
 }

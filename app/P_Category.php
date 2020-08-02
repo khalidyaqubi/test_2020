@@ -10,6 +10,7 @@ class P_Category extends Model
     /**
      * @var array
      */
+    protected $table='p_categories';
     protected $guarded = [];
 
     public function projects()
@@ -19,7 +20,7 @@ class P_Category extends Model
 
     public function project_p_category()
     {
-        return $this->hasMany(ProjectP_Category::class);
+        return $this->hasMany(ProjectP_Category::class, 'p_category_id', 'id');
     }
 
 }

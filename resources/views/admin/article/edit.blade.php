@@ -1,18 +1,15 @@
 @extends('layouts.dashboard.app')
 
-@section('pageTitle','')
+@section('pageTitle','تعديل خبر')
 @section('headerCSS')
-    <link href="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}"
-          rel="stylesheet"
-          type="text/css"/>
 @endsection
 
 @section('navigation1','الرئيسية')
-@section('navigation2','')
-@section('navigation3','')
+@section('navigation2','إدارة الأخبار')
+@section('navigation3','تعديل خبر')
 @section('navigation1_link','/admin/home')
-@section('navigation2_link','')
-@section('navigation3_link','')
+@section('navigation2_link','/admin/articles')
+@section('navigation3_link','/admin/articles/'.$item->id.'/edit')
 @section('content')
 
     <div class="col-lg-12 col-xl-12">
@@ -22,30 +19,232 @@
                 <div class="kt-portlet__head-label">
                     <span class="fa fa-pen icon-padding"></span>
                     <h3 class="kt-portlet__head-title">
-                        
+                        تعديل خبر {{$item->title_ar}}
                     </h3>
                 </div>
             </div>
-            <form class="kt-portlet__body" method="post" action="/admin/calls/{{$call->id}}">
+            <form class="kt-portlet__body"
+                  enctype="multipart/form-data"
+                  method="post" action="/admin/articles/{{$item->id}}">
             @csrf
             @method('put')
             <!-- Start Row -->
                 <div class="row">
                     <!-- Start col -->
-                    <!-- End col -->
-                    <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-12">حقل<span
-                                        style="color:red;">*</span></label>
-                            <input class="form-control numbers"
-                                   
-                                   name="" 
-                                   value="" placeholder="">
+                            <label class="col-form-label col-lg-12">فئات الخبر
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <select required class="form-control kt-select2 select2-multi" name="a_categories_ids[]"
+                                        id="a_categories_ids" multiple>
+                                    <option value=" " disabled>فئة الخبر</option>
+                                    @foreach($a_categories as $a_category)
+                                        <option value="{{$a_category->id}}"
+                                                @if(collect($item->a_categories->pluck('id')->toArray())->contains($a_category->id))selected @endif>{{$a_category->name_ar}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
-               <!-- End col -->
-                
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <input type="hidden" name="status"
+                           value="0">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12"> تفعيل الخبر
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input type="checkbox" name="status"
+                                       {{$item->status?"checked":" "}} value="1"
+                                       style="width: 39px; height: 39px; margin: 0px 35px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <input type="hidden" name="fixing"
+                           value="0">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12"> تثبيت الخبر
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input type="checkbox" name="fixing"
+                                       {{$item->fixing?"checked":" "}} value="1"
+                                       style="width: 39px; height: 39px; margin: 0px 35px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-lg-3">
+                        <div class="form-group ">
+                            <label class="col-form-label col-lg-12">تاريخ الرفع
+                                <span
+                                        style="color:red;">*</span></label>
+                            <input required class="form-control datepicker-custome" placeholder="yyyy-mm-dd"
+                                   readonly="readonly" type="text"
+                                   name="created_at"
+                                   value="{{date('Y-m-d',strtotime($item->created_at))??Carbon\Carbon::now()->format('Y-m-d')}}"
+                                   style="width: 86%" placeholder="-تاريخ الرفع-">
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <div class="col-md-12 ">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">
+                                الصورة الرئيسية
+                                <span style="color:red">(500x500)</span>
+                            </label>
+                            <div class="">
+                                <div class="kt-avatar kt-avatar--outline"
+                                     id="kt_user_avatar">
 
+                                    @if(((!is_null($item->img)) && (!is_null($item->img)) && (($item->img != ''))))
+                                        <div class="kt-avatar__holder"
+                                             style="background-image: url({{ asset($item->img) }})">
+                                        </div>
+                                    @else
+                                        <div class="kt-avatar__holder"
+                                             style="background-image: url('../../assets/images/users/2.jpg')">
+                                        </div>
+                                    @endif
+                                    <label class="kt-avatar__upload"
+                                           data-toggle="kt-tooltip" title=""
+                                           data-original-title="Change avatar">
+                                        <i class="fa fa-pen"></i>
+                                        <input name="img" accept="image/png, image/jpeg, image/jpg"
+                                               type="file">
+                                    </label>
+                                    <span class="kt-avatar__cancel"
+                                          data-toggle="kt-tooltip" title=""
+                                          data-original-title="Cancel avatar">
+																			<i class="fa fa-times"></i>
+																		</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان بالعربي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="title_ar" type="text" name="title_ar"
+                                       value="{{$item->title_ar}}" placeholder="العنوان بالعربي">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان الفرعي بالعربي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea required class="form-control" id="details_ar" type="text" name="details_ar"
+                                          placeholder="العنوان الفرعي بالعربي"
+                                          style="width: 100%">{{$item->details_ar}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">المحتوى بالعربي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea class="form-control my-editor" id="the_file_ar" type="text" name="the_file_ar"
+                                          placeholder="المحتوى العربي"
+                                          style="width: 100% ; height:230px">{{$item->the_file_ar}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان بالتركي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="title_tr" type="text" name="title_tr"
+                                       value="{{$item->title_tr}}" placeholder="العنوان بالتركي">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان الفرعي بالتركي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea required class="form-control" id="details_tr" type="text" name="details_tr"
+                                          placeholder="العنوان الفرعي بالتركي"
+                                          style="width: 100% ;">{{$item->details_tr}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">المحتوى بالتركي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea class="form-control my-editor" id="the_file_tr" type="text" name="the_file_tr"
+                                          placeholder="المحتوى بالتركي"
+                                          style="width: 100% ; height:230px">{{$item->the_file_tr}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان بالإنجليزي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="title_en" type="text" name="title_en"
+                                       value="{{$item->title_en}}" placeholder="العنوان بالإنجليزي">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان الفرعي بالإنجليزي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea required class="form-control" id="details_en" type="text" name="details_en"
+                                          placeholder="العنوان الفرعي بالإنجليزي"
+                                          style="width: 100%">{{$item->details_en}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">المحتوى بالإنجليزي
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea class="form-control my-editor" id="the_file_en" type="text" name="the_file_en"
+                                          placeholder="المحتوى بالإنجليزي"
+                                          style="width: 100% ; height:230px">{{$item->the_file_en}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
                 </div>
                 <!-- End Row -->
 
@@ -60,6 +259,7 @@
                             <span class="text-primary">&nbsp;&nbsp; الرجاء الانتظار...</span>
                         </span>
                     </button>
+                </div>
                 <!-- End Button Confirm -->
             </form>
         </div>
@@ -72,15 +272,47 @@
 
 @endsection
 @section('footerJS')
+    <script src="{{asset('new_theme/assets/js/pages/custom/user/profile.js')}}" type="text/javascript"></script>
 
-    <script src="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/plugins/general/js/global/integration/plugins/bootstrap-datepicker.init.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/plugins/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}"
-            type="text/javascript"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js?apiKey=tvz10gsfkdi95v46ht76944xjv437ed3apv2id60nuthpye8"></script>
+    <script>
 
-    <script src="{{asset('new_theme/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js')}}"
-            type="text/javascript"></script>
+        var editor_config = {
+            path_absolute: "/",
+            selector: "textarea.my-editor",
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            relative_urls: false,
+            file_browser_callback: function (field_name, url, type, win) {
+                var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
+
+                var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+                if (type == 'image') {
+                    cmsURL = cmsURL + "&type=Images";
+                } else {
+                    cmsURL = cmsURL + "&type=Files";
+                }
+
+                tinyMCE.activeEditor.windowManager.open({
+                    file: cmsURL,
+                    title: 'Filemanager',
+                    width: x * 0.8,
+                    height: y * 0.8,
+                    resizable: "yes",
+                    close_previous: "no"
+                });
+            }
+        };
+
+
+        tinymce.init(editor_config);
+
+    </script>
 
 @endsection

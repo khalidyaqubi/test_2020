@@ -26,7 +26,7 @@ class ArticleRequest extends FormRequest
         $rules = [
             'status'=>'required|digits_between:1,1',
             'fixing'=>'required|digits_between:1,1',
-            'user_id'=>'required|digits_between:1,3',
+            'a_categories_ids'=>'required',
             'details_ar'=>'required',
             'the_file_ar'=>'required',
             'details_en'=>'required',

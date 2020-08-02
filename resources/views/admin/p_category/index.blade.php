@@ -64,6 +64,33 @@
                             </div>
                         </div>
                         <!-- End col -->
+                        <div class="col-lg-3 col-md-3 col-xl-3 col-sm-12">
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-12">عدد المتبرعين من</label>
+                                <div style="width: 95%;">
+                                    <input type="number" class="form-control"
+                                           name="from_number_of_sponsers"
+                                           id="from_number_of_sponsers"
+                                           value="{{$from_number_of_sponsers??""}}"
+                                           placeholder="عدد المتبرعين من">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End col -->
+                        <!-- Start col -->
+                        <div class="col-lg-3 col-md-3 col-xl-3 col-sm-12">
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-12">عدد المتبرعين الى</label>
+                                <div style="width: 95%;">
+                                    <input type="number" class="form-control"
+                                           name="to_number_of_sponsers"
+                                           id="to_number_of_sponsers"
+                                           value="{{$to_number_of_sponsers??""}}"
+                                           placeholder="عدد المتبرعين الى">
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Start col -->
                         <div class="col-12">
                             <div class="form-group row">
@@ -108,6 +135,9 @@
                                 الاسم بالإنجليزي
                             </th>
                             <th >
+                                عدد المتبرعين
+                            </th>
+                            <th >
                                 العمليات
                             </th>
                         </tr>
@@ -119,6 +149,7 @@
                                 <td>{{ $item->name_ar }}</td>
                                 <td>{{ $item->name_tr }}</td>
                                 <td>{{ $item->name_en }}</td>
+                                <td>{{ $item->number_of_sponsers }}</td>
                                 <td>
                                     <div class="dropdown dropdown-inline">
                                         <button type="button"

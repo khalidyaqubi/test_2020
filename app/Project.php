@@ -19,7 +19,7 @@ class Project extends Model
 
     public function p_categories()
     {
-        return $this->belongsToMany(P_Category::class);
+        return $this->belongsToMany(P_Category::class,'projects_p_categories', 'p_category_id', 'project_id');
     }
 
     public function project_p_categories()

@@ -25,6 +25,8 @@ class PermissionSeeder extends Seeder
         $permission9_id = DB::table('permissions')->insertGetId(['name' => 'create articles', 'guard_name' => 'web', 'title' => 'إضافة الأخبار', 'icon' => 'person_add', 'link' => '/admin/articles/create', 'order_id' => 1, 'in_menu' => 1, 'parent_id' => $permission7_id]);
         $permission10_id = DB::table('permissions')->insertGetId(['name' => 'edit articles', 'guard_name' => 'web', 'title' => 'تعديل الأخبار', 'icon' => 'equalizer', 'link' => '/admin/articles/edit', 'order_id' => 1, 'in_menu' => 0, 'parent_id' => $permission7_id]);
         $permission11_id = DB::table('permissions')->insertGetId(['name' => 'delete articles', 'guard_name' => 'web', 'title' => 'حذف خبر', 'icon' => 'equalizer', 'link' => '/admin/articles/delete', 'order_id' => 1, 'in_menu' => 0, 'parent_id' => $permission7_id]);
+        $permission38_id = DB::table('permissions')->insertGetId(['name' => 'approve articles', 'guard_name' => 'web', 'title' => 'قبول خبر', 'icon' => 'equalizer', 'link' => '/admin/articles/approve', 'order_id' => 1, 'in_menu' => 0, 'parent_id' => $permission7_id]);
+
 
         /*المشاريع*/
         $permission12_id = DB::table('permissions')->insertGetId(['name' => 'projects', 'guard_name' => 'web', 'title' => 'المشاريع', 'icon' => 'group', 'link' => '', 'order_id' => 2, 'in_menu' => 1, 'parent_id' => 0]);
@@ -111,6 +113,7 @@ class PermissionSeeder extends Seeder
             $permission35_id,
             $permission36_id,
             $permission37_id,
+            $permission38_id,
         ]);
 
         $setting_id = DB::table('settings')->insertGetId([

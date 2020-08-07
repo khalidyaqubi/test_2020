@@ -36,7 +36,7 @@ class HomeController extends Controller
         $projects2 = Project::select('title_en as name')->withCount('donations')->get();
         $projects2_chart = json_encode($projects2);
 
-        
+
         return view('admin.home.home',compact('articles_count','projects_count','dontions_count','users_count'
         ,'p_categories_chart','projects_chart','projects2_chart'));
     }

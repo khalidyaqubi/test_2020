@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    {{trans('my-word.mobile')}}
                 </div>
 
                 <div class="links">

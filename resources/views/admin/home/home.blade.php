@@ -7,6 +7,20 @@
           type="text/css"/>
 
     <style>
+        #chartdiv1 {
+            width: 100%;
+            height: 300px;
+        }
+
+        #chartdiv2 {
+            width: 100%;
+            height: 300px;
+        }
+
+        #chartdiv3 {
+            width: 100%;
+            height: 300px;
+        }
         .multiselect-container li {
             padding: 8px !important
         }
@@ -63,7 +77,7 @@
 																عدد الأخبار
 															</span>
                                 <span class="kt-widget17__desc">
-																15
+																{{$articles_count}}
 															</span>
                             </div>
                             <!-- End Item -->
@@ -85,10 +99,10 @@
 																	</g>
 																</svg> </span>
                                 <span class="kt-widget17__subtitle">
-																جميع المشاريع
+																عدد المشاريع
 															</span>
                                 <span class="kt-widget17__desc">
-																20
+															{{$projects_count}}
 															</span>
                             </div>
                             <!-- End Item -->
@@ -113,7 +127,7 @@
 																عدد المستخدمين
 															</span>
                                 <span class="kt-widget17__desc">
-																12
+																{{$users_count}}
 															</span>
                             </div>
                             <!-- End Item -->
@@ -138,7 +152,7 @@
 																عدد التبرعات
 															</span>
                                 <span class="kt-widget17__desc">
-																13
+																{{$dontions_count}}
 															</span>
                             </div>
                             <!-- End Item -->
@@ -150,7 +164,57 @@
         <!--end:: Widgets/Activity-->
 
     </div>
-
+    <!-- Start Col -->
+    <div class="col-lg-12 col-xl-12 col-md-12">
+        <!--begin::Portlet-->
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <span class="fa fa-sign icon-padding"></span>
+                    <h3 class="kt-portlet__head-title">
+                        المتبرعين حسب التصنيفات
+                    </h3>
+                </div>
+            </div>
+            <div id="chartdiv1"></div>
+        </div>
+        <!--end::Portlet-->
+    </div>
+    <!-- End Col -->
+    <!-- Start Col -->
+    <div class="col-lg-12 col-xl-12 col-md-12">
+        <!--begin::Portlet-->
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <span class="fa fa-sign icon-padding"></span>
+                    <h3 class="kt-portlet__head-title">
+                        المبالغ المتبرع بها حسب المشاريع
+                    </h3>
+                </div>
+            </div>
+            <div id="chartdiv2"></div>
+        </div>
+        <!--end::Portlet-->
+    </div>
+    <!-- End Col -->
+    <!-- Start Col -->
+    <div class="col-lg-12 col-xl-12 col-md-12">
+        <!--begin::Portlet-->
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <span class="fa fa-sign icon-padding"></span>
+                    <h3 class="kt-portlet__head-title">
+                        التبرعات حسب المشاريع
+                    </h3>
+                </div>
+            </div>
+            <div id="chartdiv3"></div>
+        </div>
+        <!--end::Portlet-->
+    </div>
+    <!-- End Col -->
 @endsection
 
 @section('footerJS')
@@ -163,6 +227,154 @@
 
     <script src="{{asset('new_theme/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js')}}"
             type="text/javascript"></script>
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <script>
+        am4core.ready(function () {
+
+// Themes begin
+            am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+            var chart = am4core.create("chartdiv1", am4charts.XYChart);
+
+// Add data
+            var mydata = JSON.parse('{!! $p_categories_chart !!}');
+            console.log(mydata);
+            mydata = $.grep(mydata, function (e) {
+                return e.number_of_sponsers_count != 0;
+            });
+            chart.data = mydata;
+
+// Create axes
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "name";
+            categoryAxis.renderer.grid.template.location = 0;
+            categoryAxis.renderer.minGridDistance = 30;
+
+            categoryAxis.renderer.labels.template.adapter.add("dy", function (dy, target) {
+                if (target.dataItem && target.dataItem.index & 2 == 2) {
+                    return dy + 25;
+                }
+                return dy;
+            });
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+// Create series
+            var series = chart.series.push(new am4charts.ColumnSeries());
+            series.dataFields.valueY = "number_of_sponsers_count";
+            series.dataFields.categoryX = "name";
+            series.name = "number_of_sponsers_count";
+            series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+            series.columns.template.fillOpacity = .8;
+
+            var columnTemplate = series.columns.template;
+            columnTemplate.strokeWidth = 2;
+            columnTemplate.strokeOpacity = 1;
+
+        }); // end am4core.ready()
+
+        am4core.ready(function () {
+
+// Themes begin
+            am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+            var chart = am4core.create("chartdiv2", am4charts.XYChart);
+
+// Add data
+            var mydata = JSON.parse('{!! $projects_chart !!}');
+            console.log(mydata);
+            mydata = $.grep(mydata, function (e) {
+                return e.come_amount != 0;
+            });
+            chart.data = mydata;
+
+// Create axes
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "name";
+            categoryAxis.renderer.grid.template.location = 0;
+            categoryAxis.renderer.minGridDistance = 30;
+
+            categoryAxis.renderer.labels.template.adapter.add("dy", function (dy, target) {
+                if (target.dataItem && target.dataItem.index & 2 == 2) {
+                    return dy + 25;
+                }
+                return dy;
+            });
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+// Create series
+            var series = chart.series.push(new am4charts.ColumnSeries());
+            series.dataFields.valueY = "come_amount";
+            series.dataFields.categoryX = "name";
+            series.name = "come_amount";
+            series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+            series.columns.template.fillOpacity = .8;
+
+            var columnTemplate = series.columns.template;
+            columnTemplate.strokeWidth = 2;
+            columnTemplate.strokeOpacity = 1;
+
+        }); // end am4core.ready()
+
+        am4core.ready(function () {
+
+// Themes begin
+            am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+            var chart = am4core.create("chartdiv3", am4charts.XYChart);
+
+// Add data
+            var mydata = JSON.parse('{!! $projects2_chart !!}');
+            console.log(mydata);
+            mydata = $.grep(mydata, function (e) {
+                return e.donations_count != 0;
+            });
+            chart.data = mydata;
+
+// Create axes
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "name";
+            categoryAxis.renderer.grid.template.location = 0;
+            categoryAxis.renderer.minGridDistance = 30;
+
+            categoryAxis.renderer.labels.template.adapter.add("dy", function (dy, target) {
+                if (target.dataItem && target.dataItem.index & 2 == 2) {
+                    return dy + 25;
+                }
+                return dy;
+            });
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+// Create series
+            var series = chart.series.push(new am4charts.ColumnSeries());
+            series.dataFields.valueY = "donations_count";
+            series.dataFields.categoryX = "name";
+            series.name = "donations_count";
+            series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+            series.columns.template.fillOpacity = .8;
+
+            var columnTemplate = series.columns.template;
+            columnTemplate.strokeWidth = 2;
+            columnTemplate.strokeOpacity = 1;
+
+        }); // end am4core.ready()
+    </script>
+
 
 @endsection
 

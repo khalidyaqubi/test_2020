@@ -135,7 +135,7 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">نشاطنا بالعربي
 
@@ -148,17 +148,17 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-12">عبارة الزكاة بالعربي
+                    {{--<div class="col-md-6">--}}
+                        {{--<div class="form-group row">--}}
+                            {{--<label class="col-form-label col-lg-12">عبارة الزكاة بالعربي--}}
 
-                                <span style="color:red;">*</span></label>
-                            <div style="width: 95%;">
-                                <textarea  style="height: 100px;"  required class="form-control" id="who_are_we_ar" type="text" name="who_are_we_ar"
-                                           value="{{ $item->who_are_we_ar }}" placeholder="عبارة الزكاة بالعربي"></textarea>
-                            </div>
-                        </div>
-                    </div>
+                                {{--<span style="color:red;">*</span></label>--}}
+                            {{--<div style="width: 95%;">--}}
+                                {{--<textarea  style="height: 100px;"  required class="form-control" id="who_are_we_ar" type="text" name="who_are_we_ar"--}}
+                                           {{--value="{{ $item->who_are_we_ar }}" placeholder="عبارة الزكاة بالعربي"></textarea>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">
@@ -226,7 +226,7 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">نشاطنا بالتركي
 
@@ -240,17 +240,17 @@
                     <!-- End col -->
                    
                     <!-- Start col -->
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-12">عبارة الزكاة بالتركي
+                    {{--<div class="col-md-6">--}}
+                        {{--<div class="form-group row">--}}
+                            {{--<label class="col-form-label col-lg-12">عبارة الزكاة بالتركي--}}
 
-                                <span style="color:red;">*</span></label>
-                            <div style="width: 95%;">
-                                <textarea  style="height: 100px;"  required class="form-control" id="who_are_we_tr" type="text" name="who_are_we_tr"
-                                           value="{{ $item->who_are_we_tr }}" placeholder="عبارة الزكاة بالتركي"></textarea>
-                            </div>
-                        </div>
-                    </div>
+                                {{--<span style="color:red;">*</span></label>--}}
+                            {{--<div style="width: 95%;">--}}
+                                {{--<textarea  style="height: 100px;"  required class="form-control" id="who_are_we_tr" type="text" name="who_are_we_tr"--}}
+                                           {{--value="{{ $item->who_are_we_tr }}" placeholder="عبارة الزكاة بالتركي"></textarea>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">
@@ -319,7 +319,7 @@
                     <!-- End col -->
                    
                     <!-- Start col -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">نشاطنا بالإنجليزي
 
@@ -332,17 +332,17 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-12">عبارة الزكاة بالإنجليزي
+                    {{--<div class="col-md-6">--}}
+                        {{--<div class="form-group row">--}}
+                            {{--<label class="col-form-label col-lg-12">عبارة الزكاة بالإنجليزي--}}
 
-                                <span style="color:red;">*</span></label>
-                            <div style="width: 95%;">
-                                <textarea  style="height: 100px;"  required class="form-control" id="who_are_we_en" type="text" name="who_are_we_en"
-                                           value="{{ $item->who_are_we_en }}" placeholder="عبارة الزكاة بالإنجليزي"></textarea>
-                            </div>
-                        </div>
-                    </div>
+                                {{--<span style="color:red;">*</span></label>--}}
+                            {{--<div style="width: 95%;">--}}
+                                {{--<textarea  style="height: 100px;"  required class="form-control" id="who_are_we_en" type="text" name="who_are_we_en"--}}
+                                           {{--value="{{ $item->who_are_we_en }}" placeholder="عبارة الزكاة بالإنجليزي"></textarea>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">

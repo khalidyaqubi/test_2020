@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Article;
+use App\Donation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use App\P_Category;
+use App\Project;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +22,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home.home');
+        $articles_count=Article::count();
+        $projects_count=Project::count();
+        $dontions_count=Donation::count();
+        $users_count=User::count();
+
+        $p_categories = P_Category::select('name_en as name','number_of_sponsers as number_of_sponsers_count')->get();
+        $p_categories_chart = json_encode($p_categories);
+
+        $projects = Project::select('title_en as name','come_amount')->get();
+        $projects_chart = json_encode($projects);
+
+        $projects2 = Project::select('title_en as name')->withCount('donations')->get();
+        $projects2_chart = json_encode($projects2);
+
+        
+        return view('admin.home.home',compact('articles_count','projects_count','dontions_count','users_count'
+        ,'p_categories_chart','projects_chart','projects2_chart'));
     }
 
     /**

@@ -173,7 +173,7 @@ class UserController extends Controller
             $user->syncPermissions(request()["permissions"]);
             /**************start Notification*******************/
             $action1 = Action::create(['title' => 'تم تعديل صلاحية المستخدم ' . $user->name, 'type' => 'إدارة حسابات', 'link' => "/admin/users"]);
-            $action2 = Action::create(['title' => 'تم تعديل صلاحية المستخدم ' . $user->name, 'type' => 'إدارة حسابات', 'link' => "/"]);
+            $action2 = Action::create(['title' => 'تم تعديل صلاحية المستخدم ' . $user->name, 'type' => 'إدارة حسابات', 'link' => "/admin/home"]);
             $users1 = User::permission('users')->whereNotIn('id', [auth()->user()->id])->get();
             $users2 = User::where('id', $user->id)->get();
 

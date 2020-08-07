@@ -54,10 +54,10 @@
                         <!-- Start col -->
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label class="col-form-label col-lg-12">العنوان  بالتركية</label>
+                                <label class="col-form-label col-lg-12">العنوان  بالإنجليزية</label>
                                 <div style="width: 95%;">
                                     <input class="form-control"
-                                           placeholder="اكتب  العنوان بالتركي" id="title_en" name="title_en"
+                                           placeholder="اكتب  العنوان بالإنجليزية" id="title_en" name="title_en"
                                            value="{{$title_en}}"
                                            type="text">
                                 </div>
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <!-- Start col -->
-                        <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <div style="width: 95%;">
                                     <label class="col-form-label col-lg-12">الفئات
@@ -145,7 +145,7 @@
                         </div>
                         <!-- End col -->
                         <!-- Start col -->
-                        <div class="col-lg-3 col-md-3 col-xl-3 col-sm-12">
+                        <div class="col-lg-4">
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-12">التمويل المطلوب الى</label>
                                 <div style="width: 95%;">
@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-xl-3 col-sm-12">
+                        <div class="col-lg-4">
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-12">مقدار التبرع من</label>
                                 <div style="width: 95%;">
@@ -171,7 +171,7 @@
                         </div>
                         <!-- End col -->
                         <!-- Start col -->
-                        <div class="col-lg-3 col-md-3 col-xl-3 col-sm-12">
+                        <div class="col-lg-4 ">
                             <div class="form-group row">
                                 <label class="col-form-label col-lg-12">مقدار التبرع الى</label>
                                 <div style="width: 95%;">

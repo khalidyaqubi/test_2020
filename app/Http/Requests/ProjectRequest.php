@@ -34,17 +34,17 @@ class ProjectRequest extends FormRequest
         ];
         if ($this->isMethod('post')) {
             $rules['img'] ='required|mimes:jpeg,png,jpg,gif,svg|max:6448';
-            $rules['title_en'] = 'required|max:100|unique:articles,title_en,NULL,id';
-            $rules['title_ar'] = 'required|max:100|unique:articles,title_ar,NULL,id';
-            $rules['title_tr'] = 'required|max:100|unique:articles,title_tr,NULL,id';
+            $rules['title_en'] = 'required|max:100|unique:projects,title_en,NULL,id';
+            $rules['title_ar'] = 'required|max:100|unique:projects,title_ar,NULL,id';
+            $rules['title_tr'] = 'required|max:100|unique:projects,title_tr,NULL,id';
         }
         if ($this->isMethod('put') || $this->isMethod('patch')) {
 
-            $id = $this->route('article');
+            $id = $this->route('project');
 
-            $rules['title_en'] = 'required|max:100|unique:articles,title_en,' . $id . ',id';
-            $rules['title_ar'] = 'required|max:100|unique:articles,title_ar,' . $id . ',id';
-            $rules['title_tr'] = 'required|max:100|unique:articles,title_tr,' . $id . ',id';
+            $rules['title_en'] = 'required|max:100|unique:projects,title_en,' . $id . ',id';
+            $rules['title_ar'] = 'required|max:100|unique:projects,title_ar,' . $id . ',id';
+            $rules['title_tr'] = 'required|max:100|unique:projects,title_tr,' . $id . ',id';
         }
         if (request()->img)
             $rules['img'] ='required|mimes:jpeg,png,jpg,gif,svg|max:6448';

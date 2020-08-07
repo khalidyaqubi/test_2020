@@ -98,6 +98,15 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $request['user_id'] = auth()->user()->id;
+
+        $old_fixing= Project::where('fixing',1)->first();
+        if($request['fixing']==1)
+            Project::where('fixing',1)->update(['fixing'=>0]);
+
+        $massege="";
+        if($old_fixing && $request['fixing']==1)
+            $massege=" وتم إزالة تثبيت مشروع".$old_fixing->title_ar;
+
         $item = Project::create($request->except('img', 'p_categories_ids', 'super_donation'));
         $item->p_categories()->sync(array_filter($request['p_categories_ids']));
 
@@ -118,7 +127,7 @@ class ProjectController extends Controller
         if ($users->first())
             Notification::send($users, new NotifyUsers($action));
         /**************end Notification*******************/
-        return redirect("/admin/projects/create")->with('success', 'تم إضافة البيانات بنجاح');
+        return redirect("/admin/projects/create")->with('success', 'تم إضافة البيانات بنجاح'.$massege);
 
     }
 
@@ -158,6 +167,14 @@ class ProjectController extends Controller
         if ($item) {
             $tempreroy = $item->img;
 
+            $old_fixing= Project::where('fixing',1)->first();
+            if($request['fixing']==1)
+                Project::where('fixing',1)->update(['fixing'=>0]);
+
+            $massege="";
+            if($old_fixing && $request['fixing']==1)
+                $massege=" وتم إزالة تثبيت مشروع".$old_fixing->title_ar;
+
             $item->update($request->except('img', 'p_categories_ids', 'super_donation'));
             $item->p_categories()->sync(array_filter($request['p_categories_ids']));
 
@@ -184,7 +201,7 @@ class ProjectController extends Controller
             if ($users->first())
                 Notification::send($users, new NotifyUsers($action));
             /**************end Notification*******************/
-            return redirect("/admin/projects/" . $item->id . "/edit")->with('success', 'تم تعديل البيانات بنجاح');
+            return redirect("/admin/projects/" . $item->id . "/edit")->with('success', 'تم تعديل البيانات بنجاح'.$massege);
         } else {
             return redirect("/admin/projects")->with('error', 'المشروع غير موجود');
         }

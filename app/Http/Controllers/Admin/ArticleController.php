@@ -83,8 +83,19 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $request['user_id'] = auth()->user()->id;
+
+        $old_fixing= Article::where('fixing',1)->first();
+        if($request['fixing']==1)
+            Article::where('fixing',1)->update(['fixing'=>0]);
+
+        $massege="";
+        if($old_fixing && $request['fixing']==1)
+            $massege=" وتم إزالة تثبيت خبر".$old_fixing->title_ar;
+
         $item = Article::create($request->except('img', 'a_categories_ids'));
         $item->a_categories()->sync(array_filter($request['a_categories_ids']));
+
+
 
         if ($request->hasFile('img')) {
 
@@ -103,7 +114,7 @@ class ArticleController extends Controller
         if ($users->first())
             Notification::send($users, new NotifyUsers($action));
         /**************end Notification*******************/
-        return redirect("/admin/articles/create")->with('success', 'تم إضافة البيانات بنجاح');
+        return redirect("/admin/articles/create")->with('success', 'تم إضافة البيانات بنجاح'.$massege);
 
     }
 
@@ -152,7 +163,17 @@ class ArticleController extends Controller
         if($item){
             $tempreroy=$item->img;
 
-            $item->update(array_filter($request->except('img', 'a_categories_ids')));
+            $old_fixing= Article::where('fixing',1)->first();
+            if($request['fixing']==1)
+            Article::where('fixing',1)->update(['fixing'=>0]);
+
+            $massege="";
+            if($old_fixing && $request['fixing']==1 )
+                $massege=" وتم إزالة تثبيت خبر".$old_fixing->title_ar;
+
+
+
+            $item->update($request->except('img', 'a_categories_ids'));
             $item->a_categories()->sync(array_filter($request['a_categories_ids']));
 
             if ($request->hasFile('img')) {
@@ -178,7 +199,7 @@ class ArticleController extends Controller
             if ($users->first())
                 Notification::send($users, new NotifyUsers($action));
             /**************end Notification*******************/
-            return redirect("/admin/articles/" . $item->id . "/edit")->with('success', 'تم تعديل البيانات بنجاح');
+            return redirect("/admin/articles/" . $item->id . "/edit")->with('success', 'تم تعديل البيانات بنجاح'.$massege);
         }else{
             return redirect("/admin/articles")->with('error', 'الخبر غير موجود');
         }

@@ -153,6 +153,14 @@ class PermissionSeeder extends Seeder
             'page_img' => 'required',
             'main_img' => 'required',
             'donate_img' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'footer_ar' => 'required',
+            'footer_en' => 'required',
+            'footer_tr' => 'required',
+            'address_ar'=> 'required',
+            'address_tr'=> 'required',
+            'address_en'=> 'required',
         ]);
     }
 }

@@ -80,10 +80,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::namespace('Visitor')
         ->group(function () {
             Route::resource('/', 'HomeController');
+            Route::get('about_us', 'HomeController@about_us');
+            Route::get('contact_us', 'HomeController@about_us');
             Route::resource('articles', 'ArticleController');
             Route::resource('donations', 'DonationController');
             Route::resource('medias', 'MediaController');
-            Route::resource('projects', 'ProjectController');
+            Route::get('medias/medias_tow', 'MediaController@medias_tow');
+            Route::get('medias/medias_ajax', 'MediaController@medias_ajax');
+            Route::resource('projects/donations', 'ProjectController@donations');
             Route::resource('p_categories', 'P_categoryController');
         });
 });

@@ -33,6 +33,110 @@
                     <!-- Start col -->
                     <div class="col-md-6">
                         <div class="form-group row">
+                            <label class="col-form-label col-lg-12">البريد الإلكتروني
+
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="email" type="text" name="email"
+                                       value="{{ $item->email }}" placeholder="البريد الإلكتروني">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">رقم التواصل
+
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="phone" type="text" name="phone"
+                                       value="{{ $item->phone }}" placeholder="رقم التواصل">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان بالعربي
+
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="address_ar" type="text" name="address_ar"
+                                       value="{{ $item->address_ar }}" placeholder="العنوان بالعربي">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان بالتركي
+
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="address_tr" type="text" name="address_tr"
+                                       value="{{ $item->address_tr }}" placeholder="العنوان بالتركي">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">العنوان بالإنجليزي
+
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input required class="form-control" id="address_en" type="text" name="address_en"
+                                       value="{{ $item->address_en }}" placeholder="العنوان بالإنجليزي">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">كلمة التذييل بالعربي
+
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea  style="height: 100px;" required class="form-control arabic" id="footer_ar" type="text" name="footer_ar"
+                                            placeholder="كلمة التذييل بالعربي">{{ $item->footer_ar }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">كلمة التذييل بالتركي
+
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea  style="height: 100px;" required class="form-control arabic" id="footer_tr" type="text" name="footer_tr"
+                                            placeholder="كلمة التذييل بالتركي">{{ $item->footer_tr }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">كلمة التذييل بالإنجليزي
+
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea  style="height: 100px;" required class="form-control arabic" id="footer_en" type="text" name="footer_en"
+                                            placeholder="كلمة التذييل بالإنجليزي">{{ $item->footer_en }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
                             <label class="col-form-label col-lg-12">رابط الفيسبوك
 
                                 <span style="color:red;">*</span></label>
@@ -116,7 +220,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;" required class="form-control arabic" id="our_object_ar" type="text" name="our_object_ar"
-                                           value="{{ $item->our_object_ar }}" placeholder="عن المشروع بالعربي"></textarea>
+                                           placeholder="عن المشروع بالعربي">{{ $item->our_object_ar }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -129,7 +233,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="our_mission_ar" type="text" name="our_mission_ar"
-                                           value="{{ $item->our_mission_ar }}" placeholder="رسالتنا بالعربي"></textarea>
+                                           placeholder="رسالتنا بالعربي">{{ $item->our_mission_ar }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -142,7 +246,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="our_active_ar" type="text" name="our_active_ar"
-                                           value="{{ $item->our_active_ar }}" placeholder="نشاطنا بالعربي"></textarea>
+                                            placeholder="نشاطنا بالعربي">{{ $item->our_active_ar }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -181,7 +285,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="our_vision_quotes_ar" type="text" name="our_vision_quotes_ar"
-                                           value="{{ $item->our_vision_quotes_ar }}" placeholder="اقتباس رؤيتنا بالعربي"></textarea>
+                                            placeholder="اقتباس رؤيتنا بالعربي">{{ $item->our_vision_quotes_ar }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -194,7 +298,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="our_vision_content_ar" type="text" name="our_vision_content_ar"
-                                           value="{{ $item->our_vision_content_ar }}" placeholder="محتوى رؤيتنا بالعربي"></textarea>
+                                            placeholder="محتوى رؤيتنا بالعربي">{{ $item->our_vision_content_ar }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -207,7 +311,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;" required class="form-control turkey" id="our_object_tr" type="text" name="our_object_tr"
-                                           value="{{ $item->our_object_tr }}" placeholder="عن المشروع بالتركي"></textarea>
+                                           placeholder="عن المشروع بالتركي">{{ $item->our_object_tr }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -220,7 +324,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_mission_tr" type="text" name="our_mission_tr"
-                                           value="{{ $item->our_mission_tr }}" placeholder="رسالتنا بالتركي"></textarea>
+                                           placeholder="رسالتنا بالتركي">{{ $item->our_mission_tr }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -233,7 +337,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_active_tr" type="text" name="our_active_tr"
-                                           value="{{ $item->our_active_tr }}" placeholder="نشاطنا بالتركي"></textarea>
+                                           placeholder="نشاطنا بالتركي">{{ $item->our_active_tr }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -273,7 +377,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_vision_quotes_tr" type="text" name="our_vision_quotes_tr"
-                                           value="{{ $item->our_vision_quotes_tr }}" placeholder="اقتباس رؤيتنا بالتركي"></textarea>
+                                            placeholder="اقتباس رؤيتنا بالتركي">{{ $item->our_vision_quotes_tr }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -286,7 +390,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                <textarea  style="height: 100px;"  required class="form-control turkey" id="our_vision_content_tr" type="text" name="our_vision_content_tr"
-                                          value="{{ $item->our_vision_content_tr }}" placeholder="محتوى رؤيتنا بالتركي"></textarea>
+                                           placeholder="محتوى رؤيتنا بالتركي">{{ $item->our_vision_content_tr }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -299,7 +403,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_object_tr" type="text" name="our_object_en"
-                                           value="{{ $item->our_object_en }}" placeholder="عن المشروع بالإنجليزي"></textarea>
+                                           placeholder="عن المشروع بالإنجليزي">{{ $item->our_object_en }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -312,7 +416,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_mission_en" type="text" name="our_mission_en"
-                                           value="{{ $item->our_mission_en }}" placeholder="رسالتنا بالإنجليزي"></textarea>
+                                           placeholder="رسالتنا بالإنجليزي">{{ $item->our_mission_en }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -326,7 +430,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_active_en" type="text" name="our_active_en"
-                                           value="{{ $item->our_active_en }}" placeholder="نشاطنا بالإنجليزي"></textarea>
+                                            placeholder="نشاطنا بالإنجليزي">{{ $item->our_active_en }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -365,7 +469,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;" required class="form-control turkey" id="our_vision_quotes_en" type="text" name="our_vision_quotes_en"
-                                           value="{{ $item->our_vision_quotes_en }}" placeholder="اقتباس رؤيتنا بالإنجليزي"></textarea>
+                                            placeholder="اقتباس رؤيتنا بالإنجليزي">{{ $item->our_vision_quotes_en }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -378,7 +482,7 @@
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_vision_content_en" type="text" name="our_vision_content_en"
-                                           value="{{ $item->our_vision_content_en }}" placeholder="محتوى رؤيتنا بالإنجليزي"></textarea>
+                                            placeholder="محتوى رؤيتنا بالإنجليزي">{{ $item->our_vision_content_en }}</textarea>
                             </div>
                         </div>
                     </div>

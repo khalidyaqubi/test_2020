@@ -15,6 +15,14 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address_ar')->nullable();
+            $table->string('address_tr')->nullable();
+            $table->string('address_en')->nullable();
+            $table->longText('footer_ar')->nullable();
+            $table->longText('footer_en')->nullable();
+            $table->longText('footer_tr')->nullable();
             $table->string('about_us_img')->nullable();
             $table->string('about_us_img2')->nullable();
             $table->string('media_img')->nullable();
@@ -29,29 +37,29 @@ class CreateSettingsTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('youtube')->nullable();
             $table->string('instagram')->nullable();
-            $table->string('our_object_ar')->nullable();
-            $table->string('our_mission_ar')->nullable();
-            $table->string('our_active_ar')->nullable();
-            $table->string('who_are_we_ar')->nullable();
-            $table->string('our_vision_tilte_ar')->nullable();
-            $table->string('our_vision_quotes_ar')->nullable();
-            $table->string('our_vision_content_ar')->nullable();
+            $table->longText('our_object_ar')->nullable();
+            $table->longText('our_mission_ar')->nullable();
+            $table->longText('our_active_ar')->nullable();
+            $table->longText('who_are_we_ar')->nullable();
+            $table->longText('our_vision_tilte_ar')->nullable();
+            $table->longText('our_vision_quotes_ar')->nullable();
+            $table->longText('our_vision_content_ar')->nullable();
 
-            $table->string('our_object_en')->nullable();
-            $table->string('our_mission_en')->nullable();
-            $table->string('our_active_en')->nullable();
-            $table->string('who_are_we_en')->nullable();
-            $table->string('our_vision_tilte_en')->nullable();
-            $table->string('our_vision_quotes_en')->nullable();
-            $table->string('our_vision_content_en')->nullable();
+            $table->longText('our_object_en')->nullable();
+            $table->longText('our_mission_en')->nullable();
+            $table->longText('our_active_en')->nullable();
+            $table->longText('who_are_we_en')->nullable();
+            $table->longText('our_vision_tilte_en')->nullable();
+            $table->longText('our_vision_quotes_en')->nullable();
+            $table->longText('our_vision_content_en')->nullable();
 
-            $table->string('our_object_tr')->nullable();
-            $table->string('our_mission_tr')->nullable();
-            $table->string('our_active_tr')->nullable();
-            $table->string('who_are_we_tr')->nullable();
-            $table->string('our_vision_tilte_tr')->nullable();
-            $table->string('our_vision_quotes_tr')->nullable();
-            $table->string('our_vision_content_tr')->nullable();
+            $table->longText('our_object_tr')->nullable();
+            $table->longText('our_mission_tr')->nullable();
+            $table->longText('our_active_tr')->nullable();
+            $table->longText('who_are_we_tr')->nullable();
+            $table->longText('our_vision_tilte_tr')->nullable();
+            $table->longText('our_vision_quotes_tr')->nullable();
+            $table->longText('our_vision_content_tr')->nullable();
             $table->timestamps();
         });
     }

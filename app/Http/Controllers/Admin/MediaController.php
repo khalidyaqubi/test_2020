@@ -62,7 +62,7 @@ class MediaController extends Controller
 
 
             $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
-            $path = 'uploads/medias/';
+            $path = 'size1/uploads/medias/';
              Image::make($request['img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
             $item->the_media = $path . $filename;
             $item->save();
@@ -129,7 +129,7 @@ class MediaController extends Controller
 
 
                 $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
-                $path = 'uploads/medias/';
+                $path = 'size1/uploads/medias/';
 
                 $mypath = public_path() . "/" .$tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن

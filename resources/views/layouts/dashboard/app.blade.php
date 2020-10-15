@@ -169,6 +169,19 @@
 
 
 <!-- begin::Global Config(global config for global JS sciprts) -->
+
+
+<!-- end::Global Config -->
+
+<!--begin::Global Theme Bundle(used by all pages) -->
+<!--begin:: Vendor Plugins -->
+<script src="{{  asset('js/app_2.js') }}"></script>
+<!-- Start Custom Select 2 Selector -->
+<script>
+    $('.select2-multi').select2({
+        placeholder: "اختر من القائمة"
+    });
+</script>
 <script>
     function arabicInput(event) {
         var value = String.fromCharCode(event.which);
@@ -220,19 +233,6 @@
         }
     };
 </script>
-
-<!-- end::Global Config -->
-
-<!--begin::Global Theme Bundle(used by all pages) -->
-<!--begin:: Vendor Plugins -->
-<script src="{{  asset('js/app_2.js') }}"></script>
-<!-- Start Custom Select 2 Selector -->
-<script>
-    $('.select2-multi').select2({
-        placeholder: "اختر من القائمة"
-    });
-</script>
-
 @yield('select2')
 
 <!-- End Custom Select 2 Selector -->

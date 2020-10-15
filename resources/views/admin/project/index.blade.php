@@ -254,7 +254,7 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->title_ar??($item->title_en??$item->title_tr) }}</td>
 
-                                <td><image width='122px' height='100px' src='{{asset($item->img)}}'/>
+                                <td><image width='122px' height='100px' src='{{asset("size1/".$item->img)}}'/>
                                 </td>
                                 <td>@foreach($item->p_categories as $category)
                                         <span class="tags">{{$category->name_ar}}</span>

@@ -118,7 +118,7 @@ class HomeController extends Controller
                     'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
                 ]);
                 $filename = rand() . '.' . $request['image']->getClientOriginalExtension();
-                $path = 'uploads/users/';
+                $path = 'size1/uploads/users/';
 
                 $mypath = public_path() . "/" . $user->image; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن

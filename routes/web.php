@@ -12,7 +12,37 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+    Route::get('/test2', function () {
+//        $a1 = \App\Article::find(1);
+//        $p1 = \App\Project::find(1);
+//        $a2 = $a1->replicate();
+//        $a2->save();
+//        $a2->update(['fixing' => 0]);
+//        $a3 = $a2->replicate();
+//        $a3->save();
+//        $a4 = $a2->replicate();
+//        $a4->save();
+//        $a5 = $a2->replicate();
+//        $a5->save();
+//        $a6 = $a2->replicate();
+//        $a6->save();
+//
+//        $p2 = $p1->replicate();
+//        $p2->save();
+//        $p2->update(['fixing' => 0]);
+//        $p3 = $p2->replicate();
+//        $p3->save();
+//        $p4 = $p2->replicate();
+//        $p4->save();
+//        $p5 = $p2->replicate();
+//        $p5->save();
+//        $p6 = $p2->replicate();
+//        $p6->save();
+
+        dd('test2');
+    });
     Route::get('/configClear', function () {
         dd(Config::get('app.locale'));
         \Illuminate\Support\Facades\Artisan::call('config:clear');
@@ -74,6 +104,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::resource('donations', 'DonationController');
             Route::get('donations/delete/{id}', 'DonationController@delete');
 
+            Route::resource("messages", "MessageController");
+            Route::get('messages/delete/{id}', 'MessageController@delete');
+
         });
 
 
@@ -81,15 +114,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         ->group(function () {
             Route::resource('/', 'HomeController');
             Route::get('about_us', 'HomeController@about_us');
-            Route::get('contact_us', 'HomeController@about_us');
+            Route::get('contact_us', 'HomeController@contact_us');
+            Route::post('contact_us', 'HomeController@contact_us_post');
             Route::resource('articles', 'ArticleController');
             Route::resource('donations', 'DonationController');
             Route::resource('medias', 'MediaController');
             Route::get('medias/medias_tow', 'MediaController@medias_tow');
-            Route::get('medias/medias_ajax', 'MediaController@medias_ajax');
-            Route::resource('projects/donations', 'ProjectController@donations');
+            Route::get('medias/index_ajax', 'MediaController@index_ajax');
+            Route::resource('projects/{id}/donations', 'ProjectController@donations');
             Route::resource('p_categories', 'P_categoryController');
         });
+    Route::get('/logout', 'Auth\LoginController@logout');
+    Auth::routes();
 });
-Route::get('/logout', 'Auth\LoginController@logout');
-Auth::routes();
+

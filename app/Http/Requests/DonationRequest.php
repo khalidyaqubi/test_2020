@@ -26,7 +26,7 @@ class  DonationRequest extends FormRequest
         return [
             'project_id'=>'required|numeric|digits_between:1,3',
             'is_monthly'=>'required|digits_between:1,1',
-            'come_amount'=>'required|numeric',
+            'amount'=>'required|numeric',
         ];
     }
 }

@@ -105,14 +105,14 @@ class SettingController extends Controller
 
 
                 $filename = rand() . '.' . $request['about_us_img']->getClientOriginalExtension();
-                $path = 'uploads/settings/';
+                $path = 'size1/uploads/settings/';
 
                 $mypath = public_path() . "/" . $item->about_us_img; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath);//يقوم بحذف القديم
                 }
 
-                Image::make($request['about_us_img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['about_us_img']->getRealPath())->resize(3840, 1750)->save($path . $filename, 60);
                 $item->about_us_img = $path . $filename;
                 $item->save();
 
@@ -122,13 +122,13 @@ class SettingController extends Controller
 
 
                 $filename = rand() . '.' . $request['about_us_img2']->getClientOriginalExtension();
-                $path = 'uploads/settings/';
+                $path = 'size1/uploads/settings/';
 
                 $mypath = public_path() . "/" . $item->about_us_img2; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath);//يقوم بحذف القديم
                 }
-                Image::make($request['about_us_img2']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['about_us_img2']->getRealPath())->resize(3840, 1750)->save($path . $filename, 60);
                 $item->about_us_img2 = $path . $filename;
                 $item->save();
 
@@ -138,14 +138,14 @@ class SettingController extends Controller
 
 
                 $filename = rand() . '.' . $request['media_img']->getClientOriginalExtension();
-                $path = 'uploads/settings/';
+                $path = 'size1/uploads/settings/';
 
                 $mypath = public_path() . "/" . $item->media_img; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath);//يقوم بحذف القديم
                 }
 
-                Image::make($request['media_img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['media_img']->getRealPath())->resize(5760, 2400)->save($path . $filename, 60);
                 $item->media_img = $path . $filename;
                 $item->save();
 
@@ -155,7 +155,7 @@ class SettingController extends Controller
 
 
                 $filename = rand() . '.' . $request['our_vision_img']->getClientOriginalExtension();
-                $path = 'uploads/settings/';
+                $path = 'size1/uploads/settings/';
                 $mypath = public_path() . "/" . $item->our_vision_img; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath);//يقوم بحذف القديم
@@ -171,7 +171,7 @@ class SettingController extends Controller
 
 
                 $filename = rand() . '.' . $request['icon_img']->getClientOriginalExtension();
-                $path = 'uploads/settings/';
+                $path = 'size1/uploads/settings/';
 
                 $mypath = public_path() . "/" . $item->icon_img; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
@@ -189,14 +189,14 @@ class SettingController extends Controller
 
 
                 $filename = rand() . '.' . $request['page_img']->getClientOriginalExtension();
-                $path = 'uploads/settings/';
+                $path = 'size1/uploads/settings/';
 
                 $mypath = public_path() . "/" . $item->page_img; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath);//يقوم بحذف القديم
                 }
 
-                Image::make($request['page_img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['page_img']->getRealPath())->resize(3840, 1750)->save($path . $filename, 60);
                 $item->page_img = $path . $filename;
                 $item->save();
 
@@ -206,7 +206,7 @@ class SettingController extends Controller
 
 
                 $filename = rand() . '.' . $request['main_img']->getClientOriginalExtension();
-                $path = 'uploads/settings/';
+                $path = 'size1/uploads/settings/';
 
                 $mypath = public_path() . "/" . $item->main_img; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
@@ -223,7 +223,7 @@ class SettingController extends Controller
 
 
                 $filename = rand() . '.' . $request['donate_img']->getClientOriginalExtension();
-                $path = 'uploads/settings/';
+                $path = 'size1/uploads/settings/';
 
                 $mypath = public_path() . "/" . $item->donate_img; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن

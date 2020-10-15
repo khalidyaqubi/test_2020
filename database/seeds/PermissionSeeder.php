@@ -69,6 +69,10 @@ class PermissionSeeder extends Seeder
         $permission37_id = DB::table('permissions')->insertGetId(['name' => 'edit settings', 'guard_name' => 'web', 'title' => 'تعديل اعدادت الموقع', 'icon' => 'equalizer', 'link' => '/admin/settings/1/edit', 'order_id' => 1, 'in_menu' => 1, 'parent_id' => $permission36_id]);
 
 
+        /*اعدادات الموقع*/
+        $permission39_id = DB::table('permissions')->insertGetId(['name' => 'messages', 'guard_name' => 'web', 'title' => 'إدارة الرسائل', 'icon' => 'group', 'link' => '', 'order_id' => 7, 'in_menu' => 1, 'parent_id' => 0]);
+        $permission40_id = DB::table('permissions')->insertGetId(['name' => 'show messages', 'guard_name' => 'web', 'title' => 'عرض الرسالة', 'icon' => 'equalizer', 'link' => '/admin/messages', 'order_id' => 1, 'in_menu' => 1, 'parent_id' => $permission39_id]);
+
         $user_id = DB::table('users')->insertGetId([
             'name' => 'الادمن',
             'email' => 'admin@gmail.com',
@@ -114,53 +118,61 @@ class PermissionSeeder extends Seeder
             $permission36_id,
             $permission37_id,
             $permission38_id,
+            $permission39_id,
+            $permission40_id,
         ]);
 
         $setting_id = DB::table('settings')->insertGetId([
-            'facebook' => 'required',
-            'twitter' => 'required',
-            'youtube' => 'required',
-            'instagram' => 'required',
-            'main_video' => 'required',
-            'about_us_video' => 'required',
-            'our_object_ar' => 'required',
-            'our_mission_ar' => 'required',
-            'our_active_ar' => 'required',
-            'who_are_we_ar' => 'required',
+            'facebook' => 'https://www.facebook.com/%D9%88%D9%82%D9%81-%D8%BA%D8%B2%D8%A9-%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%D9%8A-Gaza-Endowment-Charity-I-111821607156320',
+            'twitter' => 'https://twitter.com/gazaendowment',
+            'youtube' => 'https://www.youtube.com/',
+            'instagram' => 'https://www.instagram.com/gazaendowment/',
+            'main_video' => 'https://www.youtube.com/embed/iy2G7t7lbNM',
+            'about_us_video' => 'https://www.youtube.com/embed/iy2G7t7lbNM',
+            'our_object_ar' => 'حتى التأشير القوي لا يتحكم في النصوص العمياء ، فهي حياة غير تقليدية تقريبًا ذات يوم ، لكن سطرًا صغيرًا من النص الأعمى باسم  قرر المغادرة إلى عالم القواعد البعيدة.',
+            'our_mission_ar' => 'حتى التأشير القوي لا يتحكم في النصوص العمياء ، فهي حياة غير تقليدية تقريبًا ذات يوم ، لكن سطرًا صغيرًا من النص الأعمى باسم  قرر المغادرة إلى عالم القواعد البعيدة.',
+            'our_active_ar' => 'حتى التأشير القوي لا يتحكم في النصوص العمياء ، فهي حياة غير تقليدية تقريبًا ذات يوم ، لكن سطرًا صغيرًا من النص الأعمى باسم  قرر المغادرة إلى عالم القواعد البعيدة.',
+            'who_are_we_ar' => 'باستثناء أن السود كيوبيدات ليسوا استثناءً ، فهو مهدئ للروح ، أي أنهم تخلوا عن الواجبات العامة لأولئك المسؤولين عن مشاكلك.',
             'our_vision_tilte_ar' => 'required',
             'our_vision_quotes_ar' => 'required',
             'our_vision_content_ar' => 'required',
-            'our_object_en' => 'required',
-            'our_mission_en' => 'required',
-            'our_active_en' => 'required',
-            'who_are_we_en' => 'required',
+            'our_object_en' => 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.',
+            'our_mission_en' => 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.',
+            'our_active_en' => 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.',
+            'who_are_we_en' => 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'our_vision_tilte_en' => 'required',
             'our_vision_quotes_en' => 'required',
             'our_vision_content_en' => 'required',
-            'our_object_tr' => 'required',
-            'our_mission_tr' => 'required',
-            'our_active_tr' => 'required',
-            'who_are_we_tr' => 'required',
+            'our_object_tr' => 'Güçlü İşaret\'in bile kör metinler üzerinde kontrolü yoktur, neredeyse ortografik olmayan bir yaşamdır Bir gün, ancak Lorem Ipsum adında küçük bir kör metin satırı, dilbilgisinin uzak dünyasına gitmeye karar verdi.',
+            'our_mission_tr' => 'Güçlü İşaret\'in bile kör metinler üzerinde kontrolü yoktur, neredeyse ortografik olmayan bir yaşamdır Bir gün, ancak Lorem Ipsum adında küçük bir kör metin satırı, dilbilgisinin uzak dünyasına gitmeye karar verdi.',
+            'our_active_tr' => 'Güçlü İşaret\'in bile kör metinler üzerinde kontrolü yoktur, neredeyse ortografik olmayan bir yaşamdır Bir gün, ancak Lorem Ipsum adında küçük bir kör metin satırı, dilbilgisinin uzak dünyasına gitmeye karar verdi.',
+            'who_are_we_tr' => 'Excepteur cupidatat siyahları istisna değildir, ruhu yatıştırır, yani dertleriniz için suçlayacakların genel görevlerini terk ettiler.',
             'our_vision_tilte_tr' => 'required',
             'our_vision_quotes_tr' => 'required',
             'our_vision_content_tr' => 'required',
 
-            'about_us_img' => 'required',
-            'about_us_img2' => 'required',
-            'media_img' => 'required',
+            'about_us_img' => asset('visitor/img/2.png'),
+            'about_us_img2' => asset('visitor/img/1.png'),
+            'media_img' => asset('visitor/img/1.png'),
             'our_vision_img' => 'required',
             'icon_img' => 'required',
             'page_img' => 'required',
             'main_img' => 'required',
             'donate_img' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'footer_ar' => 'required',
-            'footer_en' => 'required',
-            'footer_tr' => 'required',
-            'address_ar'=> 'required',
-            'address_tr'=> 'required',
-            'address_en'=> 'required',
+            'phone' => '+1 253 565 2365',
+            'email' => 'support@mohammed.com',
+            'footer_ar' => 'جزر لوريم إيبسوم ؛
+مطور جامعة مينيابوليس ، لكنهم يفعلون ذلك
+يوسمود طويلا وحيوية حتى يستهلك العمل.',
+            'footer_en' => 'Lorem ipsum dolor sit amet,
+consectetur adipiscing elit, sed do
+eiusmod tempor incididunt ut labore.',
+            'footer_tr' => 'Lorem ipsum havuç;
+Minneapolis lisans geliştiricisi, ancak yapıyorlar
+eiusmod uzun ve canlılık, böylece emek harcandı.',
+            'address_ar' => 'فلسطين ، غزة ، كاليفورنيا 91770',
+            'address_tr' => 'Filistin, Gazza, CA 91770',
+            'address_en' => 'Palestine, Gazza, CA 91770',
         ]);
     }
 }

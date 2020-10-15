@@ -1305,7 +1305,7 @@ h3 {
     width: 100%;
     top: 0;
     z-index: 9;
-    padding: 0 100px 50px 100px;
+    padding: 8px 100px 0px 100px;
 }
 
 @media (max-width: 767px) {
@@ -1324,22 +1324,6 @@ h3 {
 
 
 /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
-
-.header-area .main-header-area {
-    background: #3CC78F;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    padding: 25px 35px;
-    position: absolute;
-    bottom: -50px;
-    z-index: 999;
-    z-index: 999;
-    left: 100px;
-    top: 70px;
-    bottom: auto;
-    right: 100px;
-}
 
 @media (max-width: 767px) {
     /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
@@ -1435,11 +1419,11 @@ h3 {
 /* line 90, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 
 .header-area .main-header-area .Appointment .book_btn a {
-    background: #fff;
+    background: #3CC78F;
     padding: 12px 26px;
     font-size: 16px;
     font-weight: 600;
-    color: #222;
+    color: #eee;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -1451,14 +1435,6 @@ h3 {
     .header-area .main-header-area .Appointment .book_btn a {
         padding: 12px 20px;
     }
-}
-
-
-/* line 101, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
-
-.header-area .main-header-area .Appointment .book_btn a:hover {
-    background: #fff;
-    color: #3CC78F;
 }
 
 
@@ -1530,7 +1506,7 @@ h3 {
 @media (min-width: 1200px) and (max-width: 1500px) {
     /* line 130, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
     .header-area .main-header-area .main-menu ul li a {
-        font-size: 14px;
+        font-size: 15px;
     }
 }
 
@@ -1538,7 +1514,7 @@ h3 {
 /* line 149, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 
 .header-area .main-header-area .main-menu ul li a i {
-    font-size: 9px;
+    font-size: 30px;
 }
 
 @media (max-width: 767px) {
@@ -1644,22 +1620,6 @@ h3 {
 
 /* line 206, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 
-.header-area .main-header-area.sticky {
-    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    top: -70px;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    transform: translateY(70px);
-    transition: transform 500ms ease, background 500ms ease;
-    -webkit-transition: transform 500ms ease, background 500ms ease;
-    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
-    background: #3CC78F;
-    bottom: auto;
-}
-
 @media (max-width: 767px) {
     /* line 206, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
     .header-area .main-header-area.sticky {
@@ -1676,10 +1636,6 @@ h3 {
 
 
 /* line 230, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
-
-.header-area .header-top_area {
-    padding: 23px 0;
-}
 
 @media (max-width: 767px) {
     /* line 230, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
@@ -2583,8 +2539,8 @@ h3 {
 /* line 9, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_footer.scss */
 
 .footer .footer_top {
-    padding-top: 130px;
-    padding-bottom: 110px;
+    padding-top: 100px;
+    padding-bottom: 50px;
 }
 
 @media (max-width: 767px) {
@@ -2928,7 +2884,7 @@ h3 {
 /* line 123, ../../Arafath/CL/CL October/213. Business/HTML/scss/_footer.scss */
 
 .footer .copy-right_text {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     background: #1F1F1F;
 }
 
@@ -2961,6 +2917,10 @@ h3 {
 
 .footer .copy-right_text .copy_right a {
     color: #28AE60;
+}
+
+.footer .copy-right_text .copy_footer a {
+    color: #fff;
 }
 
 
@@ -7066,7 +7026,6 @@ h6 {
 /* line 660, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_blog.scss */
 
 .blog_right_sidebar .single_sidebar_widget {
-    background: #fbf9ff;
     padding: 30px;
     margin-bottom: 30px;
 }
@@ -8562,7 +8521,6 @@ slider.carousel-inner.overlay {
 /*************************Slider Image****************************/
 
 .carousel-indicators {
-    position: static;
     .item {
         &.active {
             background: transparent;
@@ -8702,4 +8660,98 @@ a.animated-button.victoria-four:hover:after {
 
 .blue-border {
     border: 1px solid rgb(110, 178, 251);
+}
+
+
+/*************************التعديل**************************/
+
+.templatemo_clear {
+    clear: both;
+}
+
+.height30 {
+    height: 30px;
+}
+
+.templatemo-top-bar {
+    min-height: 40px;
+    background-color: #eeeeee;
+}
+
+.templatemo-second-bar {
+    min-height: 40px;
+    background-color: #3CC78F;
+}
+
+.templatemo-top-menu {
+    min-height: 110px;
+    background-color: #ffffff;
+    z-index: 5000;
+    width: 100%;
+}
+
+.templatemo-top-menu .navbar-toggle {
+    margin-top: 38px;
+}
+
+.templatemo-top-menu .navbar-brand {
+    padding: 0;
+    margin: 30px 0 0 0;
+}
+
+
+/**************************footer*****************************/
+
+.social_icons {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.social_icons ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.social_icons ul li {
+    list-style: none;
+    display: inline;
+    padding-left: 10px
+}
+
+.social_icons ul li a {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #499c7b;
+    border-radius: 3px;
+    width: 45px;
+    height: 45px;
+    line-height: 49px;
+    color: #499c7b;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
+
+.social_icons ul li a i {
+    font-size: 20px;
+}
+
+.social_icons ul li a:hover {
+    background: #499c7b;
+    border: 1px solid #499c7b;
+    color: #fff
+}
+
+
+/************************************************************/
+
+.popular_causes_area a {
+    color: black;
+}
+
+.section-top-border a {
+    color: black;
 }

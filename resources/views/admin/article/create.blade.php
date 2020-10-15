@@ -93,7 +93,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 الصورة الرئيسية
-                                <span style="color:red">(500x500)</span>
+                                <span style="color:red">(277X405)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"

@@ -52,14 +52,14 @@ class ArticleController extends Controller
             }
         })->orderBy("articles.title_ar")->paginate(20)
             ->appends(["title_en" => $title_en, "title_ar" => $title_ar, "title_tr" => $title_tr
-            ,"fixing"=>$fixing,"status"=>$status,"users"=>$users,"categories_ids"=>$categories_ids]);
+                , "fixing" => $fixing, "status" => $status, "users" => $users, "categories_ids" => $categories_ids]);
 
 
         $the_users = User::orderBy('name')->get();
         $categories = A_Category::orderBy('name_ar')->get();
 
-        return view('admin.article.index',compact('items','title_ar','title_tr','title_en'
-        ,"status","fixing","the_users","users","categories","categories_ids"));
+        return view('admin.article.index', compact('items', 'title_ar', 'title_tr', 'title_en'
+            , "status", "fixing", "the_users", "users", "categories", "categories_ids"));
     }
 
     /**
@@ -70,7 +70,7 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        $a_categories  = A_Category::orderBy('name_ar')->get();
+        $a_categories = A_Category::orderBy('name_ar')->get();
         return view('admin.article.create', compact('a_categories'));
     }
 
@@ -84,25 +84,27 @@ class ArticleController extends Controller
     {
         $request['user_id'] = auth()->user()->id;
 
-        $old_fixing= Article::where('fixing',1)->first();
-        if($request['fixing']==1)
-            Article::where('fixing',1)->update(['fixing'=>0]);
+        $old_fixing = Article::where('fixing', 1)->first();
+        if ($request['fixing'] == 1)
+            Article::where('fixing', 1)->update(['fixing' => 0]);
 
-        $massege="";
-        if($old_fixing && $request['fixing']==1)
-            $massege=" وتم إزالة تثبيت خبر".$old_fixing->title_ar;
+        $massege = "";
+        if ($old_fixing && $request['fixing'] == 1)
+            $massege = " وتم إزالة تثبيت خبر" . $old_fixing->title_ar;
 
         $item = Article::create($request->except('img', 'a_categories_ids'));
         $item->a_categories()->sync(array_filter($request['a_categories_ids']));
-
 
 
         if ($request->hasFile('img')) {
 
 
             $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
-            $path = 'uploads/articles/';
-            Image::make($request['img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+            $path = '/uploads/articles/';
+            $path1 = 'size1/uploads/articles/';
+            $path2 = 'size2/uploads/articles/';
+            Image::make($request['img']->getRealPath())->resize(277, 405)->save($path1 . $filename, 60);
+            Image::make($request['img']->getRealPath())->resize(270, 187)->save($path2 . $filename, 60);
             $item->img = $path . $filename;
             $item->save();
 
@@ -114,7 +116,7 @@ class ArticleController extends Controller
         if ($users->first())
             Notification::send($users, new NotifyUsers($action));
         /**************end Notification*******************/
-        return redirect("/admin/articles/create")->with('success', 'تم إضافة البيانات بنجاح'.$massege);
+        return redirect("/admin/articles/create")->with('success', 'تم إضافة البيانات بنجاح' . $massege);
 
     }
 
@@ -160,17 +162,16 @@ class ArticleController extends Controller
     {
         $item = Article::find($id);
 
-        if($item){
-            $tempreroy=$item->img;
+        if ($item) {
+            $tempreroy = $item->img;
 
-            $old_fixing= Article::where('fixing',1)->first();
-            if($request['fixing']==1)
-            Article::where('fixing',1)->update(['fixing'=>0]);
+            $old_fixing = Article::where('fixing', 1)->first();
+            if ($request['fixing'] == 1)
+                Article::where('fixing', 1)->where('id','!=',$id)->update(['fixing' => 0]);
 
-            $massege="";
-            if($old_fixing && $request['fixing']==1 )
-                $massege=" وتم إزالة تثبيت خبر".$old_fixing->title_ar;
-
+            $massege = "";
+            if ($old_fixing && $request['fixing'] == 1)
+                $massege = " وتم إزالة تثبيت خبر" . $old_fixing->title_ar;
 
 
             $item->update($request->except('img', 'a_categories_ids'));
@@ -180,27 +181,33 @@ class ArticleController extends Controller
 
 
                 $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
-                $path = 'uploads/articles/';
+                $path = '/uploads/articles/';
+                $path1 = 'size1/uploads/articles/';
+                $path2 = 'size2/uploads/articles/';
 
-                $mypath = public_path() . "/" .$tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
-                if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
-                    unlink($mypath);//يقوم بحذف القديم
+                $mypath1 = public_path() . "/size1/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
+                $mypath2 = public_path() . "/size2/" . $tempreroy;
+                if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
+                    unlink($mypath1);
+                    unlink($mypath2);//يقوم بحذف القديم
                 }
-                Image::make($request['img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+
+                Image::make($request['img']->getRealPath())->resize(277, 405)->save($path1 . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(270, 187)->save($path2 . $filename, 60);
                 $item->img = $path . $filename;
                 $item->save();
 
             }
 
             /**************start Notification*******************/
-            $action = Action::create(['title' => 'تم تعديل الخبر ' . $item->title_ar, 'type' => Permission::findByName('list articles')->title, 'link' =>Permission::findByName('list articles')->link . "/" . $item->id."/edit"]);
+            $action = Action::create(['title' => 'تم تعديل الخبر ' . $item->title_ar, 'type' => Permission::findByName('list articles')->title, 'link' => Permission::findByName('list articles')->link . "/" . $item->id . "/edit"]);
             $users = User::permission('users')->whereNotIn('id', [auth()->user()->id])->get();
 
             if ($users->first())
                 Notification::send($users, new NotifyUsers($action));
             /**************end Notification*******************/
-            return redirect("/admin/articles/" . $item->id . "/edit")->with('success', 'تم تعديل البيانات بنجاح'.$massege);
-        }else{
+            return redirect("/admin/articles/" . $item->id . "/edit")->with('success', 'تم تعديل البيانات بنجاح' . $massege);
+        } else {
             return redirect("/admin/articles")->with('error', 'الخبر غير موجود');
         }
     }
@@ -221,17 +228,17 @@ class ArticleController extends Controller
 
         $item = Article::find($id);
         $item->a_categories()->sync([]);
-        if($item)
-        {
+        if ($item) {
 
-                $mypath = public_path() . "/" .$item->img; // مكان التخزين في البابليك ثم مجلد ابلودز
-                if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
-                    unlink($mypath);//يقوم بحذف القديم
-                }
+            $mypath1 = public_path() . "/size1/" . $item->img; // مكان التخزين في البابليك ثم مجلد ابلودز
+            $mypath2 = public_path() . "/size1/" . $item->img;
+            if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
+                unlink($mypath1);//يقوم بحذف القديم
+                unlink($mypath2);//يقوم بحذف القديم
+            }
             $item->delete();
             return redirect("/admin/articles")->with('success', 'تم حذف خبر بنجاح');
-        }
-        else
+        } else
             return redirect("/admin/articles")->with('error', 'الأخبار غير موجودة');
     }
 

@@ -108,7 +108,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 الصورة الرئيسية
-                                <span style="color:red">(500x500)</span>
+                                <span style="color:red">(362X215)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
@@ -116,7 +116,7 @@
 
                                     @if(((!is_null($item->img)) && (!is_null($item->img)) && (($item->img != ''))))
                                         <div class="kt-avatar__holder"
-                                             style="background-image: url({{ asset($item->img) }})">
+                                             style="background-image: url({{ asset("size1/".$item->img) }})">
                                         </div>
                                     @else
                                         <div class="kt-avatar__holder"

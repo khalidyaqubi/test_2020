@@ -115,7 +115,10 @@ class ProjectController extends Controller
 
             $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
             $path = 'uploads/projects/';
-            Image::make($request['img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+            $path1 = 'size1/uploads/projects/';
+			$path2 = 'size2/uploads/projects/';
+            Image::make($request['img']->getRealPath())->resize(362, 215)->save($path1 . $filename, 60);
+			Image::make($request['img']->getRealPath())->resize(660, 700)->save($path2 . $filename, 60);
             $item->img = $path . $filename;
             $item->save();
 
@@ -169,7 +172,7 @@ class ProjectController extends Controller
 
             $old_fixing= Project::where('fixing',1)->first();
             if($request['fixing']==1)
-                Project::where('fixing',1)->update(['fixing'=>0]);
+                Project::where('fixing',1)->where('id','!=',$id)->update(['fixing'=>0]);
 
             $massege="";
             if($old_fixing && $request['fixing']==1)
@@ -183,12 +186,17 @@ class ProjectController extends Controller
 
                 $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
                 $path = 'uploads/projects/';
+                $path1 = 'size1/uploads/projects/';
+                $path2 = 'size2/uploads/projects/';
 
-                $mypath = public_path() . "/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
-                if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
-                    unlink($mypath);//يقوم بحذف القديم
+                $mypath1 = public_path() . "/size1/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
+                $mypath2 = public_path() . "/size2/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
+                if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
+                    unlink($mypath1);//يقوم بحذف القديم
+                    unlink($mypath2);//يقوم بحذف القديم
                 }
-                Image::make($request['img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(362, 215)->save($path1 . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(660, 700)->save($path2 . $filename, 60);
                 $item->img = $path . $filename;
                 $item->save();
 
@@ -224,9 +232,12 @@ class ProjectController extends Controller
         $item->p_categories()->sync([]);
         if ($item) {
 
-            $mypath = public_path() . "/" . $item->img; // مكان التخزين في البابليك ثم مجلد ابلودز
-            if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
-                unlink($mypath);//يقوم بحذف القديم
+            $mypath1 = public_path() . "/" . $item->img; // مكان التخزين في البابليك ثم مجلد ابلودز
+            $mypath2 = public_path() . "/" . $item->img; // مكان التخزين في البابليك ثم مجلد ابلودز
+
+            if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
+                unlink($mypath1);//يقوم بحذف القديم
+                unlink($mypath2);//يقوم بحذف القديم
             }
             $item->delete();
             return redirect("/admin/projects")->with('success', 'تم حذف مشروع بنجاح');

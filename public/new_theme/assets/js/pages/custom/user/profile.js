@@ -20,6 +20,16 @@ var KTUserProfile = function () {
 	var initUserForm = function() {
 		avatar = new KTAvatar('kt_user_avatar');
 		avatar = new KTAvatar('kt_user_avatar1');
+		avatar = new KTAvatar('kt_user_avatar2');
+		avatar = new KTAvatar('kt_user_avatar3');
+		avatar = new KTAvatar('kt_user_avatar4');
+		avatar = new KTAvatar('kt_user_avatar5');
+		avatar = new KTAvatar('kt_user_avatar6');
+		avatar = new KTAvatar('kt_user_avatar7');
+		avatar = new KTAvatar('kt_user_avatar8');
+		avatar = new KTAvatar('kt_user_avatar9');
+		avatar = new KTAvatar('kt_user_avatar10');
+		avatar = new KTAvatar('kt_user_avatar11');
 	}
 
 	return {

@@ -252,17 +252,17 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    {{--<div class="col-md-6">--}}
-                        {{--<div class="form-group row">--}}
-                            {{--<label class="col-form-label col-lg-12">عبارة الزكاة بالعربي--}}
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">عبارة عنّا بالعربي
 
-                                {{--<span style="color:red;">*</span></label>--}}
-                            {{--<div style="width: 95%;">--}}
-                                {{--<textarea  style="height: 100px;"  required class="form-control arabic" id="who_are_we_ar" type="text" name="who_are_we_ar"--}}
-                                           {{--value="{{ $item->who_are_we_ar }}" placeholder="عبارة الزكاة بالعربي"></textarea>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea  style="height: 100px;"  required class="form-control arabic" id="who_are_we_ar" type="text" name="who_are_we_ar"
+                                            placeholder="عبارة عنّا بالعربي">{{ $item->who_are_we_ar }}</textarea>
+                            </div>
+                        </div>
+                    </div>
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">
@@ -344,17 +344,17 @@
                     <!-- End col -->
                    
                     <!-- Start col -->
-                    {{--<div class="col-md-6">--}}
-                        {{--<div class="form-group row">--}}
-                            {{--<label class="col-form-label col-lg-12">عبارة الزكاة بالتركي--}}
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">عبارة عنّا بالتركي
 
-                                {{--<span style="color:red;">*</span></label>--}}
-                            {{--<div style="width: 95%;">--}}
-                                {{--<textarea  style="height: 100px;"  required class="form-control turkey" id="who_are_we_tr" type="text" name="who_are_we_tr"--}}
-                                           {{--value="{{ $item->who_are_we_tr }}" placeholder="عبارة الزكاة بالتركي"></textarea>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea  style="height: 100px;"  required class="form-control turkey" id="who_are_we_tr" type="text" name="who_are_we_tr"
+                                            placeholder="عبارة عنّا بالتركي">{{ $item->who_are_we_tr }}</textarea>
+                            </div>
+                        </div>
+                    </div>
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">
@@ -436,17 +436,17 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    {{--<div class="col-md-6">--}}
-                        {{--<div class="form-group row">--}}
-                            {{--<label class="col-form-label col-lg-12">عبارة الزكاة بالإنجليزي--}}
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">عبارة عنّا بالإنجليزي
 
-                                {{--<span style="color:red;">*</span></label>--}}
-                            {{--<div style="width: 95%;">--}}
-                                {{--<textarea  style="height: 100px;"  required class="form-control turkey" id="who_are_we_en" type="text" name="who_are_we_en"--}}
-                                           {{--value="{{ $item->who_are_we_en }}" placeholder="عبارة الزكاة بالإنجليزي"></textarea>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <textarea  style="height: 100px;"  required class="form-control turkey" id="who_are_we_en" type="text" name="who_are_we_en"
+                                           placeholder="عبارة عنّا بالإنجليزي">{{ $item->who_are_we_en }}</textarea>
+                            </div>
+                        </div>
+                    </div>
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">
@@ -493,11 +493,11 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 صورة عنّا
-                                <span style="color:red">(500x500)</span>
+                                <span style="color:red">(3840x1750)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar">
+                                     id="kt_user_avatar1">
                                     @if(((!is_null($item->about_us_img)) && (!is_null($item->about_us_img)) && (($item->about_us_img != ''))))
                                         <div class="kt-avatar__holder"
                                              style="background-image: url({{ asset($item->about_us_img) }})">
@@ -529,12 +529,12 @@
                     <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
-                               2 صورة عنّا
-                                <span style="color:red">(500x500)</span>
+                                صورة اتصل بنا
+                                <span style="color:red">(3840x1750)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar">
+                                     id="kt_user_avatar2">
                                     @if(((!is_null($item->about_us_img2)) && (!is_null($item->about_us_img2)) && (($item->about_us_img2 != ''))))
                                         <div class="kt-avatar__holder"
                                              style="background-image: url({{ asset($item->about_us_img2) }})">
@@ -567,11 +567,11 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 صورة قسم الميديا
-                                <span style="color:red">(500x500)</span>
+                                <span style="color:red">(5760x2400)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar">
+                                     id="kt_user_avatar3">
                                     @if(((!is_null($item->media_img)) && (!is_null($item->media_img)) && (($item->media_img != ''))))
                                         <div class="kt-avatar__holder"
                                              style="background-image: url({{ asset($item->media_img) }})">
@@ -608,7 +608,7 @@
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar">
+                                     id="kt_user_avatar4">
                                     @if(((!is_null($item->our_vision_img)) && (!is_null($item->our_vision_img)) && (($item->our_vision_img != ''))))
                                         <div class="kt-avatar__holder"
                                              style="background-image: url({{ asset($item->our_vision_img) }})">
@@ -645,7 +645,7 @@
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar">
+                                     id="kt_user_avatar5">
                                     @if(((!is_null($item->icon_img)) && (!is_null($item->icon_img)) && (($item->icon_img != ''))))
                                         <div class="kt-avatar__holder"
                                              style="background-image: url({{ asset($item->icon_img) }})">
@@ -678,11 +678,11 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 صورة الصفحات
-                                <span style="color:red">(500x500)</span>
+                                <span style="color:red">(3840x1750)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar">
+                                     id="kt_user_avatar6">
                                     @if(((!is_null($item->page_img)) && (!is_null($item->page_img)) && (($item->page_img != ''))))
                                         <div class="kt-avatar__holder"
                                              style="background-image: url({{ asset($item->page_img) }})">
@@ -720,7 +720,7 @@
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar">
+                                     id="kt_user_avatar7">
                                     @if(((!is_null($item->main_img)) && (!is_null($item->main_img)) && (($item->main_img != ''))))
                                         <div class="kt-avatar__holder"
                                              style="background-image: url({{ asset($item->main_img) }})">
@@ -758,7 +758,7 @@
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar">
+                                     id="kt_user_avatar8">
                                     @if(((!is_null($item->donate_img)) && (!is_null($item->donate_img)) && (($item->donate_img != ''))))
                                         <div class="kt-avatar__holder"
                                              style="background-image: url({{ asset($item->donate_img) }})">

@@ -12,6 +12,3 @@
 <p>composer update</p>
 <p>php artisan key:generate </p>
 <p>php artisan migrate --seed</p>
-
-
-<p>https://www.amcharts.com/demos/column-with-rotated-series/</p>

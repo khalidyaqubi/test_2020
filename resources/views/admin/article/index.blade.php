@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-lg-12">العنوان بالعربية </label>
                                 <div style="width: 95%;">
-                                    <input class="form-control arabic"
+                                    <input class="form-control"
                                            placeholder="اكتب  العنوان العربي" id="title_ar" name="title_ar"
                                            value="{{$title_ar}}"
                                            type="text">
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-lg-12">العنوان بالتركية </label>
                                 <div style="width: 95%;">
-                                    <input class="form-control turkey"
+                                    <input class="form-control"
                                            placeholder="اكتب  العنوان التركي" id="title_tr" name="title_tr"
                                            value="{{$title_tr}}"
                                            type="text">
@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-lg-12">العنوان  بالإنجليزية</label>
                                 <div style="width: 95%;">
-                                    <input class="form-control turkey"
+                                    <input class="form-control"
                                            placeholder="اكتب  العنوان بالإنجليزية" id="title_en" name="title_en"
                                            value="{{$title_en}}"
                                            type="text">
@@ -145,11 +145,6 @@
                 </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12" id="the_error">
-
-            </div>
-        </div>
         <!--begin::Portlet-->
         <div class="kt-portlet kt-portlet--mobile">
             <div class="kt-portlet__head">
@@ -206,23 +201,7 @@
                                 </td>
                                 <td>{{ $item->user->name }}</td>
                                 <th >
-                                    <div class="">
-                            <span
-                                    class="kt-switch kt-switch--outline kt-switch--icon kt-switch--success">
-                                <label>
-                                    <input class="cbActive" type="checkbox"
-                                           @if(auth()->user()->hasPermissionTo('approve articles'))
-                                           {{$item->status?"checked":" "}} value="{{$item->id}}"
-                                           @else
-                                           {{$item->status?"checked":" "}}disabled
-                                           title="لا تملك صلاحية اعتماد خبر"
-                                           value="{{$item->id}}"
-                            @endif>
-                                    <span></span>
-                                </label>
-                            </span>
-                                    </div>
-
+                                    {{ $item->status==1?'مقبول':'غير مقبول' }}
                                 </th>
                                 <th >
                                     {{ $item->fixing==1?'مثبت':'غير مثبت' }}
@@ -264,39 +243,5 @@
 @endsection
 
 @section('footerJS')
-    <script>
-        $(function () {
-            $(".cbActive").change(function () {
 
-                var id = $(this).val();
-                var mythis = this;
-                mythis.disabled = true;
-                $.ajax({
-                    url: "/admin/articles/approve/" + id,
-                    data: {_token: '{{ csrf_token() }}'},
-                    success: function (resp) {
-                        console.log(mythis);
-                        document.getElementById("the_error").innerHTML = '<div class="alert alert-success alert-dismissible">\n' + resp.message +
-                            '        <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
-                            '            <span aria-hidden="true">&times;</span>\n' +
-                            '        </button>\n' +
-                            '    </div>';
-
-                        mythis.disabled = false;
-                        console.log(mythis);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        document.getElementById("the_error").innerHTML = '<div class="alert alert-danger alert-dismissible">\n' + jqXHR.responseJSON.message +
-                            '        <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
-                            '            <span aria-hidden="true">&times;</span>\n' +
-                            '        </button>\n' +
-                            '    </div>';
-                        mythis.checked = !(mythis.checked);
-                        mythis.disabled = false;
-                    },
-                });
-            });
-
-        });
-    </script>
 @endsection

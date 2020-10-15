@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'ar',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -175,8 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-        'Barryvdh\TranslationManager\ManagerServiceProvider',
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 

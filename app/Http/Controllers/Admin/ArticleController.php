@@ -241,35 +241,4 @@ class ArticleController extends Controller
         } else
             return redirect("/admin/articles")->with('error', 'الأخبار غير موجودة');
     }
-
-    public function approve($id)
-    {
-        $item = Article::find($id);
-
-        if (!(auth()->user()->hasPermissionTo('approve articles'))) {
-            return response()->json([
-                'message' => 'ليس لك صلاحية تعديل خبر',
-            ], 401);
-        }
-
-        if ($item) {
-            if ($item->status == 1) {
-                $item->update(['status' => 0]);
-                return response()->json([
-                    'message' => 'تم إلغاء قبول خبر بنجاح',
-                ], 200);
-            } else {
-                $item->update(['status' => 1]);
-                return response()->json([
-                    'message' => 'تم قبول خبر بنجاح',
-                ], 200);
-            }
-
-        } else {
-
-            return response()->json([
-                'message' => 'المحاولة للوصول لخبر غير موجود',
-            ], 401);
-        }
-    }
 }

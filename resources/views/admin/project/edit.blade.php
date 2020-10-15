@@ -158,7 +158,7 @@
                             <label class="col-form-label col-lg-12">العنوان الفرعي بالعربي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea required class="form-control arabic" id="details_ar" type="text" name="details_ar"
+                                <textarea required class="form-control" id="details_ar" type="text" name="details_ar"
                                           placeholder="العنوان الفرعي بالعربي"
                                           style="width: 100%">{{$item->details_ar}}</textarea>
                             </div>
@@ -172,7 +172,7 @@
                             <label class="col-form-label col-lg-12">العنوان بالتركي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control turkey" id="title_tr" type="text" name="title_tr"
+                                <input required class="form-control" id="title_tr" type="text" name="title_tr"
                                        value="{{$item->title_tr}}" placeholder="العنوان بالتركي">
                             </div>
                         </div>
@@ -184,7 +184,7 @@
                             <label class="col-form-label col-lg-12">العنوان الفرعي بالتركي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea required class="form-control turkey" id="details_tr" type="text" name="details_tr"
+                                <textarea required class="form-control" id="details_tr" type="text" name="details_tr"
                                           placeholder="العنوان الفرعي بالتركي"
                                           style="width: 100% ;">{{$item->details_tr}}</textarea>
                             </div>
@@ -199,7 +199,7 @@
                             <label class="col-form-label col-lg-12">العنوان بالإنجليزي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control turkey" id="title_en" type="text" name="title_en"
+                                <input required class="form-control" id="title_en" type="text" name="title_en"
                                        value="{{$item->title_en}}" placeholder="العنوان بالإنجليزي">
                             </div>
                         </div>
@@ -211,7 +211,7 @@
                             <label class="col-form-label col-lg-12">العنوان الفرعي بالإنجليزي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea required class="form-control turkey" id="details_en" type="text" name="details_en"
+                                <textarea required class="form-control" id="details_en" type="text" name="details_en"
                                           placeholder="العنوان الفرعي بالإنجليزي"
                                           style="width: 100%">{{$item->details_en}}</textarea>
                             </div>

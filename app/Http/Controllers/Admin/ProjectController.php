@@ -244,6 +244,4 @@ class ProjectController extends Controller
         } else
             return redirect("/admin/projects")->with('error', 'الأخبار غير موجودة');
     }
-
-
 }

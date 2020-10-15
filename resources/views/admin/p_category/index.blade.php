@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-lg-12">الاسم بالعربية </label>
                                 <div style="width: 95%;">
-                                    <input class="form-control arabic"
+                                    <input class="form-control"
                                            placeholder="اكتب  الاسم العربي" id="name_ar" name="name_ar"
                                            value="{{$name_ar}}"
                                            type="text">
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-lg-12">الاسم بالتركية </label>
                                 <div style="width: 95%;">
-                                    <input class="form-control turkey"
+                                    <input class="form-control"
                                            placeholder="اكتب  الاسم التركي" id="name_tr" name="name_tr"
                                            value="{{$name_tr}}"
                                            type="text">
@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-lg-12">الاسم  بالإنجليزية</label>
                                 <div style="width: 95%;">
-                                    <input class="form-control turkey"
+                                    <input class="form-control"
                                            placeholder="اكتب  الاسم بالإنجليزية" id="name_en" name="name_en"
                                            value="{{$name_en}}"
                                            type="text">

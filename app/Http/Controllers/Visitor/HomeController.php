@@ -12,9 +12,12 @@ use App\Project;
 use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Notification;
 use Spatie\Permission\Models\Permission;
 use App;
+=======
+>>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
 
 class HomeController extends Controller
 {
@@ -26,6 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         //
+<<<<<<< HEAD
         $setting = Setting::find(1);
         $fixed_article = Article::where('fixing', 1)->first() ?? Article::orderByDesc('id')->first();
         $last_6_articles = Article::where('fixing', 0)->limit(6)->get();
@@ -39,6 +43,8 @@ class HomeController extends Controller
             , 'project_funded', 'international_contributors', 'total_raised'
             , 'last_6_projects', 'fixed_project'
         ));
+=======
+>>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
     }
 
     /**
@@ -106,6 +112,7 @@ class HomeController extends Controller
     {
         //
     }
+<<<<<<< HEAD
 
     public function about_us()
     {
@@ -142,4 +149,6 @@ class HomeController extends Controller
     }
 
 
+=======
+>>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
 }

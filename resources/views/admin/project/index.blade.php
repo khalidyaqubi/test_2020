@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-lg-12">العنوان بالعربية </label>
                                 <div style="width: 95%;">
-                                    <input class="form-control arabic"
+                                    <input class="form-control"
                                            placeholder="اكتب  العنوان العربي" id="title_ar" name="title_ar"
                                            value="{{$title_ar}}"
                                            type="text">
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-lg-12">العنوان بالتركية </label>
                                 <div style="width: 95%;">
-                                    <input class="form-control turkey"
+                                    <input class="form-control"
                                            placeholder="اكتب  العنوان التركي" id="title_tr" name="title_tr"
                                            value="{{$title_tr}}"
                                            type="text">
@@ -195,11 +195,6 @@
                         <!-- End col -->
                     </div>
                 </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12" id="the_error">
-
             </div>
         </div>
         <!--begin::Portlet-->

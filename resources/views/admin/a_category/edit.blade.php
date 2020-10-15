@@ -35,8 +35,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">الاسم بالعربي<span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control  arabic" id="name_ar" type="text" name="name_ar"
-                                       value="{{ $item->name_ar }}" placeholder="اسم بالعربي">
+                                <input required class="form-control" id="name_ar" type="text" name="name_ar"
+                                       value="{{ $item->name_ar }}" placeholder="إسم المستخدم">
                             </div>
                         </div>
                     </div>
@@ -57,8 +57,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">الاسم بالإنجليزي<span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control turkey" id="name_en" type="text" name="name_en"
-                                       value="{{ $item->name_en }}" placeholder="اسم بالإنجليزية">
+                                <input required class="form-control" id="name_en" type="text" name="name_en"
+                                       value="{{ $item->name_en }}" placeholder="إسم المستخدم">
                             </div>
                         </div>
                     </div>

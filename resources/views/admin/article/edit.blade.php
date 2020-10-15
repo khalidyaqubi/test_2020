@@ -48,21 +48,21 @@
                         </div>
                     </div>
                     <!-- End col -->
-                    {{--<!-- Start col -->--}}
-                    {{--<input type="hidden" name="status"--}}
-                           {{--value="0">--}}
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="form-group row">--}}
-                            {{--<label class="col-form-label col-lg-12"> تفعيل الخبر--}}
-                                {{--<span style="color:red;">*</span></label>--}}
-                            {{--<div style="width: 95%;">--}}
-                                {{--<input type="checkbox" name="status"--}}
-                                       {{--{{$item->status?"checked":" "}} value="1"--}}
-                                       {{--style="width: 39px; height: 39px; margin: 0px 35px;">--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<!-- End col -->--}}
+                    <!-- Start col -->
+                    <input type="hidden" name="status"
+                           value="0">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12"> تفعيل الخبر
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input type="checkbox" name="status"
+                                       {{$item->status?"checked":" "}} value="1"
+                                       style="width: 39px; height: 39px; margin: 0px 35px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
                     <!-- Start col -->
                     <input type="hidden" name="fixing"
                            value="0">
@@ -134,7 +134,7 @@
                             <label class="col-form-label col-lg-12">العنوان بالعربي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control arabic" id="title_ar" type="text" name="title_ar"
+                                <input required class="form-control" id="title_ar" type="text" name="title_ar"
                                        value="{{$item->title_ar}}" placeholder="العنوان بالعربي">
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                             <label class="col-form-label col-lg-12">العنوان الفرعي بالعربي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea required class="form-control arabic" id="details_ar" type="text" name="details_ar"
+                                <textarea required class="form-control" id="details_ar" type="text" name="details_ar"
                                           placeholder="العنوان الفرعي بالعربي"
                                           style="width: 100%">{{$item->details_ar}}</textarea>
                             </div>
@@ -159,7 +159,7 @@
                             <label class="col-form-label col-lg-12">المحتوى بالعربي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea class="form-control my-editor arabic" id="the_file_ar" type="text" name="the_file_ar"
+                                <textarea class="form-control my-editor" id="the_file_ar" type="text" name="the_file_ar"
                                           placeholder="المحتوى العربي"
                                           style="width: 100% ; height:230px">{{$item->the_file_ar}}</textarea>
                             </div>
@@ -173,7 +173,7 @@
                             <label class="col-form-label col-lg-12">العنوان بالتركي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control turkey" id="title_tr" type="text" name="title_tr"
+                                <input required class="form-control" id="title_tr" type="text" name="title_tr"
                                        value="{{$item->title_tr}}" placeholder="العنوان بالتركي">
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                             <label class="col-form-label col-lg-12">العنوان الفرعي بالتركي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea required class="form-control turkey" id="details_tr" type="text" name="details_tr"
+                                <textarea required class="form-control" id="details_tr" type="text" name="details_tr"
                                           placeholder="العنوان الفرعي بالتركي"
                                           style="width: 100% ;">{{$item->details_tr}}</textarea>
                             </div>
@@ -198,7 +198,7 @@
                             <label class="col-form-label col-lg-12">المحتوى بالتركي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea class="form-control my-editor turkey" id="the_file_tr" type="text" name="the_file_tr"
+                                <textarea class="form-control my-editor" id="the_file_tr" type="text" name="the_file_tr"
                                           placeholder="المحتوى بالتركي"
                                           style="width: 100% ; height:230px">{{$item->the_file_tr}}</textarea>
                             </div>
@@ -213,7 +213,7 @@
                             <label class="col-form-label col-lg-12">العنوان بالإنجليزي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control turkey" id="title_en" type="text" name="title_en"
+                                <input required class="form-control" id="title_en" type="text" name="title_en"
                                        value="{{$item->title_en}}" placeholder="العنوان بالإنجليزي">
                             </div>
                         </div>
@@ -225,7 +225,7 @@
                             <label class="col-form-label col-lg-12">العنوان الفرعي بالإنجليزي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea required class="form-control turkey" id="details_en" type="text" name="details_en"
+                                <textarea required class="form-control" id="details_en" type="text" name="details_en"
                                           placeholder="العنوان الفرعي بالإنجليزي"
                                           style="width: 100%">{{$item->details_en}}</textarea>
                             </div>
@@ -238,7 +238,7 @@
                             <label class="col-form-label col-lg-12">المحتوى بالإنجليزي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <textarea class="form-control my-editor turkey" id="the_file_en" type="text" name="the_file_en"
+                                <textarea class="form-control my-editor" id="the_file_en" type="text" name="the_file_en"
                                           placeholder="المحتوى بالإنجليزي"
                                           style="width: 100% ; height:230px">{{$item->the_file_en}}</textarea>
                             </div>

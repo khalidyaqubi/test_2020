@@ -183,27 +183,6 @@
     });
 </script>
 <script>
-    function arabicInput(event) {
-        var value = String.fromCharCode(event.which);
-        var pattern = new RegExp(/^[\u0621-\u064A\u0660-\u0669\-_@& ]+$/i);
-        return pattern.test(value);
-    }
-
-    function turkeyInput(event) {
-        var value = String.fromCharCode(event.which);
-        var pattern = new RegExp(/[a-zåäöığüşöçĞÜŞÖÇİ\-_@& ]/i);
-        return pattern.test(value);
-    }
-
-    function numbersInput(event) {
-        var value = String.fromCharCode(event.which);
-        var pattern = new RegExp(/^\+?\d*\.?\d*$/i);
-        return pattern.test(value);
-    }
-
-    $('.arabic').bind('keypress', arabicInput);
-    $('.turkey').bind('keypress', turkeyInput);
-    $(".numbers").bind('keypress', numbersInput);
     var KTAppOptions = {
         "colors": {
             "state": {

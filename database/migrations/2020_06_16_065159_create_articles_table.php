@@ -15,7 +15,7 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
             $table->boolean('fixing');
             $table->integer('user_id');
             $table->string('img')->nullable();

@@ -224,7 +224,7 @@
             <div class="row align-items-center justify-content-center text-center">
 
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <a href="/medias"><h1 class="text-white">{{trans('my-word.Our Media')}}</h1></a>
+                    <a href="/medias/medias_tow"><h1 class="text-white">{{trans('my-word.Our Media')}}</h1></a>
                 </div>
             </div>
         </div>

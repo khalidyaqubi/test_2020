@@ -219,13 +219,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;" required class="form-control arabic" id="our_object_ar" type="text" name="our_object_ar"
                                            placeholder="عن المشروع بالعربي">{{ $item->our_object_ar }}</textarea>
-=======
-                                <textarea  style="height: 100px;" required class="form-control" id="our_object_ar" type="text" name="our_object_ar"
-                                           value="{{ $item->our_object_ar }}" placeholder="عن المشروع بالعربي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -237,13 +232,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="our_mission_ar" type="text" name="our_mission_ar"
                                            placeholder="رسالتنا بالعربي">{{ $item->our_mission_ar }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_mission_ar" type="text" name="our_mission_ar"
-                                           value="{{ $item->our_mission_ar }}" placeholder="رسالتنا بالعربي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -255,13 +245,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="our_active_ar" type="text" name="our_active_ar"
                                             placeholder="نشاطنا بالعربي">{{ $item->our_active_ar }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_active_ar" type="text" name="our_active_ar"
-                                           value="{{ $item->our_active_ar }}" placeholder="نشاطنا بالعربي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -271,7 +256,6 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">عبارة عنّا بالعربي
 
-<<<<<<< HEAD
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="who_are_we_ar" type="text" name="who_are_we_ar"
@@ -279,15 +263,6 @@
                             </div>
                         </div>
                     </div>
-=======
-                                {{--<span style="color:red;">*</span></label>--}}
-                            {{--<div style="width: 95%;">--}}
-                                {{--<textarea  style="height: 100px;"  required class="form-control" id="who_are_we_ar" type="text" name="who_are_we_ar"--}}
-                                           {{--value="{{ $item->who_are_we_ar }}" placeholder="عبارة الزكاة بالعربي"></textarea>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">
@@ -296,7 +271,7 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control" id="our_vision_tilte_ar" type="text" name="our_vision_tilte_ar"
+                                <input required class="form-control arabic" id="our_vision_tilte_ar" type="text" name="our_vision_tilte_ar"
                                        value="{{ $item->our_vision_tilte_ar }}" placeholder="عنوان رؤيتنا بالعربي">
                             </div>
                         </div>
@@ -309,13 +284,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="our_vision_quotes_ar" type="text" name="our_vision_quotes_ar"
                                             placeholder="اقتباس رؤيتنا بالعربي">{{ $item->our_vision_quotes_ar }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_vision_quotes_ar" type="text" name="our_vision_quotes_ar"
-                                           value="{{ $item->our_vision_quotes_ar }}" placeholder="اقتباس رؤيتنا بالعربي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -327,13 +297,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control arabic" id="our_vision_content_ar" type="text" name="our_vision_content_ar"
                                             placeholder="محتوى رؤيتنا بالعربي">{{ $item->our_vision_content_ar }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_vision_content_ar" type="text" name="our_vision_content_ar"
-                                           value="{{ $item->our_vision_content_ar }}" placeholder="محتوى رؤيتنا بالعربي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -345,13 +310,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;" required class="form-control turkey" id="our_object_tr" type="text" name="our_object_tr"
                                            placeholder="عن المشروع بالتركي">{{ $item->our_object_tr }}</textarea>
-=======
-                                <textarea  style="height: 100px;" required class="form-control" id="our_object_tr" type="text" name="our_object_tr"
-                                           value="{{ $item->our_object_tr }}" placeholder="عن المشروع بالتركي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -363,13 +323,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_mission_tr" type="text" name="our_mission_tr"
                                            placeholder="رسالتنا بالتركي">{{ $item->our_mission_tr }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_mission_tr" type="text" name="our_mission_tr"
-                                           value="{{ $item->our_mission_tr }}" placeholder="رسالتنا بالتركي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -381,13 +336,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_active_tr" type="text" name="our_active_tr"
                                            placeholder="نشاطنا بالتركي">{{ $item->our_active_tr }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_active_tr" type="text" name="our_active_tr"
-                                           value="{{ $item->our_active_tr }}" placeholder="نشاطنا بالتركي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -398,7 +348,6 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">عبارة عنّا بالتركي
 
-<<<<<<< HEAD
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="who_are_we_tr" type="text" name="who_are_we_tr"
@@ -406,15 +355,6 @@
                             </div>
                         </div>
                     </div>
-=======
-                                {{--<span style="color:red;">*</span></label>--}}
-                            {{--<div style="width: 95%;">--}}
-                                {{--<textarea  style="height: 100px;"  required class="form-control" id="who_are_we_tr" type="text" name="who_are_we_tr"--}}
-                                           {{--value="{{ $item->who_are_we_tr }}" placeholder="عبارة الزكاة بالتركي"></textarea>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">
@@ -423,7 +363,7 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input  required class="form-control" id="our_vision_tilte_tr" type="text" name="our_vision_tilte_tr"
+                                <input  required class="form-control turkey" id="our_vision_tilte_tr" type="text" name="our_vision_tilte_tr"
                                            value="{{ $item->our_vision_tilte_tr }}" placeholder="عنوان رؤيتنا بالتركي">
                             </div>
                         </div>
@@ -436,13 +376,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_vision_quotes_tr" type="text" name="our_vision_quotes_tr"
                                             placeholder="اقتباس رؤيتنا بالتركي">{{ $item->our_vision_quotes_tr }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_vision_quotes_tr" type="text" name="our_vision_quotes_tr"
-                                           value="{{ $item->our_vision_quotes_tr }}" placeholder="اقتباس رؤيتنا بالتركي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -454,13 +389,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                <textarea  style="height: 100px;"  required class="form-control turkey" id="our_vision_content_tr" type="text" name="our_vision_content_tr"
                                            placeholder="محتوى رؤيتنا بالتركي">{{ $item->our_vision_content_tr }}</textarea>
-=======
-                               <textarea  style="height: 100px;"  required class="form-control" id="our_vision_content_tr" type="text" name="our_vision_content_tr"
-                                          value="{{ $item->our_vision_content_tr }}" placeholder="محتوى رؤيتنا بالتركي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -472,13 +402,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_object_tr" type="text" name="our_object_en"
                                            placeholder="عن المشروع بالإنجليزي">{{ $item->our_object_en }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_object_tr" type="text" name="our_object_en"
-                                           value="{{ $item->our_object_en }}" placeholder="عن المشروع بالإنجليزي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -490,13 +415,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_mission_en" type="text" name="our_mission_en"
                                            placeholder="رسالتنا بالإنجليزي">{{ $item->our_mission_en }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_mission_en" type="text" name="our_mission_en"
-                                           value="{{ $item->our_mission_en }}" placeholder="رسالتنا بالإنجليزي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -509,13 +429,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_active_en" type="text" name="our_active_en"
                                             placeholder="نشاطنا بالإنجليزي">{{ $item->our_active_en }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_active_en" type="text" name="our_active_en"
-                                           value="{{ $item->our_active_en }}" placeholder="نشاطنا بالإنجليزي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -525,7 +440,6 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">عبارة عنّا بالإنجليزي
 
-<<<<<<< HEAD
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="who_are_we_en" type="text" name="who_are_we_en"
@@ -533,15 +447,6 @@
                             </div>
                         </div>
                     </div>
-=======
-                                {{--<span style="color:red;">*</span></label>--}}
-                            {{--<div style="width: 95%;">--}}
-                                {{--<textarea  style="height: 100px;"  required class="form-control" id="who_are_we_en" type="text" name="who_are_we_en"--}}
-                                           {{--value="{{ $item->who_are_we_en }}" placeholder="عبارة الزكاة بالإنجليزي"></textarea>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                     <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-12">
@@ -550,7 +455,7 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input  required class="form-control" id="our_vision_tilte_en" type="text" name="our_vision_tilte_en"
+                                <input  required class="form-control turkey" id="our_vision_tilte_en" type="text" name="our_vision_tilte_en"
                                        value="{{ $item->our_vision_tilte_en }}" placeholder="عنوان رؤيتنا بالإنجليزي">
                             </div>
                         </div>
@@ -563,13 +468,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;" required class="form-control turkey" id="our_vision_quotes_en" type="text" name="our_vision_quotes_en"
                                             placeholder="اقتباس رؤيتنا بالإنجليزي">{{ $item->our_vision_quotes_en }}</textarea>
-=======
-                                <textarea  style="height: 100px;" required class="form-control" id="our_vision_quotes_en" type="text" name="our_vision_quotes_en"
-                                           value="{{ $item->our_vision_quotes_en }}" placeholder="اقتباس رؤيتنا بالإنجليزي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>
@@ -581,13 +481,8 @@
 
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-<<<<<<< HEAD
                                 <textarea  style="height: 100px;"  required class="form-control turkey" id="our_vision_content_en" type="text" name="our_vision_content_en"
                                             placeholder="محتوى رؤيتنا بالإنجليزي">{{ $item->our_vision_content_en }}</textarea>
-=======
-                                <textarea  style="height: 100px;"  required class="form-control" id="our_vision_content_en" type="text" name="our_vision_content_en"
-                                           value="{{ $item->our_vision_content_en }}" placeholder="محتوى رؤيتنا بالإنجليزي"></textarea>
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
                             </div>
                         </div>
                     </div>

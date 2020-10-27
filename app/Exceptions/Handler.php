@@ -29,7 +29,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param  \Throwable $exception
      * @return void
      *
      * @throws \Exception
@@ -42,15 +42,14 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Throwable $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
-<<<<<<< HEAD
        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
            return redirect('/admin/noAccess');
        }
@@ -86,8 +85,7 @@ class Handler extends ExceptionHandler
            else
                return back()->with('error', 'لم تتم العملية بنجاح')->withInput();
        }
-=======
->>>>>>> parent of a098d5f... اصلاحات وتركيب الترجمة
         return parent::render($request, $exception);
     }
+
 }

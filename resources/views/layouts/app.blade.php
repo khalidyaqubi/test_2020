@@ -275,7 +275,7 @@
         center: true,
         items: 2,
         autoplay: true,
-        loop: false,
+        loop: true,
         margin: 10,
         nav: false,
         responsive: {
@@ -291,8 +291,6 @@
         }
     });
 </script>
-@yield('footerCSS')
-@yield('footerJS')
 </body>
 
 </html>

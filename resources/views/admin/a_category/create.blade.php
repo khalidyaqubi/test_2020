@@ -35,7 +35,7 @@
                             <label class="col-form-label col-lg-12">الاسم بالعربي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control" id="name_ar" type="text" name="name_ar"
+                                <input required class="form-control arabic" id="name_ar" type="text" name="name_ar"
                                        value="{{ old('name_ar') }}" placeholder="الاسم بالعربي">
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <label class="col-form-label col-lg-12">الاسم بالتركي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control" id="name_tr" type="text" name="name_tr"
+                                <input required class="form-control turkey" id="name_tr" type="text" name="name_tr"
                                        value="{{ old('name_tr') }}" placeholder="الاسم بالتركي">
                             </div>
                         </div>
@@ -59,8 +59,8 @@
                             <label class="col-form-label col-lg-12">الاسم بالإنجليزي
                                 <span style="color:red;">*</span></label>
                             <div style="width: 95%;">
-                                <input required class="form-control" id="name_en" type="text" name="name_en"
-                                       value="{{ old('name_en') }}" placeholder="الاسم بالعربي">
+                                <input required class="form-control turkey" id="name_en" type="text" name="name_en"
+                                       value="{{ old('name_en') }}" placeholder="الاسم بالإنجليزية">
                             </div>
                         </div>
                     </div>

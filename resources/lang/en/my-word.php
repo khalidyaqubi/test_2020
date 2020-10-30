@@ -49,4 +49,6 @@ return array (
     "Read More"=>"Read More",
     "Raised"=>"Raised",
     "Goal"=>"Goal",
+    "Recent Post" => "Recent Post",
+
 );

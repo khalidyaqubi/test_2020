@@ -103,8 +103,13 @@ class ArticleController extends Controller
             $path = '/uploads/articles/';
             $path1 = 'size1/uploads/articles/';
             $path2 = 'size2/uploads/articles/';
+            $path3 = 'size3/uploads/articles/';
+            $path4 = 'size4/uploads/articles/';
             Image::make($request['img']->getRealPath())->resize(277, 405)->save($path1 . $filename, 60);
             Image::make($request['img']->getRealPath())->resize(270, 187)->save($path2 . $filename, 60);
+            Image::make($request['img']->getRealPath())->resize(750,375)->save($path3 . $filename, 60);
+            Image::make($request['img']->getRealPath())->resize(80,80)->save($path4 . $filename, 60);
+
             $item->img = $path . $filename;
             $item->save();
 
@@ -184,9 +189,14 @@ class ArticleController extends Controller
                 $path = '/uploads/articles/';
                 $path1 = 'size1/uploads/articles/';
                 $path2 = 'size2/uploads/articles/';
+                $path3 = 'size3/uploads/articles/';
+                $path4 = 'size4/uploads/articles/';
 
                 $mypath1 = public_path() . "/size1/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
                 $mypath2 = public_path() . "/size2/" . $tempreroy;
+                $mypath3 = public_path() . "/size3/" . $tempreroy;
+                $mypath4 = public_path() . "/size4/" . $tempreroy;
+                
                 if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath1);
                     unlink($mypath2);//يقوم بحذف القديم
@@ -194,6 +204,9 @@ class ArticleController extends Controller
 
                 Image::make($request['img']->getRealPath())->resize(277, 405)->save($path1 . $filename, 60);
                 Image::make($request['img']->getRealPath())->resize(270, 187)->save($path2 . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(750,375)->save($path3 . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(80,80)->save($path4 . $filename, 60);
+
                 $item->img = $path . $filename;
                 $item->save();
 

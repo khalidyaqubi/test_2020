@@ -49,4 +49,6 @@ return array (
     "Read More"=>"إقرأ المزيد",
     "Raised"=>"المدفوع",
     "Goal"=>"الهدف",
+    "Recent Post" =>"الأخبار الحديثة",
+
 );

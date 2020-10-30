@@ -49,4 +49,6 @@ return array (
     "Read More"=>"Daha fazla oku",
     "Raised"=>"ödenmiş",
     "Goal"=>"Hedef",
+    "Recent Post" => "Son Gönderi",
+
 );

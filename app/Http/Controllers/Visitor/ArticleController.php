@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Visitor;
 
-use App\Http\Controllers\Controller;
+use App\Article;
+use App\Setting;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
@@ -14,7 +16,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $items = Article::all();
+        $setting = Setting::find(1);  
+        return view('visitor.article.index',compact('items','setting'));
+   
     }
 
     /**
@@ -46,7 +51,12 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::find($id);
+        $articles = Article::orderBy("created_at",'DESC')->limit(5)->get();
+        $setting = Setting::find(1);  
+        return view('visitor.article.show',compact('article', 'articles','setting'));
+ 
+       
     }
 
     /**

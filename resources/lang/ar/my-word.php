@@ -50,5 +50,18 @@ return array (
     "Raised"=>"المدفوع",
     "Goal"=>"الهدف",
     "Recent Post" =>"الأخبار الحديثة",
+    "Related Post"=>"أخبار مشابهة",
+    "Relefe Project"=>"مشاريع الإغاثة",
+    "supports"=>"الداعمين",
+    "DONATE NOW"=>"تبرع الآن",
+    "Projects"=>"المشاريع",
+    "Tags For This Project"=>"العلامات لهذا المشروع",
+    "You Many also be interested in"=>"أنت مهتم أيضًا",
+    "1- I Would Like To Make A"=>"1- أود أن أقدم",
+    "ONE-OFF DONATION"=>"تبرع لمرة واحدة",
+    "MONTHLY DONATION"=>"تبرع شهري",
+    "How much would you like to give?"=>"كم تريد ان تعطي؟",
+    "others"=>"الآخرين",
+    "Secuere Donating With Worldpay"=>"تبرع آمن مع Worldpay",
 
 );

@@ -50,5 +50,18 @@ return array (
     "Raised"=>"Raised",
     "Goal"=>"Goal",
     "Recent Post" => "Recent Post",
+    "Related Post"=>"Related Post",
+    "Relefe Project"=>"Relefe Project",
+    "supports"=>"supports",
+    "DONATE NOW"=>"DONATE NOW",
+    "Projects"=>"Projects",
+    "Tags For This Project"=>"Tags For This Project",
+    "You Many also be interested in"=>"You Many also be interested in",
+    "1- I Would Like To Make A"=>"1- I Would Like To Make A",
+    "ONE-OFF DONATION"=>"ONE-OFF DONATION",
+    "MONTHLY DONATION"=>"MONTHLY DONATION",
+    "How much would you like to give?"=>"How much would you like to give?",
+    "others"=>"others",
+    "Secuere Donating With Worldpay"=>"Secuere Donating With Worldpay",
 
 );

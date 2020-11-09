@@ -116,13 +116,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('about_us', 'HomeController@about_us');
             Route::get('contact_us', 'HomeController@contact_us');
             Route::post('contact_us', 'HomeController@contact_us_post');
-            Route::resource('articles', 'ArticleController');
-            Route::resource('donations', 'DonationController');
-            Route::resource('medias', 'MediaController');
-            Route::get('medias/medias_tow', 'MediaController@medias_tow');
             Route::get('medias/medias_ajax', 'MediaController@medias_ajax');
-            Route::resource('projects/{id}/donations', 'ProjectController@donations');
-            Route::resource('p_categories', 'P_categoryController');
+            Route::resource('medias', 'MediaController');
+            Route::resource('articles', 'ArticleController');
+            Route::resource('projects', 'ProjectController');
+            Route::get('projects/{id}/donations', 'ProjectController@donations');
+            Route::post('projects/{id}/donations', 'ProjectController@donations_post');
+            Route::get('p_categories/{id}', 'P_categoryController@show');
+            Route::resource('donations', 'DonationController');
+
+            Route::post('paypal/ec-checkout', 'PayPalController@getExpressCheckout');
+            Route::get('paypal/ec-checkout-success', 'PayPalController@getExpressCheckoutSuccess');
+            Route::get('paypal/adaptive-pay', 'PayPalController@getAdaptivePay');
+            Route::post('paypal/notify', 'PayPalController@notify');
+
         });
     Route::get('/logout', 'Auth\LoginController@logout');
     Auth::routes();

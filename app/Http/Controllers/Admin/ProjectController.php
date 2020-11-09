@@ -117,8 +117,16 @@ class ProjectController extends Controller
             $path = 'uploads/projects/';
             $path1 = 'size1/uploads/projects/';
 			$path2 = 'size2/uploads/projects/';
-            Image::make($request['img']->getRealPath())->resize(362, 215)->save($path1 . $filename, 60);
-			Image::make($request['img']->getRealPath())->resize(660, 700)->save($path2 . $filename, 60);
+            $path3 = 'size3/uploads/projects/';
+            $path4 = 'size4/uploads/projects/';
+            $path5 = 'size5/uploads/projects/';
+            $path6 = 'size6/uploads/projects/';
+            Image::make($request['img']->getRealPath())->resize(362, 215)->save($path1 . $filename, 60);//اخبار الريئيسية
+			Image::make($request['img']->getRealPath())->resize(660, 700)->save($path2 . $filename, 60);//المثبت
+            Image::make($request['img']->getRealPath())->resize(560, 360)->save($path3 . $filename, 60);//خبر التبرع
+            Image::make($request['img']->getRealPath())->resize(290, 274)->save($path4 . $filename, 60);//اخبار متعلقة
+            Image::make($request['img']->getRealPath())->resize(550, 550)->save($path5 . $filename, 60);//الريشس
+            Image::make($request['img']->getRealPath())->resize(420, 407)->save($path6 . $filename, 60);//كل الأخبار
             $item->img = $path . $filename;
             $item->save();
 
@@ -188,15 +196,22 @@ class ProjectController extends Controller
                 $path = 'uploads/projects/';
                 $path1 = 'size1/uploads/projects/';
                 $path2 = 'size2/uploads/projects/';
-
+                $path3 = 'size3/uploads/projects/';
+                $path4 = 'size4/uploads/projects/';
+                $path5 = 'size5/uploads/projects/';
+                $path6 = 'size6/uploads/projects/';
                 $mypath1 = public_path() . "/size1/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
                 $mypath2 = public_path() . "/size2/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath1);//يقوم بحذف القديم
                     unlink($mypath2);//يقوم بحذف القديم
                 }
-                Image::make($request['img']->getRealPath())->resize(362, 215)->save($path1 . $filename, 60);
-                Image::make($request['img']->getRealPath())->resize(660, 700)->save($path2 . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(362, 215)->save($path1 . $filename, 60);//اخبار الريئيسية
+                Image::make($request['img']->getRealPath())->resize(660, 700)->save($path2 . $filename, 60);//المثبت
+                Image::make($request['img']->getRealPath())->resize(560, 360)->save($path3 . $filename, 60);//خبر التبرع
+                Image::make($request['img']->getRealPath())->resize(290, 274)->save($path4 . $filename, 60);//اخبار متعلقة
+                Image::make($request['img']->getRealPath())->resize(550, 550)->save($path5 . $filename, 60);//الريشس
+                Image::make($request['img']->getRealPath())->resize(420, 407)->save($path6 . $filename, 60);//كل الأخبار
                 $item->img = $path . $filename;
                 $item->save();
 

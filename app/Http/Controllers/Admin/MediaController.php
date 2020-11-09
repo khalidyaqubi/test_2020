@@ -62,8 +62,11 @@ class MediaController extends Controller
 
 
             $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
-            $path = 'size1/uploads/medias/';
-             Image::make($request['img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+            $path = '/uploads/medias/';
+            $path1 = 'size1/uploads/medias/';
+            $path2 = 'size2/uploads/medias/';
+             Image::make($request['img']->getRealPath())->resize(263, 180)->save($path1 . $filename, 60);
+            Image::make($request['img']->getRealPath())->save($path2 . $filename, 60);
             $item->the_media = $path . $filename;
             $item->save();
 
@@ -129,13 +132,15 @@ class MediaController extends Controller
 
 
                 $filename = rand() . '.' . $request['img']->getClientOriginalExtension();
-                $path = 'size1/uploads/medias/';
-
+                $path = '/uploads/medias/';
+                $path1 = 'size1/uploads/medias/';
+                $path2 = 'size2/uploads/medias/';
                 $mypath = public_path() . "/" .$tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
                 if (file_exists($mypath) && $mypath != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath);//يقوم بحذف القديم
                 }
-                Image::make($request['the_media']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(263, 180)->save($path1 . $filename, 60);
+                Image::make($request['img']->getRealPath())->save($path2 . $filename, 60);
                 $item->the_media = $path . $filename;
                 $item->save();
 

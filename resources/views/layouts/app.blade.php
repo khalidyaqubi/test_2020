@@ -68,9 +68,9 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/en">English</a>
-                                    <a class="dropdown-item" href="/ar">العربية</a>
-                                    <a class="dropdown-item" href="/tr">Turkish</a>
+                                    <a class="dropdown-item" href="javascript:lang('en')">English</a>
+                                    <a class="dropdown-item" href="javascript:lang('ar')">العربية</a>
+                                    <a class="dropdown-item" href="javascript:lang('tr')">Turkish</a>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
             <div class="row text-center">
                 <div class="col-xl-12 col-md-12 col-lg-12">
                     <div class="donate_now_btn text-center">
-                        <a href="/login" class="boxed-btn4">Join Us</a>
+                        <a href="/login" class="boxed-btn4">{{trans('my-word.Join Us')}}</a>
                     </div>
                 </div>
 
@@ -271,26 +271,17 @@
 
 <script src="{{  asset('visitor/js/main.js')}}"></script>
 <script>
-    $('.owl-carousel').owlCarousel({
-        center: true,
-        items: 2,
-        autoplay: true,
-        loop: true,
-        margin: 10,
-        nav: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 3
-            },
-            1000: {
-                items: 4
-            }
-        }
-    });
+    function lang(lang){
+        var url=window.location.href;
+        url=url.replace("/ar", "/"+lang);
+        url=url.replace("/en", "/"+lang);
+        url=url.replace("/tr", "/"+lang);
+        window.location.replace(url);
+    }
 </script>
+@yield('footerJS')
+@yield('footerCSS')
+
 </body>
 
 </html>

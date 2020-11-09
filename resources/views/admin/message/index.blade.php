@@ -119,6 +119,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {{$items->links()}}
                 </div>
                 <!-- End Table  -->
 

@@ -42,6 +42,7 @@ class ProjectRequest extends FormRequest
 
             $id = $this->route('project');
 
+
             $rules['title_en'] = 'required|max:100|unique:projects,title_en,' . $id . ',id';
             $rules['title_ar'] = 'required|max:100|unique:projects,title_ar,' . $id . ',id';
             $rules['title_tr'] = 'required|max:100|unique:projects,title_tr,' . $id . ',id';

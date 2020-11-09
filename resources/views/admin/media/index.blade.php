@@ -91,7 +91,7 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->type==1?'صورة':'فيديو' }}</td>
                                 <td>@if($item->type==1)
-                                        <image width='122px' height='100px' src='{{asset($item->the_media)}}'/>
+                                        <image width='122px' height='100px' src='{{asset('size1/'.$item->the_media)}}'/>
                                 @else
                                         <iframe width="122" height="100" src="{{$item->the_media}}">
                                         </iframe>

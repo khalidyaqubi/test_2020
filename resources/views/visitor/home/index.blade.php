@@ -35,6 +35,35 @@
                     </div>
                 </div>
             </div>
+            @if($fixed_article)
+                <div class="col-lg-12">
+                    <div class="single_reson">
+                        <div class="thum">
+                            <div class="thum_1">
+                                <img src="{{asset("size3/".$fixed_article->img)}}" alt="">
+                            </div>
+                        </div>
+                        <div class="help_content" style="text-align: center;">
+                            <h3>@if(config('app.locale')=='en')
+                                    {{substr($fixed_article->title_en, 0, 100)}}
+                                @elseif(config('app.locale')=='tr')
+                                    {{substr($fixed_article->title_tr, 0, 100)}}
+                                @elseif(config('app.locale')=='ar')
+                                    {{substr($fixed_article->title_ar, 0, 100)}};
+                                @endif</h3>
+                            <h6> @if(config('app.locale')=='en')
+                                    {{substr($fixed_article->details_en, 0, 300)}}
+                                @elseif(config('app.locale')=='tr')
+                                    {{substr($fixed_article->details_tr, 0, 300)}}
+                                @elseif(config('app.locale')=='ar')
+                                    {{substr($fixed_article->details_ar, 0, 300)}};
+                                @endif</h6>
+                            <a href="/articles/{{$fixed_article->id}}" class="read_more">{{trans('my-word.Read More')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                @endif
             <div class="row justify-content-center">
                 @foreach($last_6_articles as $article)
                 <div class="col-lg-4 col-md-6 mb-5">
@@ -135,6 +164,7 @@
                 <div class="col-lg-7">
                     <div class="activites_info">
                         <div class="section_title">
+                            <a href="/projects/{{$project->id}}">
                             <h3>  @if(config('app.locale')=='en')
                                     {{substr($fixed_project->title_en, 0, 100)}}
                                 @elseif(config('app.locale')=='tr')
@@ -144,6 +174,7 @@
                                 @endif<br>
                                 {{trans('my-word.Need Our Help')}}
                             </h3>
+                            </a>
                         </div>
                         <p class="para_1">@if(config('app.locale')=='en')
                                 {{substr($fixed_project->details_en, 0, 300)}}
@@ -182,7 +213,7 @@
                             <div class="causes_content">
                                 <div class="custom_progress_bar">
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar" role="progressbar" style="width: {{ ($project->come_amount/$project->need_amount)*100 }}%;" aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}" aria-valuemin="0" aria-valuemax="100">
                                             <span class="progres_count">
                                                     {{ ($project->come_amount/$project->need_amount)*100 }} %
                                                 </span>

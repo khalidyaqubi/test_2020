@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Visitor;
 
 use App\Http\Controllers\Controller;
+use App\Project;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -14,8 +16,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $items = Project::orderByDesc('created_at')->paginate(20);
+        $setting = Setting::find(1);
+        return view('visitor.project.index', compact('items', 'setting'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,7 +35,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,18 +46,39 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        $projects = Project::orderBy("created_at", 'DESC')->limit(5)->get();
+        $projects_related = Project::whereHas('p_categories', function ($q) use ($project) {
+            $q->whereIn('p_category_id', $project->p_categories->pluck('p_category_id')->toArray());
+        })->orderBy("created_at", 'DESC')->limit(5)->get();
+        $setting = Setting::find(1);
+        return view('visitor.project.show', compact('project', 'projects', 'setting', 'projects_related'));
+
+    }
+
+    public function donations($id)
+    {
+        $project = Project::find($id);
+        $setting = Setting::find(1);
+        return view('visitor.project.donation', compact('project', 'setting'));
+
+    }
+
+    public function donations_post()
+    {
+        dd(request()->all());
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -63,8 +89,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -75,7 +101,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

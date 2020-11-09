@@ -50,5 +50,18 @@ return array (
     "Raised"=>"ödenmiş",
     "Goal"=>"Hedef",
     "Recent Post" => "Son Gönderi",
+    "Related Post"=>"İlgili Gönderi",
+    "Relefe Project"=>"Yardım Projesi",
+    "supports"=>"Destekçiler",
+    "DONATE NOW"=>"ŞİMDİ BAĞIŞ YAP",
+    "Projects"=>"Projesi",
+    "Tags For This Project"=>"Bu Proje İçin Etiketler",
+    "You Many also be interested in"=>"Birçoğunuz da ilgileniyorsunuz",
+    "1- I Would Like To Make A"=>"1- A Yapmak İstiyorum",
+    "ONE-OFF DONATION"=>"TEK KEZ BAĞIŞ",
+    "MONTHLY DONATION"=>"AYLIK BAĞIŞ",
+    "How much would you like to give?"=>"Ne kadar vermek istersiniz?",
+    "others"=>"diğerleri",
+    "Secuere Donating With Worldpay"=>"Worldpay ile Güvenli Bağış",
 
 );

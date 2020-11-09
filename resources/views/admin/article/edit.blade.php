@@ -48,21 +48,21 @@
                         </div>
                     </div>
                     <!-- End col -->
-                    {{--<!-- Start col -->--}}
-                    {{--<input type="hidden" name="status"--}}
-                           {{--value="0">--}}
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="form-group row">--}}
-                            {{--<label class="col-form-label col-lg-12"> تفعيل الخبر--}}
-                                {{--<span style="color:red;">*</span></label>--}}
-                            {{--<div style="width: 95%;">--}}
-                                {{--<input type="checkbox" name="status"--}}
-                                       {{--{{$item->status?"checked":" "}} value="1"--}}
-                                       {{--style="width: 39px; height: 39px; margin: 0px 35px;">--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<!-- End col -->--}}
+                    <!-- Start col -->
+                    <input type="hidden" name="status"
+                           value="0">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12"> تفعيل الخبر
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input type="checkbox" name="status"
+                                       {{$item->status?"checked":" "}} value="1"
+                                       style="width: 39px; height: 39px; margin: 0px 35px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
                     <!-- Start col -->
                     <input type="hidden" name="fixing"
                            value="0">
@@ -96,7 +96,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 الصورة الرئيسية
-                                <span style="color:red">(277X405)</span>
+                                <span style="color:red">(750X375)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"

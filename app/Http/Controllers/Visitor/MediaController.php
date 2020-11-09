@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Visitor;
 
 use App\Http\Controllers\Controller;
+use App\Media;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class MediaController extends Controller
@@ -14,7 +16,11 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        $items_1 = Media::groupBy('created_at')->paginate(1);
+        $items_2=Media::all();
+
+        $setting = Setting::find(1);
+        return view('visitor.media.index',compact('items_1','setting','items_2'));
     }
 
     /**
@@ -46,7 +52,11 @@ class MediaController extends Controller
      */
     public function show($id)
     {
-        //
+        $media = Media::find($id);
+        $medias = Media::where('created_at',$media->created_at)->limit(5)->get();
+        $setting = Setting::find(1);
+        return view('visitor.media.show',compact('medias', 'setting','media'));
+
     }
 
     /**
@@ -81,5 +91,20 @@ class MediaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function medias_ajax(){
+
+
+        $items_1 = Media::groupBy('created_at')->paginate(1)->appends(['page'=>request('page')]);
+        $items_2=Media::all();
+        $view = view('visitor.media.part', compact('items_1','items_2'))->render();
+
+        return response()->json(
+            [
+                'success' => true,
+                'html' => $view
+            ]
+        );
     }
 }

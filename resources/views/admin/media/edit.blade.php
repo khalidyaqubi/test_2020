@@ -50,14 +50,14 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 صورة
-                                <span style="color:red">(500x500)</span>
+                               
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
                                      id="kt_user_avatar">
                                     @if(((!is_null($item->the_media)) && (!is_null($item->the_media)) && (($item->the_media != ''))))
                                         <div class="kt-avatar__holder"
-                                             style="background-image: url({{ asset($item->the_media) }})">
+                                             style="background-image: url({{ asset('size1/'.$item->the_media)}})">
                                         </div>
                                     @else
                                         <div class="kt-avatar__holder"

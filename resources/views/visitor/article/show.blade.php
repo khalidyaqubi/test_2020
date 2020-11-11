@@ -60,17 +60,17 @@
                                     @elseif(config('app.locale')=='tr')
                                         {{$article->details_tr}}
                                     @elseif(config('app.locale')=='ar')
-                                        {{$article->details_ar}};
+                                        {{$article->details_ar}}
                                     @endif
                                 </h2>
 
                                 <h6>
                                     @if(config('app.locale')=='en')
-                                        {{strip_tags($article->the_file_en)}}
+                                        {!!$article->the_file_en!!}
                                     @elseif(config('app.locale')=='tr')
-                                        {{strip_tags($article->the_file_tr)}}
+                                        {!!$article->the_file_tr!!}
                                     @elseif(config('app.locale')=='ar')
-                                        {{strip_tags($article->the_file_ar)}};
+                                        {!!$article->the_file_ar!!}
                                     @endif
                                 </h6>
                             </div>
@@ -161,6 +161,11 @@
 @endsection
 
 @section('footerCSS')
+    <style>
+        .blog_details p{
+         color:#000;
+        }
+    </style>
 @endsection
 
 @section('footerJS')

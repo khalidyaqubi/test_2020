@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Visitor;
 
 use App\Http\Controllers\Controller;
+use App\P_Category;
+use App\Project;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class DonationController extends Controller
@@ -24,7 +27,19 @@ class DonationController extends Controller
      */
     public function create()
     {
-        //
+        $setting = Setting::find(1);
+        $p_categories=P_Category::all();
+        $response = [];
+        if (session()->has('code')) {
+            $response['code'] = session()->get('code');
+            session()->forget('code');
+        }
+
+        if (session()->has('message')) {
+            $response['message'] = session()->get('message');
+            session()->forget('message');
+        }
+        return view('visitor.donation.create',compact('setting','response','p_categories'));
     }
 
     /**

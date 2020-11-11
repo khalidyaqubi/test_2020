@@ -1,7 +1,7 @@
 <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
     <div class="kt-aside__brand-logo">
 		<a href="/">
-			<img alt="Logo" src="#" width="100%" height="100%"/>
+			<img alt="Logo" src="{{asset('/visitor/img/23.png')}}" width="60px" height="60px" class="m-2"/>
 			
 		</a>
     </div>

@@ -17,9 +17,9 @@ class ArticleController extends Controller
     public function index()
     {
         $items = Article::orderByDesc('created_at')->paginate(20);
-        $setting = Setting::find(1);  
-        return view('visitor.article.index',compact('items','setting'));
-   
+        $setting = Setting::find(1);
+        return view('visitor.article.index', compact('items', 'setting'));
+
     }
 
     /**
@@ -35,7 +35,7 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,26 +46,26 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $article = Article::find($id);
-        $articles = Article::orderBy("created_at",'DESC')->limit(5)->get();
-        $articles_related = Article::whereHas('a_categories',function ($q) use($article){
-            $q->whereIn('a_category_id',$article->a_categories->pluck('a_category_id')->toArray());
-        })->orderBy("created_at",'DESC')->limit(5)->get();
-        $setting = Setting::find(1);  
-        return view('visitor.article.show',compact('article', 'articles','setting','articles_related'));
- 
-       
+        $articles = Article::orderBy("created_at", 'DESC')->limit(5)->get();
+        $articles_related = Article::whereHas('article_a_categories', function ($q) use ($article) {
+            $q->whereIn('a_category_id', $article->a_categories->pluck('id')->toArray());
+        })->orderBy("created_at", 'DESC')->limit(5)->get();
+        $setting = Setting::find(1);
+        return view('visitor.article.show', compact('article', 'articles', 'setting', 'articles_related'));
+
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +76,8 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -88,7 +88,7 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

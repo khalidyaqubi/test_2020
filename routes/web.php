@@ -14,35 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-    Route::get('/test2', function () {
-//        $a1 = \App\Article::find(1);
-//        $p1 = \App\Project::find(1);
-//        $a2 = $a1->replicate();
-//        $a2->save();
-//        $a2->update(['fixing' => 0]);
-//        $a3 = $a2->replicate();
-//        $a3->save();
-//        $a4 = $a2->replicate();
-//        $a4->save();
-//        $a5 = $a2->replicate();
-//        $a5->save();
-//        $a6 = $a2->replicate();
-//        $a6->save();
-//
-//        $p2 = $p1->replicate();
-//        $p2->save();
-//        $p2->update(['fixing' => 0]);
-//        $p3 = $p2->replicate();
-//        $p3->save();
-//        $p4 = $p2->replicate();
-//        $p4->save();
-//        $p5 = $p2->replicate();
-//        $p5->save();
-//        $p6 = $p2->replicate();
-//        $p6->save();
-
-        dd('test2');
-    });
     Route::get('/configClear', function () {
         dd(Config::get('app.locale'));
         \Illuminate\Support\Facades\Artisan::call('config:clear');
@@ -61,9 +32,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         return redirect('/');
     });
 
-    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-        \UniSharp\LaravelFilemanager\Lfm::routes();
-    });
+
 
     Route::namespace('Admin')->prefix('admin')
         ->middleware(['auth', 'checkPermission'])
@@ -125,13 +94,21 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('p_categories/{id}', 'P_categoryController@show');
             Route::resource('donations', 'DonationController');
 
-            Route::post('paypal/ec-checkout', 'PayPalController@getExpressCheckout');
-            Route::get('paypal/ec-checkout-success', 'PayPalController@getExpressCheckoutSuccess');
-            Route::get('paypal/adaptive-pay', 'PayPalController@getAdaptivePay');
-            Route::post('paypal/notify', 'PayPalController@notify');
 
         });
     Route::get('/logout', 'Auth\LoginController@logout');
     Auth::routes();
+});
+Route::namespace('Visitor')
+    ->group(function () {
+
+        Route::get('paypal/ec-checkout', 'PayPalController@getExpressCheckout');
+        Route::get('paypal/ec-checkout-success', 'PayPalController@getExpressCheckoutSuccess');
+        Route::get('paypal/adaptive-pay', 'PayPalController@getAdaptivePay');
+        Route::post('paypal/notify', 'PayPalController@notify');
+
+    });
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 

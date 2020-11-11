@@ -34,15 +34,18 @@
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
-                                            <img class="d-block w-100" src="{{asset("size5/".$project->img)}}" alt="First slide">
+                                            <img class="d-block w-100" src="{{asset("size5/".$project->img)}}"
+                                                 alt="First slide">
                                         </div>
 
                                     </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                       data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                       data-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
@@ -83,7 +86,7 @@
                                                     @elseif(config('app.locale')=='ar')
                                                         {{substr($project->details_ar, 0, 300)}};
                                                     @endif
-                                                 </p>
+                                                </p>
 
                                                 <div class="causes_content ml-3">
                                                     <div class="custom_progress_bar">
@@ -92,7 +95,10 @@
                                                             <span>{{ ($project->come_amount/$project->need_amount)*100 }} %</span>
                                                         </div>
                                                         <div class="progress">
-                                                            <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                 style="width:{{ ($project->come_amount/$project->need_amount)*100 }} %;"
+                                                                 aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}" aria-valuemin="0"
+                                                                 aria-valuemax="100">
                                                                 <span class="progres_count">
                                                                     {{ ($project->come_amount/$project->need_amount)*100 }} %
                                                                 </span>
@@ -104,25 +110,30 @@
 
                                                 <br>
                                                 <div>
-                                                    <a href="/projects/{{$project->id}}/donations"  class="boxed-btn4 ">{{trans('my-word.DONATE NOW')}}</a>
+                                                    <a href="/projects/{{$project->id}}/donations"
+                                                       class="boxed-btn4 ">{{trans('my-word.DONATE NOW')}}</a>
                                                 </div>
 
                                                 <br>
                                                 <div class="social_links">
                                                     <div class="social-icons">
 
-                                                        <a  href="{{$setting->twitter}}" class="social-icon social-icon--twitter">
+                                                        <a href="{{$setting->twitter}}"
+                                                           class="social-icon social-icon--twitter">
                                                             <i class="fa fa-twitter fa-2x"></i>
                                                         </a>
 
-                                                        <a href="{{$setting->instagram}}" class="social-icon social-icon--instagram">
+                                                        <a href="{{$setting->instagram}}"
+                                                           class="social-icon social-icon--instagram">
                                                             <i class="fa fa-instagram fa-2x"></i>
                                                         </a>
-                                                        <a href="{{$setting->youtube}}" class="social-icon social-icon--youtube">
+                                                        <a href="{{$setting->youtube}}"
+                                                           class="social-icon social-icon--youtube">
                                                             <i class="fa fa-linkedin fa-2x"></i>
                                                         </a>
 
-                                                        <a href="{{$setting->facebook}}" class="social-icon social-icon--facebook">
+                                                        <a href="{{$setting->facebook}}"
+                                                           class="social-icon social-icon--facebook">
                                                             <i class="fa fa-facebook fa-2x"></i>
                                                         </a>
                                                     </div>
@@ -193,7 +204,8 @@
             </div>
             @foreach($project->p_categories as $category)
                 <div class="book_btn d-none d-lg-block">
-                    <a href="/p_categories/{{$category->id}}" class="genric-btn success circle arrow ">@if(config('app.locale')=='en')
+                    <a href="/p_categories/{{$category->id}}"
+                       class="genric-btn success circle arrow ">@if(config('app.locale')=='en')
                             {{$category->name_en}}
                         @elseif(config('app.locale')=='ar')
                             {{$category->name_ar}}
@@ -220,41 +232,44 @@
                 <div class="col-lg-12">
                     <div class="causes_active owl-carousel">
                         @foreach($projects_related as $project)
-                        <div class="single_cause">
-                            <div class="thumb">
-                                <img src="{{asset("size6/".$project->img)}}" alt="">
-                            </div>
-                            <div class="causes_content">
-                                <div class="custom_progress_bar">
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: {{ ($project->come_amount/$project->need_amount)*100 }}%;" aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="single_cause">
+                                <div class="thumb">
+                                    <img src="{{asset("size6/".$project->img)}}" alt="">
+                                </div>
+                                <div class="causes_content">
+                                    <div class="custom_progress_bar">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                 style="width: {{ ($project->come_amount/$project->need_amount)*100 }}%;"
+                                                 aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}"
+                                                 aria-valuemin="0" aria-valuemax="100">
                                             <span class="progres_count">
                                                     {{ ($project->come_amount/$project->need_amount)*100 }} %
                                                 </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="balance d-flex justify-content-between align-items-center">
-                                    <span>{{trans('my-word.Raised')}}: {{$project->come_amount}} $</span>
-                                    <span>{{trans('my-word.Goal')}}: {{$project->need_amount}} $ </span>
-                                </div>
-                                <a href="/projects/{{$project->id}}">  <h4>@if(config('app.locale')=='en')
-                                        {{substr($project->title_en, 0, 100)}}
-                                    @elseif(config('app.locale')=='tr')
-                                        {{substr($project->title_tr, 0, 100)}}
-                                    @elseif(config('app.locale')=='ar')
-                                        {{substr($project->title_ar, 0, 100)}};
-                                        @endif</h4></a>
-                                <p>@if(config('app.locale')=='en')
-                                        {{substr($project->details_en, 0, 300)}}
-                                    @elseif(config('app.locale')=='tr')
-                                        {{substr($project->details_tr, 0, 300)}}
-                                    @elseif(config('app.locale')=='ar')
-                                        {{substr($project->details_ar, 0, 300)}};
-                                    @endif</p>
+                                    <div class="balance d-flex justify-content-between align-items-center">
+                                        <span>{{trans('my-word.Raised')}}: {{$project->come_amount}} $</span>
+                                        <span>{{trans('my-word.Goal')}}: {{$project->need_amount}} $ </span>
+                                    </div>
+                                    <a href="/projects/{{$project->id}}"><h4>@if(config('app.locale')=='en')
+                                                {{substr($project->title_en, 0, 100)}}
+                                            @elseif(config('app.locale')=='tr')
+                                                {{substr($project->title_tr, 0, 100)}}
+                                            @elseif(config('app.locale')=='ar')
+                                                {{substr($project->title_ar, 0, 100)}};
+                                            @endif</h4></a>
+                                    <p>@if(config('app.locale')=='en')
+                                            {{substr($project->details_en, 0, 300)}}
+                                        @elseif(config('app.locale')=='tr')
+                                            {{substr($project->details_tr, 0, 300)}}
+                                        @elseif(config('app.locale')=='ar')
+                                            {{substr($project->details_ar, 0, 300)}};
+                                        @endif</p>
 
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

@@ -604,7 +604,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 صورة رؤيتنا
-                                <span style="color:red">(500x500)</span>
+                                <span style="color:red">(3840x1750)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"
@@ -711,50 +711,50 @@
                     </div>
                     <!-- End col -->
 
-                    <!-- Start col -->
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-12">
-                                صورة الرئيسية
-                                <span style="color:red">(500x500)</span>
-                            </label>
-                            <div class="">
-                                <div class="kt-avatar kt-avatar--outline"
-                                     id="kt_user_avatar7">
-                                    @if(((!is_null($item->main_img)) && (!is_null($item->main_img)) && (($item->main_img != ''))))
-                                        <div class="kt-avatar__holder"
-                                             style="background-image: url({{ asset($item->main_img) }})">
-                                        </div>
-                                    @else
-                                        <div class="kt-avatar__holder"
-                                             style="background-image: url('../../assets/images/users/2.jpg')">
-                                        </div>
-                                    @endif
+                    {{--<!-- Start col -->--}}
+                    {{--<div class="col-md-3">--}}
+                        {{--<div class="form-group row">--}}
+                            {{--<label class="col-form-label col-lg-12">--}}
+                                {{--صورة الرئيسية--}}
+                                {{--<span style="color:red">(3840x1750)</span>--}}
+                            {{--</label>--}}
+                            {{--<div class="">--}}
+                                {{--<div class="kt-avatar kt-avatar--outline"--}}
+                                     {{--id="kt_user_avatar7">--}}
+                                    {{--@if(((!is_null($item->main_img)) && (!is_null($item->main_img)) && (($item->main_img != ''))))--}}
+                                        {{--<div class="kt-avatar__holder"--}}
+                                             {{--style="background-image: url({{ asset($item->main_img) }})">--}}
+                                        {{--</div>--}}
+                                    {{--@else--}}
+                                        {{--<div class="kt-avatar__holder"--}}
+                                             {{--style="background-image: url('../../assets/images/users/2.jpg')">--}}
+                                        {{--</div>--}}
+                                    {{--@endif--}}
 
-                                    <label class="kt-avatar__upload"
-                                           data-toggle="kt-tooltip" title=""
-                                           data-original-title="Change avatar">
-                                        <i class="fa fa-pen"></i>
-                                        <input name="main_img" accept="image/png, image/jpeg, image/jpg"
-                                               type="file">
-                                    </label>
-                                    <span class="kt-avatar__cancel"
-                                          data-toggle="kt-tooltip" title=""
-                                          data-original-title="Cancel avatar">
-																			<i class="fa fa-times"></i>
-																		</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
+                                    {{--<label class="kt-avatar__upload"--}}
+                                           {{--data-toggle="kt-tooltip" title=""--}}
+                                           {{--data-original-title="Change avatar">--}}
+                                        {{--<i class="fa fa-pen"></i>--}}
+                                        {{--<input name="main_img" accept="image/png, image/jpeg, image/jpg"--}}
+                                               {{--type="file">--}}
+                                    {{--</label>--}}
+                                    {{--<span class="kt-avatar__cancel"--}}
+                                          {{--data-toggle="kt-tooltip" title=""--}}
+                                          {{--data-original-title="Cancel avatar">--}}
+																			{{--<i class="fa fa-times"></i>--}}
+																		{{--</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<!-- End col -->--}}
 
                     <!-- Start col -->
                     <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">
                                 صورة صفحة التبرع
-                                <span style="color:red">(500x500)</span>
+                                <span style="color:red">(3840x1750)</span>
                             </label>
                             <div class="">
                                 <div class="kt-avatar kt-avatar--outline"

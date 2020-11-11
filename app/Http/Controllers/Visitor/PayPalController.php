@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Visitor;
 
+use App\Donation;
 use App\Http\Controllers\Controller;
 use App\Invoice;
 use App\IPNStatus;
 use App\Item;
+use App\P_Category;
+use App\Project;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\AdaptivePayments;
 use Srmklive\PayPal\Services\ExpressCheckout;
@@ -16,27 +19,14 @@ class PayPalController extends Controller
      * @var ExpressCheckout
      */
     protected $provider;
+    public $project_id;
+    public $p_category_id;
 
     public function __construct()
     {
         $this->provider = new ExpressCheckout();
     }
 
-    public function getIndex(Request $request)
-    {
-        $response = [];
-        if (session()->has('code')) {
-            $response['code'] = session()->get('code');
-            session()->forget('code');
-        }
-
-        if (session()->has('message')) {
-            $response['message'] = session()->get('message');
-            session()->forget('message');
-        }
-
-        return view('welcome', compact('response'));
-    }
 
     /**
      * @param \Illuminate\Http\Request $request
@@ -46,11 +36,17 @@ class PayPalController extends Controller
     public function getExpressCheckout(Request $request)
     {
 
-        $request['mode']= $request['is_monthly']?"recurring":0;
-        $request['price']= $request['amount'];
+        $request['mode'] = $request['is_monthly'] == 1 ? "recurring" : 0;
+        $request['price'] = $request['amount'];
         $recurring = ($request->get('mode') === 'recurring') ? true : false;
-        $price=$request->get('price') ?? 0;
-        $cart = $this->getCheckoutData($recurring,$price);
+        $price = $request->get('price') ?? null;
+        $this->project_id = $request->get('project_id') ?? null;
+        $this->p_category_id = $request->get('p_category_id') ?? null;
+
+
+        $cart = $this->getCheckoutData($recurring, $price);
+
+//لهان الأمور سليمة
 
 
         try {
@@ -75,17 +71,18 @@ class PayPalController extends Controller
         $recurring = ($request->get('mode') === 'recurring') ? true : false;
         $token = $request->get('token');
         $PayerID = $request->get('PayerID');
-        $price = $request->get('price');;
+        $price = $request->get('price');
+        $this->project_id = $request->get('project_id') ?? null;
+        $this->p_category_id = $request->get('p_category_id') ?? null;
 
-        $cart = $this->getCheckoutData($recurring,$price);
 
+        $cart = $this->getCheckoutData($recurring, $price);
 
 
         // Verify Express Checkout Token
         $response = $this->provider->getExpressCheckoutDetails($token);
 
-        //dd($response);
-        //dd($cart,$request->all(),$response);
+
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
             if ($recurring === true) {
                 $response = $this->provider->createMonthlySubscription($response['TOKEN'], 9.99, $cart['subscription_desc']);
@@ -94,22 +91,41 @@ class PayPalController extends Controller
                 } else {
                     $status = 'Invalid';
                 }
+
             } else {
                 // Perform transaction on PayPal
                 $payment_status = $this->provider->doExpressCheckoutPayment($cart, $token, $PayerID);
-          //     dd($payment_status);
+
                 $status = $payment_status['PAYMENTINFO_0_PAYMENTSTATUS'];
+                // dd($payment_status,$status);
             }
 
             $invoice = $this->createInvoice($cart, $status);
 
             if ($invoice->paid) {
-                session()->put(['code' => 'success', 'message' => "Order $invoice->id has been paid successfully!"]);
+                if ($this->project_id) {
+                    Donation::create(['project_id' => $this->project_id, 'amount' => $price, 'is_monthly' => $recurring]);
+                    $project = Project::find($this->project_id);
+                    $project->update('come_amount', $project->come_amount + $price);
+                } elseif ($this->p_category_id) {
+                    $projects = P_Category::find($this->p_category_id)->projects;
+                    $price2 = $price / $projects->count();
+
+                    foreach ($projects as $project) {
+                        Donation::create(['project_id' => $project->id, 'amount' => $price2, 'is_monthly' => $recurring]);
+                        $project->update(['come_amount' => $project->come_amount + $price2]);
+                    }
+                }
+                session()->put(['code' => 'success', 'message' => "Donate Done successfully!"]);
             } else {
-				session()->put(['code' => 'danger', 'message' => "Error processing PayPal payment for Order $invoice->id!"]);
+                session()->put(['code' => 'danger', 'message' => "Error , The Donate PayPal payment Faild!"]);
             }
 
-            return redirect('/');
+            if ($this->project_id) {
+                return redirect('/projects/' . $this->project_id . '/donations');
+            } elseif ($this->p_category_id) {
+                return redirect('/donations/create');
+            }
         }
     }
 
@@ -118,19 +134,19 @@ class PayPalController extends Controller
         $this->provider = new AdaptivePayments();
 
         $data = [
-            'receivers'  => [
+            'receivers' => [
                 [
-                    'email'   => 'johndoe@example.com',
-                    'amount'  => 10,
+                    'email' => 'johndoe@example.com',
+                    'amount' => 10,
                     'primary' => true,
                 ],
                 [
-                    'email'   => 'janedoe@example.com',
-                    'amount'  => 5,
+                    'email' => 'janedoe@example.com',
+                    'amount' => 5,
                     'primary' => false,
                 ],
             ],
-            'payer'      => 'EACHRECEIVER', // (Optional) Describes who pays PayPal fees. Allowed values are: 'SENDER', 'PRIMARYRECEIVER', 'EACHRECEIVER' (Default), 'SECONDARYONLY'
+            'payer' => 'EACHRECEIVER', // (Optional) Describes who pays PayPal fees. Allowed values are: 'SENDER', 'PRIMARYRECEIVER', 'EACHRECEIVER' (Default), 'SECONDARYONLY'
             'return_url' => url('payment/success'),
             'cancel_url' => url('payment/cancel'),
         ];
@@ -158,7 +174,7 @@ class PayPalController extends Controller
             $post[$key] = $value;
         }
 
-        $response = (string) $this->provider->verifyIPN($post);
+        $response = (string)$this->provider->verifyIPN($post);
 
         $ipn = new IPNStatus();
         $ipn->payload = json_encode($post);
@@ -173,36 +189,40 @@ class PayPalController extends Controller
      *
      * @return array
      */
-    protected function getCheckoutData($recurring = false,$price)
+    protected function getCheckoutData($recurring = false, $price)
     {
         $data = [];
 
         $order_id = uniqid();// Invoice::all()->count() + 1;
 
+
         if ($recurring === true) {
             $data['items'] = [
                 [
-                    'name'  => 'Monthly Subscription '.config('paypal.invoice_prefix').' #'.$order_id,
+                    'name' => 'Monthly Subscription ' . config('paypal.invoice_prefix') . ' #' . $order_id,
                     'price' => $price,
-                    'qty'   => 1,
+                    'qty' => 1,
                 ],
             ];
 
             $total = 0;
+
             foreach ($data['items'] as $item) {
                 $total += $item['price'] * $item['qty'];
             }
 
 
             $data['total'] = $total;
-            $data['return_url'] = url('/paypal/ec-checkout-success?mode=recurring&price='.$total);
-            $data['subscription_desc'] = 'Monthly Subscription '.config('paypal.invoice_prefix').' #'.$order_id;
+
+            $data['return_url'] = url('/paypal/ec-checkout-success?mode=recurring&project_id=' . ($this->project_id ?? null) . '&p_category_id=' . ($this->p_category_id ?? null) . '&price=' . $total);
+            $data['subscription_desc'] = 'Monthly Subscription ' . config('paypal.invoice_prefix') . ' #' . $order_id;
+
         } else {
             $data['items'] = [
                 [
-                    'name'  => 'Product 1',
+                    'name' => 'Product 1',
                     'price' => $price,
-                    'qty'   => 1,
+                    'qty' => 1,
                 ],
             ];
             $total = 0;
@@ -212,13 +232,14 @@ class PayPalController extends Controller
 
 
             $data['total'] = $total;
-            $data['return_url'] = url('/paypal/ec-checkout-success?price='.$total);
+
+            $data['return_url'] = url('/paypal/ec-checkout-success?project_id=' . ($this->project_id ?? null) . '&p_category_id=' . ($this->p_category_id ?? null) . '&price=' . $total);
+
         }
 
-        $data['invoice_id'] = config('paypal.invoice_prefix').'_'.$order_id;
+        $data['invoice_id'] = config('paypal.invoice_prefix') . '_' . $order_id;
         $data['invoice_description'] = "Order #$order_id Invoice";
         $data['cancel_url'] = url('/');
-
 
 
         return $data;
@@ -227,7 +248,7 @@ class PayPalController extends Controller
     /**
      * Create invoice.
      *
-     * @param array  $cart
+     * @param array $cart
      * @param string $status
      *
      * @return \App\Invoice

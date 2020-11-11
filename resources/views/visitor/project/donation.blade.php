@@ -80,11 +80,11 @@
                         @elseif(config('app.locale')=='ar')
                             {{$project->title_ar}};
                         @endif</h2>
-                    <h2>    <?php if(!empty($response['code'])) { ?>
+                    <h5>    <?php if(!empty($response['code'])) { ?>
                         <div class="alert alert-<?php echo $response['code']; ?>">
                             <?php echo $response['message']; ?>
                         </div>
-                        <?php } ?></h2>
+                        <?php } ?></h5>
 
                 </div>
                 <div class="col-md-3">
@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <form action="{{url('paypal/ec-checkout')}}" method="post">
+        <form action="{{url('paypal/ec-checkout')}}" method="get">
             @csrf
             <div class="row text">
 

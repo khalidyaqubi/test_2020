@@ -122,6 +122,14 @@ class PermissionSeeder extends Seeder
             $permission40_id,
         ]);
 
+
+        DB::table('p_categories')->insertGetId(['name_ar' => "مشروع إغاثة", "name_tr" => "Yardım projesi", "name_en" => "RELEF PROJECT"]);
+        DB::table('p_categories')->insertGetId(['name_ar' => "إعادة بناء المساجد", "name_tr" => "Camilerin yeniden inşası", "name_en" => "REBUILDING MOS"]);
+        DB::table('p_categories')->insertGetId(['name_ar' => "مشاريع الوقف", "name_tr" => "DONANIM PROJELERİ", "name_en" => "ENDOWMENT PROJECTS"]);
+
+        DB::table('a_categories')->insertGetId(['name_ar' => "مشروع إغاثة", "name_tr" => "Yardım projesi", "name_en" => "RELEF PROJECT"]);
+        DB::table('a_categories')->insertGetId(['name_ar' => "إعادة بناء المساجد", "name_tr" => "Camilerin yeniden inşası", "name_en" => "REBUILDING MOS"]);
+        DB::table('a_categories')->insertGetId(['name_ar' => "مشاريع الوقف", "name_tr" => "DONANIM PROJELERİ", "name_en" => "ENDOWMENT PROJECTS"]);
         $setting_id = DB::table('settings')->insertGetId([
             'facebook' => 'https://www.facebook.com/%D9%88%D9%82%D9%81-%D8%BA%D8%B2%D8%A9-%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%D9%8A-Gaza-Endowment-Charity-I-111821607156320',
             'twitter' => 'https://twitter.com/gazaendowment',

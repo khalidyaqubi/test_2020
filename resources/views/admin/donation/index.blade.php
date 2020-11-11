@@ -1,16 +1,13 @@
 @extends('layouts.dashboard.app')
 
-@section('pageTitle','')
+@section('pageTitle','إدارة التبرعات')
 @section('headerCSS')
-    <link href="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}"
-          rel="stylesheet"
-          type="text/css"/>
 @endsection
 
 @section('navigation1','الرئيسية')
-@section('navigation2','')
+@section('navigation2','إدارة التبرعات')
 @section('navigation1_link','/admin/home')
-@section('navigation2_link','')
+@section('navigation2_link','/admin/donations')
 @section('content')
 
     <div class="col-lg-12 col-xl-12">
@@ -20,7 +17,7 @@
                 <div class="kt-portlet__head-label">
                     <span class="fa fa-pen icon-padding"></span>
                     <h3 class="kt-portlet__head-title">
-                        
+                        إدارة التبرعات
                     </h3>
                 </div>
             </div>
@@ -28,34 +25,69 @@
                 <!-- Start Row -->
                 <form id="zmain_form">
                     <div class="row">
-                       <!-- Start col -->
-                        <div class="col-lg-4 col-md-6 col-sm-12">
+                       
+                        <!-- Start col -->
+                        <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label class="col-form-label col-lg-12">تصال</label>
-                                <div >
-                                    <input class="form-control" placeholder=" اتصال  " 
-                                           name=""
-                                           value=""
-                                           type="text">
+                                <div style="width: 95%;">
+                                    <label class="col-form-label col-lg-12">المشاريع
+                                    </label>
+                                    <select class="form-control kt-select2 select2-multi"
+                                            id="projects_ids" name="projects_ids[]" multiple="multiple">
+                                        <option value=" ">المشاريع </option>
+                                        @foreach($projects as $project)
+                                            <option value="{{$project->id}}"
+                                                    @if(in_array($project->id, $projects_ids)) selected @endif>{{$project->name_ar}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <!-- End col -->
                         <!-- Start col -->
-                        <div class="col-md-4">
-                             <button type="submit"
-                            class="btn btn-success btn-elevate btn-block ">بحث
-                                <span id="wating" class="" style="display: none">                            &nbsp;&nbsp;
-                                <span class="spinner-border text-primary" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </span>
-                                <span class="text-primary">&nbsp;&nbsp; الرجاء الانتظار...</span>
-                                </span>
-                            </button>
+                        <div class="col-lg-3 col-md-3 col-xl-3 col-sm-12">
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-12">التمويل  من</label>
+                                <div style="width: 95%;">
+                                    <input type="number" class="form-control"
+                                           name="from_amount"
+                                           id="from_amount"
+                                           value="{{$from_amount??""}}"
+                                           placeholder="التمويل  من">
+                                </div>
+                            </div>
                         </div>
-						<!-- End col -->
+                        <!-- End col -->
+                        <!-- Start col -->
+                        <div class="col-lg-4">
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-12">التمويل  الى</label>
+                                <div style="width: 95%;">
+                                    <input type="number" class="form-control"
+                                           name="to_amount"
+                                           id="to_amount"
+                                           value="{{$to_amount??""}}"
+                                           placeholder="التمويل  الى">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Start col -->
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <button type="submit"
+                                        class="btn btn-success  col mr-3" name="theaction"
+                                        value="search">بحث
+                                </button>
+                            </div>
+                        </div>
+                        <!-- End col -->
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12" id="the_error">
+
             </div>
         </div>
         <!--begin::Portlet-->
@@ -64,7 +96,7 @@
                 <div class="kt-portlet__head-label">
                     <span class="fa fa-sign icon-padding"></span>
                     <h3 class="kt-portlet__head-title">
-                        عرض 
+                        عرض
                     </h3>
                 </div>
             </div>
@@ -75,41 +107,39 @@
                     <table class="table table-bordered table-hover ">
                         <thead>
                         <tr class="text-center">
-                          <th style="width: 5%">
-                                    #
-                                </th>
-								 <th style="width: 5%">
-                                    #
-                                </th>
+                            <th style="width: 5%">
+                                #
+                            </th>
+                            <th >
+                                المشروع
+                            </th>
+                            <th >
+                                التاريخ
+                            </th>
+                            <th >
+                                المبلغ المتبرع به
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
-                       <tr class="text-center">
-                           <td>1</td>
-                                    <td>
-                                        <div class="dropdown dropdown-inline">
-                                            <button type="button"
-                                                    class="btn btn-success btn-hover-success btn-elevate-hover btn-icon btn-sm btn-icon-md btn-circle"
-                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                <i class="la la-cog"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#"><i
-                                                            class="fa fa-pen"></i>
-                                                    تعديل
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
+                        @foreach($items as $item)
+                            <tr class="text-center">
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->project->title_en??$item->project->title_tr }}</td>
+
+                                <td>{{$item->created_at->format('Y-m-d')}}
+                                </td>
+                                <td>{{ $item->amount }}</td>
 
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
+                    {{$items->links()}}
                 </div>
                 <!-- End Table  -->
 
-            <!--end: Pagination-->
+                <!--end: Pagination-->
             </div>
         </div>
         <!--end::Portlet-->
@@ -120,12 +150,4 @@
 
 @section('footerJS')
 
-    <script src="{{asset('new_theme/assets/plugins/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/plugins/general/js/global/integration/plugins/bootstrap-datepicker.init.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/plugins/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}"
-            type="text/javascript"></script>
-    <script src="{{asset('new_theme/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js')}}"
-            type="text/javascript"></script>
 @endsection

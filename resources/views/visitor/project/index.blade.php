@@ -36,7 +36,7 @@
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" style="width: {{ ($project->come_amount/$project->need_amount)*100 }}%;" aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}" aria-valuemin="0" aria-valuemax="100">
                                             <span class="progres_count">
-                                                     {{ ($project->come_amount/$project->need_amount)*100 }} %
+                                                     {{ number_format(($project->come_amount/$project->need_amount)*100, 2, '.', ' ') }} %
                                                 </span>
                                         </div>
                                     </div>

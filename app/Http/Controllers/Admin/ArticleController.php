@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\A_Category;
 use App\Article;
+use App\ArticleA_Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
@@ -93,7 +94,12 @@ class ArticleController extends Controller
             $massege = " وتم إزالة تثبيت خبر" . $old_fixing->title_ar;
 
         $item = Article::create($request->except('img', 'a_categories_ids'));
-        $item->a_categories()->sync(array_filter($request['a_categories_ids']));
+        $a_categories_ids = array_filter($request['a_categories_ids']);
+        for ($i = 0; $i < count($a_categories_ids); $i++) {
+            ArticleA_Category::create(['article_id' => $item->id, 'a_category_id' => $a_categories_ids[$i]]);
+        }
+
+        //$item->a_categories()->sync(array_filter($request['a_categories_ids']));
 
 
         if ($request->hasFile('img')) {
@@ -107,8 +113,8 @@ class ArticleController extends Controller
             $path4 = 'size4/uploads/articles/';
             Image::make($request['img']->getRealPath())->resize(277, 405)->save($path1 . $filename, 60);
             Image::make($request['img']->getRealPath())->resize(270, 187)->save($path2 . $filename, 60);
-            Image::make($request['img']->getRealPath())->resize(750,375)->save($path3 . $filename, 60);
-            Image::make($request['img']->getRealPath())->resize(80,80)->save($path4 . $filename, 60);
+            Image::make($request['img']->getRealPath())->resize(750, 375)->save($path3 . $filename, 60);
+            Image::make($request['img']->getRealPath())->resize(80, 80)->save($path4 . $filename, 60);
 
             $item->img = $path . $filename;
             $item->save();
@@ -172,7 +178,7 @@ class ArticleController extends Controller
 
             $old_fixing = Article::where('fixing', 1)->first();
             if ($request['fixing'] == 1)
-                Article::where('fixing', 1)->where('id','!=',$id)->update(['fixing' => 0]);
+                Article::where('fixing', 1)->where('id', '!=', $id)->update(['fixing' => 0]);
 
             $massege = "";
             if ($old_fixing && $request['fixing'] == 1)
@@ -196,7 +202,7 @@ class ArticleController extends Controller
                 $mypath2 = public_path() . "/size2/" . $tempreroy;
                 $mypath3 = public_path() . "/size3/" . $tempreroy;
                 $mypath4 = public_path() . "/size4/" . $tempreroy;
-                
+
                 if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath1);
                     unlink($mypath2);//يقوم بحذف القديم
@@ -204,8 +210,8 @@ class ArticleController extends Controller
 
                 Image::make($request['img']->getRealPath())->resize(277, 405)->save($path1 . $filename, 60);
                 Image::make($request['img']->getRealPath())->resize(270, 187)->save($path2 . $filename, 60);
-                Image::make($request['img']->getRealPath())->resize(750,375)->save($path3 . $filename, 60);
-                Image::make($request['img']->getRealPath())->resize(80,80)->save($path4 . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(750, 375)->save($path3 . $filename, 60);
+                Image::make($request['img']->getRealPath())->resize(80, 80)->save($path4 . $filename, 60);
 
                 $item->img = $path . $filename;
                 $item->save();

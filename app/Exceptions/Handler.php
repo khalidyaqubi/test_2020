@@ -66,19 +66,15 @@ class Handler extends ExceptionHandler
        {
            return redirect('/admin/home');
        }
-       /*if ($exception instanceof \symfony\Component\debug\Exception\FatalErrorException)//الخطأ الفادح مثل الميمرورة
-       {
-           return redirect('/admin/expenses/invalidators?oka=5');
-       }*/
        if ($exception instanceof \Illuminate\Session\TokenMismatchException)//منع ظهور ايرور للراوت غير المعرفة
        {
            return redirect('/admin/home');
        }
        if ($exception instanceof \Illuminate\Validation\ValidationException || $exception instanceof \Illuminate\Auth\AuthenticationException) {
-           // return parent::render($request, $exception);
+            return parent::render($request, $exception);
        } else if ($exception instanceof \Exception)//منع ظهور ايرور للراوت غير المعرفة
        {
-            dd($exception);
+           // dd($exception);
 
            if (explode('?', url()->previous(), 2)[0] == explode('?', $request->url(), 2)[0])
                return redirect('/admin/home')->with('error', 'لم تتم العملية بنجاح')->withInput();

@@ -145,7 +145,7 @@ class SettingController extends Controller
                     unlink($mypath);//يقوم بحذف القديم
                 }
 
-                Image::make($request['media_img']->getRealPath())->resize(5760, 2400)->save($path . $filename, 60);
+                Image::make($request['media_img']->getRealPath())->resize(3840, 1750)->save($path . $filename, 60);
                 $item->media_img = $path . $filename;
                 $item->save();
 
@@ -161,7 +161,7 @@ class SettingController extends Controller
                     unlink($mypath);//يقوم بحذف القديم
                 }
 
-                Image::make($request['our_vision_img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['our_vision_img']->getRealPath())->resize(3840, 1750)->save($path . $filename, 60);
                 $item->our_vision_img = $path . $filename;
                 $item->save();
 
@@ -213,7 +213,7 @@ class SettingController extends Controller
                     unlink($mypath);//يقوم بحذف القديم
                 }
 
-                Image::make($request['main_img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['main_img']->getRealPath())->resize(3840, 1750)->save($path . $filename, 60);
                 $item->main_img = $path . $filename;
                 $item->save();
 
@@ -230,7 +230,7 @@ class SettingController extends Controller
                     unlink($mypath);//يقوم بحذف القديم
                 }
 
-                Image::make($request['donate_img']->getRealPath())->resize(500, 500)->save($path . $filename, 60);
+                Image::make($request['donate_img']->getRealPath())->resize(3840, 1750)->save($path . $filename, 60);
                 $item->donate_img = $path . $filename;
                 $item->save();
 

@@ -23,12 +23,13 @@
         <div class="container">
             <div>
                 <a href="/"> {{trans('my-word.Home')}} </a> >
-                <a href="/p_category/{{$p_category->id}}"><span>  @if(config('app.locale')=='en')
-                            {{substr($p_category->name_en, 0, 100)}}
+                <a href="/p_category/{{$p_category->id}}"><span>
+                        @if(config('app.locale')=='en')
+                            {{$p_category->name_en}}
                         @elseif(config('app.locale')=='tr')
-                            {{substr($p_category->name_tr, 0, 100)}}
+                            {{$p_category->name_tr}}
                         @elseif(config('app.locale')=='ar')
-                            {{substr($p_category->name_ar, 0, 100)}};
+                            {{$p_category->name_ar}};
                         @endif </span> </a>
 
             </div>
@@ -51,7 +52,7 @@
                                                      aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}"
                                                      aria-valuemin="0" aria-valuemax="100">
                                             <span class="progres_count">
-                                                     {{ ($project->come_amount/$project->need_amount)*100 }} %
+                                                     {{   number_format(($project->come_amount/$project->need_amount)*100, 2, '.', ' ')  }} %
                                                 </span>
                                                 </div>
                                             </div>

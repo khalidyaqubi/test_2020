@@ -63,5 +63,8 @@ return array (
     "How much would you like to give?"=>"How much would you like to give?",
     "others"=>"others",
     "Secuere Donating With Worldpay"=>"Secuere Donating With Worldpay",
+    "YOURE GET WILL HELP SAVE LIVE"=>"YOURE GET WILL HELP SAVE LIVE",
+    "2- Select Project For  Donation"=>"2- Select Project For  Donation",
+
 
 );

@@ -63,5 +63,7 @@ return array (
     "How much would you like to give?"=>"كم تريد ان تعطي؟",
     "others"=>"الآخرين",
     "Secuere Donating With Worldpay"=>"تبرع آمن مع Worldpay",
+    "YOURE GET WILL HELP SAVE LIVE"=>"سوف تحصل على المساعدة في إنقاذ الحياة",
+    "2- Select Project For  Donation"=>"2- اختر المشروع للتبرع",
 
 );

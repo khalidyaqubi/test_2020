@@ -18,7 +18,7 @@
 
     <link rel="stylesheet"  href="{{  asset('css/app_2.css') }}"/>
 
-    <link rel="shortcut icon" href="{{asset('new_theme/assets/media/logo-icon.png')}}"/>
+    <link rel="shortcut icon" href="{{asset('/visitor/img/23.png')}}"/>
 
     @yield('headerCSS')
     <link rel="stylesheet"  href="{{  asset('css/app_3.css') }}"/>
@@ -38,7 +38,7 @@
 <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
     <div class="kt-header-mobile__logo">
         <a href="index.html">
-            <img alt="Logo" src="{{asset('new_theme/assets/media/logo-light-icon.png')}}" width="30" height="30"/>
+            <img alt="Logo" src="{{asset('/visitor/img/23.png')}}" width="30" height="30"/>
         </a>
     </div>
     <div class="kt-header-mobile__toolbar">

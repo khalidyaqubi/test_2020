@@ -20,7 +20,12 @@ class Translate
     public function handle($request, Closure $next)
     {
 
-        if ($request->isMethod('get') && strpos(request()->getPathInfo(), 'admin') === false) {
+        if ($request->isMethod('get')
+            && strpos(request()->getPathInfo(), 'admin') === false
+            && strpos(request()->getPathInfo(), 'paypal') === false
+            && strpos(request()->getPathInfo(), 'laravel-filemanager') === false
+
+        ) {
             $lang = explode('/', request()->getPathInfo())[1];
             $setting = App\Setting::find(1);
             if ($lang == 'ar' || $lang == 'en' || $lang == 'tr')

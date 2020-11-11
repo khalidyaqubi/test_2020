@@ -65,7 +65,19 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
         $setting = Setting::find(1);
-        return view('visitor.project.donation', compact('project', 'setting'));
+
+        $response = [];
+        if (session()->has('code')) {
+            $response['code'] = session()->get('code');
+            session()->forget('code');
+        }
+
+        if (session()->has('message')) {
+            $response['message'] = session()->get('message');
+            session()->forget('message');
+        }
+
+        return view('visitor.project.donation', compact('project', 'setting', 'response'));
 
     }
 

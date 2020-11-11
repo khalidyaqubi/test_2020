@@ -63,5 +63,7 @@ return array (
     "How much would you like to give?"=>"Ne kadar vermek istersiniz?",
     "others"=>"diğerleri",
     "Secuere Donating With Worldpay"=>"Worldpay ile Güvenli Bağış",
+    "YOURE GET WILL HELP SAVE LIVE"=>"CANLI KURTARMAYA YARDIMCI OLACAKSINIZ",
+    "2- Select Project For  Donation"=>"2- Bağış İçin Proje Seçiniz",
 
 );

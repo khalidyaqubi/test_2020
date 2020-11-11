@@ -15,7 +15,7 @@ class P_Category extends Model
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class);
+        return $this->belongsToMany(Project::class,'projects_p_categories', 'project_id', 'p_category_id');
     }
 
     public function project_p_category()

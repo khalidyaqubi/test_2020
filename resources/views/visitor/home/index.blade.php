@@ -40,23 +40,23 @@
                     <div class="single_reson">
                         <div class="thum">
                             <div class="thum_1">
-                                <img src="{{asset("size3/".$fixed_article->img)}}" alt="">
+                               <a href="/articles/{{$fixed_article->id}}"></a> <img src="{{asset("size7/".$fixed_article->img)}}" alt=""></a>
                             </div>
                         </div>
                         <div class="help_content" style="text-align: center;">
-                            <h3>@if(config('app.locale')=='en')
-                                    {{substr($fixed_article->title_en, 0, 100)}}
+                           <a href="/articles/{{$fixed_article->id}}"></a> <h3>@if(config('app.locale')=='en')
+                                    {{mb_substr($fixed_article->title_en, 0, 100)}}
                                 @elseif(config('app.locale')=='tr')
-                                    {{substr($fixed_article->title_tr, 0, 100)}}
+                                    {{mb_substr($fixed_article->title_tr, 0, 100)}}
                                 @elseif(config('app.locale')=='ar')
-                                    {{substr($fixed_article->title_ar, 0, 100)}};
-                                @endif</h3>
+                                    {{mb_substr($fixed_article->title_ar, 0, 100)}}
+                                @endif</h3></a>
                             <h6> @if(config('app.locale')=='en')
-                                    {{substr($fixed_article->details_en, 0, 300)}}
+                                    {{mb_substr($fixed_article->details_en, 0, 300)}}
                                 @elseif(config('app.locale')=='tr')
-                                    {{substr($fixed_article->details_tr, 0, 300)}}
+                                    {{mb_substr($fixed_article->details_tr, 0, 300)}}
                                 @elseif(config('app.locale')=='ar')
-                                    {{substr($fixed_article->details_ar, 0, 300)}};
+                                    {{mb_substr($fixed_article->details_ar, 0, 300)}}
                                 @endif</h6>
                             <a href="/articles/{{$fixed_article->id}}"
                                class="read_more">{{trans('my-word.Read More')}}</a>
@@ -71,23 +71,25 @@
                         <div class="single_reson">
                             <div class="thum">
                                 <div class="thum_1">
-                                    <img src="{{asset("size1/".$article->img)}}" alt="">
+                                  <a href="/articles/{{$article->id}}"> <img src="{{asset("size1/".$article->img)}}" alt=""></a> 
                                 </div>
                             </div>
-                            <div class="help_content">
-                                <h3>@if(config('app.locale')=='en')
-                                        {{substr($article->title_en, 0, 100)}}
+                            <div class="help_content" >
+                                <h3 style="max-height: 50px;
+    height: 50px;
+    overflow: hidden;">@if(config('app.locale')=='en')
+                                        {{mb_substr($article->title_en, 0, 100)}}
                                     @elseif(config('app.locale')=='tr')
-                                        {{substr($article->title_tr, 0, 100)}}
+                                        {{mb_substr($article->title_tr, 0, 100)}}
                                     @elseif(config('app.locale')=='ar')
-                                        {{substr($article->title_ar, 0, 100)}};
+                                        {{mb_substr($article->title_ar, 0, 100)}}
                                     @endif</h3>
-                                <h6> @if(config('app.locale')=='en')
-                                        {{substr($article->details_en, 0, 300)}}
+                                <h6 style="max-height: 100px; height: 100px;overflow: hidden;"> @if(config('app.locale')=='en')
+                                        {{mb_substr($article->details_en, 0, 300)}}
                                     @elseif(config('app.locale')=='tr')
-                                        {{substr($article->details_tr, 0, 300)}}
+                                        {{mb_substr($article->details_tr, 0, 300)}}
                                     @elseif(config('app.locale')=='ar')
-                                        {{substr($article->details_ar, 0, 300)}};
+                                        {{mb_substr($article->details_ar, 0, 300)}}
                                     @endif</h6>
                                 <a href="/articles/{{$article->id}}"
                                    class="read_more">{{trans('my-word.Read More')}}</a>
@@ -170,22 +172,23 @@
                             <div class="section_title">
                                 <a href="/projects/{{$fixed_project->id}}">
                                     <h3>  @if(config('app.locale')=='en')
-                                            {{substr($fixed_project->title_en, 0, 100)}}
+                                            {{mb_substr($fixed_project->title_en, 0, 100)}}
                                         @elseif(config('app.locale')=='tr')
-                                            {{substr($fixed_project->title_tr, 0, 100)}}
+                                            {{mb_substr($fixed_project->title_tr, 0, 100)}}
                                         @elseif(config('app.locale')=='ar')
-                                            {{substr($fixed_project->title_ar, 0, 100)}};
+                                            {{mb_substr($fixed_project->title_ar, 0, 100)}}
                                         @endif<br>
                                         {{trans('my-word.Need Our Help')}}
                                     </h3>
                                 </a>
                             </div>
+                            <span>{{trans('my-word.Beneficiaries')}}: {{$fixed_project->usefull}}   </span>
                             <p class="para_1">@if(config('app.locale')=='en')
-                                    {{substr($fixed_project->details_en, 0, 300)}}
+                                    {{mb_substr($fixed_project->details_en, 0, 300)}}
                                 @elseif(config('app.locale')=='tr')
-                                    {{substr($fixed_project->details_tr, 0, 300)}}
+                                    {{mb_substr($fixed_project->details_tr, 0, 300)}}
                                 @elseif(config('app.locale')=='ar')
-                                    {{substr($fixed_project->details_ar, 0, 300)}};
+                                    {{mb_substr($fixed_project->details_ar, 0, 300)}}
                                 @endif</p>
                             <a href="projects/{{$fixed_project->id}}/donations"
                                class="boxed-btn4">{{trans('my-word.Make a Donate')}}</a>
@@ -221,11 +224,11 @@
                                     <div class="custom_progress_bar">
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar"
-                                                 style="width: {{ ($project->come_amount/$project->need_amount)*100 }}%;"
-                                                 aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}"
+                                                 style="width: {{ $project->need_amount?($project->come_amount/$project->need_amount)*100:100 }}%;"
+                                                 aria-valuenow="{{ $project->need_amount?($project->come_amount/$project->need_amount)*100:100 }}"
                                                  aria-valuemin="0" aria-valuemax="100">
                                             <span class="progres_count">
-                                                   {{ number_format(($project->come_amount/$project->need_amount)*100, 2, '.', ' ') }} %
+                                                   {{ $project->need_amount?number_format(($project->come_amount/$project->need_amount)*100, 2, '.', ' ') :100}} %
                                                 </span>
                                             </div>
                                         </div>
@@ -233,20 +236,25 @@
                                     <div class="balance d-flex justify-content-between align-items-center">
                                         <span>{{trans('my-word.Raised')}}: {{$project->come_amount}} $  </span>
                                         <span>{{trans('my-word.Goal')}}: {{$project->need_amount}} $ </span>
+                                       <span>{{trans('my-word.Beneficiaries')}}: {{$project->usefull}}   </span>
                                     </div>
-                                    <h4>@if(config('app.locale')=='en')
-                                            {{substr($project->title_en, 0, 100)}}
+                                    <a href="/projects/{{$project->id}}">  <h4 style="max-height: 50px;
+    height: 50px;
+    overflow: hidden;">@if(config('app.locale')=='en')
+                                            {{mb_substr($project->title_en, 0, 100)}}
                                         @elseif(config('app.locale')=='tr')
-                                            {{substr($project->title_tr, 0, 100)}}
+                                            {{mb_substr($project->title_tr, 0, 100)}}
                                         @elseif(config('app.locale')=='ar')
-                                            {{substr($project->title_ar, 0, 100)}};
-                                        @endif</h4>
-                                    <p>@if(config('app.locale')=='en')
-                                            {{substr($project->details_en, 0, 300)}}
+                                            {{mb_substr($project->title_ar, 0, 100)}}
+                                        @endif</h4></a>
+                                    <p style="max-height: 200px;
+    height: 200px;
+    overflow: hidden;">@if(config('app.locale')=='en')
+                                            {{mb_substr($project->details_en, 0, 300)}}
                                         @elseif(config('app.locale')=='tr')
-                                            {{substr($project->details_tr, 0, 300)}}
+                                            {{mb_substr($project->details_tr, 0, 300)}}
                                         @elseif(config('app.locale')=='ar')
-                                            {{substr($project->details_ar, 0, 300)}};
+                                            {{mb_substr($project->details_ar, 0, 300)}}
                                         @endif</p>
 
                                 </div>
@@ -267,7 +275,7 @@
             <div class="row align-items-center justify-content-center text-center">
 
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <a href="/medias/medias_tow"><h1 class="text-white">{{trans('my-word.Our Media')}}</h1></a>
+                    <a href="/medias"><h1 class="text-white">{{trans('my-word.Our Media')}}</h1></a>
                 </div>
             </div>
         </div>
@@ -279,4 +287,29 @@
 @endsection
 
 @section('footerJS')
+<script>
+ $(document).ready(function () {
+     /*       for(i=0;i<$('.owl-nav').length;i++){
+$('.owl-nav').eq(i).removeClass("disabled");
+}
+$('.owl-nav').click(function(event) {
+  $(this).removeClass('disabled');
+});*/
+@if(config('app.locale')=='ar')
+for(i=0;i<$('.owl-prev').length;i++){
+$('.owl-prev').eq(i).html('<img src="https://d1ycj7j4cqq4r8.cloudfront.net/bbb447994b253bea1bb81b002e3413b2.svg" />').css({"background-color": "#3CC78F", "margin": "-195px"});
+}
+for(i=0;i<$('.owl-next').length;i++){
+$('.owl-next').eq(i).html('<img src="https://d1ycj7j4cqq4r8.cloudfront.net/20bd4ea61b53e89f4d8c6531d59f19ab.svg" />').css({"background-color": "#3CC78F", "margin": "-195px"});
+}
+@else
+for(i=0;i<$('.owl-next').length;i++){
+$('.owl-next').eq(i).html('<img src="https://d1ycj7j4cqq4r8.cloudfront.net/bbb447994b253bea1bb81b002e3413b2.svg" />').css({"background-color": "#3CC78F", "margin": "-195px"});
+}
+for(i=0;i<$('.owl-prev').length;i++){
+$('.owl-prev').eq(i).html('<img src="https://d1ycj7j4cqq4r8.cloudfront.net/20bd4ea61b53e89f4d8c6531d59f19ab.svg" />').css({"background-color": "#3CC78F", "margin": "-195px"});
+}
+@endif
+ });
+</script>
 @endsection

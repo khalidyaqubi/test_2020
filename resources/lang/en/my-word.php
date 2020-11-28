@@ -42,7 +42,7 @@ return array (
     'Email'=>'Email',
     'Enter Subject'=>'Enter Subject',
     'Send Direction'=>'Send Direction',
-    'Gaza Charitable Endowment'=>'Gaza Charitable Endowment',
+    'Gaza Charitable Endowment'=>'Gaza  Endowment Charity',
     'Our Media'=>'Our Media',
     'Need Our Help'=>'Need Our Help',
     'Join Us'=>'Join Us',
@@ -62,9 +62,9 @@ return array (
     "MONTHLY DONATION"=>"MONTHLY DONATION",
     "How much would you like to give?"=>"How much would you like to give?",
     "others"=>"others",
-    "Secuere Donating With Worldpay"=>"Secuere Donating With Worldpay",
+    "Secuere Donating With Worldpay"=>"Secuere Donating With PayPal",
     "YOURE GET WILL HELP SAVE LIVE"=>"YOURE GET WILL HELP SAVE LIVE",
     "2- Select Project For  Donation"=>"2- Select Project For  Donation",
-
+"Beneficiaries"=>"Beneficiaries",
 
 );

@@ -22,7 +22,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     });
 
     Route::get('/cacheClear', function () {
-
+\Illuminate\Support\Facades\Artisan::call('storage:link');
+dd('don');
         $item = \App\Article::find(2);
         //dd($item->article_a_categories()->get());
         dd($item->a_categories()->get());
@@ -60,15 +61,22 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
             Route::resource('settings', 'SettingController')->only(['edit', 'update']);
 
+            Route::get('medias/delete_group', 'MediaController@delete_group');
             Route::resource('medias', 'MediaController');
             Route::get('medias/delete/{id}', 'MediaController@delete');
+            Route::get('medias/approve/{id}', 'MediaController@approve');
 
+            Route::get('articles/delete_group', 'ArticleController@delete_group');
             Route::resource('articles', 'ArticleController');
             Route::get('articles/delete/{id}', 'ArticleController@delete');
             Route::get('articles/approve/{id}', 'ArticleController@approve');
+            
 
+            Route::get('projects/delete_group', 'ProjectController@delete_group');
             Route::resource('projects', 'ProjectController');
             Route::get('projects/delete/{id}', 'ProjectController@delete');
+            Route::get('projects/approve/{id}', 'ProjectController@approve');
+            
 
             Route::resource('donations', 'DonationController');
             Route::get('donations/delete/{id}', 'DonationController@delete');
@@ -91,7 +99,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::resource('projects', 'ProjectController');
             Route::get('projects/{id}/donations', 'ProjectController@donations');
             Route::post('projects/{id}/donations', 'ProjectController@donations_post');
-            Route::get('p_categories/{id}', 'P_categoryController@show');
+            Route::get('p_categories/{id}', 'P_CategoryController@show');
             Route::resource('donations', 'DonationController');
 
 

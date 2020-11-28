@@ -16,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $items = Article::orderByDesc('created_at')->paginate(20);
+        $items = Article::where('status',1)->orderByDesc('created_at')->paginate(10);
         $setting = Setting::find(1);
         return view('visitor.article.index', compact('items', 'setting'));
 
@@ -52,8 +52,8 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
-        $articles = Article::orderBy("created_at", 'DESC')->limit(5)->get();
-        $articles_related = Article::whereHas('article_a_categories', function ($q) use ($article) {
+        $articles = Article::where('status',1)->orderBy("created_at", 'DESC')->limit(5)->get();
+        $articles_related = Article::where('status',1)->whereHas('article_a_categories', function ($q) use ($article) {
             $q->whereIn('a_category_id', $article->a_categories->pluck('id')->toArray());
         })->orderBy("created_at", 'DESC')->limit(5)->get();
         $setting = Setting::find(1);

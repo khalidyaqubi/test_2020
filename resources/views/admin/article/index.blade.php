@@ -132,7 +132,7 @@
                         </div>
                         <!-- End col -->
                         <!-- Start col -->
-                        <div class="col-12">
+                        <div class="col-9">
                             <div class="form-group row">
                                 <button type="submit"
                                         class="btn btn-success  col mr-3" name="theaction"
@@ -141,8 +141,25 @@
                             </div>
                         </div>
                         <!-- End col -->
+                        <div class="col-3">
+                            <div class="form-group">
+                               <button type="submit" form="delete_form"
+                                            class="btn btn-outline-danger col-12" name="theaction"
+                                            value="delete">تغيير حالة المحدد                                  </button>
+                            </div>
+                        </div>
                     </div>
                 </form>
+                <div class="row">
+                    <div class="col-3">
+                    <div class="form-group">
+                            <form id="delete_form" action="/admin/articles/delete_group">
+                                <input type="hidden" name="the_ids" id="myIds2">
+
+                            </form>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
         <div class="row">
@@ -170,6 +187,13 @@
                             <th style="width: 5%">
                                 #
                             </th>
+                             <th style="width: 5%;">
+                                    <label class="kt-checkbox">
+                                        <input type="checkbox" id="check_all" name="check_all" type="checkbox"
+                                               value="1">الكل
+                                        <span></span>
+                                    </label>
+                                </th>
                             <th >
                                 العنوان
                             </th>
@@ -197,6 +221,19 @@
                         @foreach($items as $item)
                             <tr class="text-center">
                                 <td>{{ $item->id }}</td>
+                                 <td>
+                                            <div class="">
+															<span
+                                                                    class="kt-switch kt-switch--outline kt-switch--icon kt-switch--success">
+																<label>
+																	<input type="checkbox" id="{{$item->id}}"
+                                                                           name="ids[{{$item->id}}]" type="checkbox"
+                                                                           value="1">
+																	<span></span>
+																</label>
+															</span>
+                                            </div>
+                                        </td>
                                 <td>{{ $item->title_ar??($item->title_en??$item->title_tr) }}</td>
                                 <td><image width='122px' height='100px' src='{{asset("size1/".$item->img)}}'/>
                                 </td>
@@ -300,4 +337,35 @@
 
         });
     </script>
+     <script>
+
+        var ids_array = [];
+        var ids = "";
+        $("#check_all").change(function () {
+
+            for (var z = 0; z < $('input[name^="ids"]').length; z++) {
+                if ($("#check_all")[0].checked) {
+                    $('input[name^="ids"]')[z].setAttribute('checked', 'checked');
+                } else {
+                    $('input[name^="ids"]')[z].removeAttribute('checked')
+                }
+                ids_array = [];
+                $("input:checkbox[name^='ids']:checked").each(function () {
+                    ids_array.push($(this).attr("id"));
+                });
+            }
+
+            ids = ids_array.join();
+            document.getElementById("myIds2").value = ids;
+        });
+        $('input[name^="ids"]').change(function () {
+            ids_array = [];
+            $("input:checkbox[name^='ids']:checked").each(function () {
+                ids_array.push($(this).attr("id"));
+            });
+            ids = ids_array.join();
+            document.getElementById("myIds2").value = ids;
+        });
+    </script>
+    
 @endsection

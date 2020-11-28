@@ -70,7 +70,7 @@
                
                 <div class="row">
                     <div class="col-md-3">
-                        <img src= "{{asset('size2/'.$article->img)}}" alt="" class="img-fluid">
+                     <a href="{{ url('/articles'.'/'.$article->id) }}">   <img src= "{{asset('size2/'.$article->img)}}" alt="" class="img-fluid"></a>
                     </div>
                     <div class="col-md-9 mt-sm-20">
                         <a href="{{ url('/articles'.'/'.$article->id) }}">
@@ -79,11 +79,11 @@
                         </a>
                         <h5>
                             @if(config('app.locale')=='en')
-                            {{substr($article->details_en, 0, 300)}}
+                            {{mb_substr($article->details_en, 0, 300)}}
                         @elseif(config('app.locale')=='tr')
-                            {{substr($article->details_tr, 0, 300)}}
+                            {{mb_substr($article->details_tr, 0, 300)}}
                         @elseif(config('app.locale')=='ar')
-                            {{substr($article->details_ar, 0, 300)}};
+                            {{mb_substr($article->details_ar, 0, 300)}}
                         @endif
                         </h5>
                     </div>

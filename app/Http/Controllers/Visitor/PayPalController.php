@@ -106,7 +106,7 @@ class PayPalController extends Controller
                 if ($this->project_id) {
                     Donation::create(['project_id' => $this->project_id, 'amount' => $price, 'is_monthly' => $recurring]);
                     $project = Project::find($this->project_id);
-                    $project->update('come_amount', $project->come_amount + $price);
+                    $project->update(['come_amount'=> $project->come_amount + $price]);
                 } elseif ($this->p_category_id) {
                     $projects = P_Category::find($this->p_category_id)->projects;
                     $price2 = $price / $projects->count();

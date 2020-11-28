@@ -3,11 +3,11 @@
 @section('pageTitle')
 
     @if(config('app.locale')=='en')
-        {{substr($article->title_en, 0, 6)}}
+        {{mb_substr($article->title_en, 0, 16)}}
     @elseif(config('app.locale')=='tr')
-        {{substr($article->title_tr, 0, 6)}}
+        {{mb_substr($article->title_tr, 0, 16)}}
     @elseif(config('app.locale')=='ar')
-        {{substr($article->title_ar, 0, 6)}};
+        {{mb_substr($article->title_ar, 0, 16)}}
     @endif
 
 @endsection
@@ -44,12 +44,12 @@
                                 @elseif(config('app.locale')=='tr')
                                     {{$article->title_tr}}
                                 @elseif(config('app.locale')=='ar')
-                                    {{$article->title_ar}};
+                                    {{$article->title_ar}}
                                 @endif
 
                             </h2>
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="{{asset("size3/".$article->img)}}" alt="">
+                                <img class="card-img rounded-0" src="{{asset("size7/".$article->img)}}" alt="">
                             </div>
 
                             <div class="blog_details">
@@ -95,7 +95,9 @@
                         </div>
 
 
-                        <aside class="single_sidebar_widget popular_post_widget">
+                        <aside class="single_sidebar_widget popular_post_widget"style="
+    margin: 5px;
+">
                             <h3 class="widget_title">{{trans('my-word.Recent Post')}} </h3>
                             @foreach ($articles as $item)
 
@@ -106,11 +108,11 @@
                                         <a href="{{ url('/articles'.'/'.$item->id) }}">
                                             <h3>
                                                 @if(config('app.locale')=='en')
-                                                    {{substr($item->title_en, 0, 100)}}
+                                                    {{mb_substr($item->title_en, 0, 100)}}
                                                 @elseif(config('app.locale')=='tr')
-                                                    {{substr($item->title_tr, 0, 100)}}
+                                                    {{mb_substr($item->title_tr, 0, 100)}}
                                                 @elseif(config('app.locale')=='ar')
-                                                    {{substr($item->title_ar, 0, 100)}};
+                                                    {{mb_substr($item->title_ar, 0, 100)}}
                                                 @endif
                                             </h3>
                                         </a>
@@ -123,7 +125,9 @@
 
                         </aside>
 
-                        <aside class="single_sidebar_widget popular_post_widget">
+                        <aside class="single_sidebar_widget popular_post_widget"style="
+    margin: 5px;
+">
                             <h3 class="widget_title">{{trans('my-word.Related Post')}} </h3>
                             @foreach ($articles_related as $item)
 
@@ -134,11 +138,11 @@
                                     <div class="media-body">
                                         <a href="{{ url('/articles'.'/'.$item->id) }}"><h3>
                                                 @if(config('app.locale')=='en')
-                                                    {{substr($item->title_en, 0, 100)}}
+                                                    {{mb_substr($item->title_en, 0, 100)}}
                                                 @elseif(config('app.locale')=='tr')
-                                                    {{substr($item->title_tr, 0, 100)}}
+                                                    {{mb_substr($item->title_tr, 0, 100)}}
                                                 @elseif(config('app.locale')=='ar')
-                                                    {{substr($item->title_ar, 0, 100)}};
+                                                    {{mb_substr($item->title_ar, 0, 100)}}
                                                 @endif
                                             </h3></a>
                                         <h6>{{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString()}}

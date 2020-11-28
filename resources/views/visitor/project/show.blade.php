@@ -3,11 +3,11 @@
 @section('pageTitle')
 
     @if(config('app.locale')=='en')
-        {{substr($project->title_en, 0, 6)}}
+        {{mb_substr($project->title_en, 0, 15)}}
     @elseif(config('app.locale')=='tr')
-        {{substr($project->title_tr, 0, 6)}}
+        {{mb_substr($project->title_tr, 0, 15)}}
     @elseif(config('app.locale')=='ar')
-        {{substr($project->title_ar, 0, 6)}};
+        {{mb_substr($project->title_ar, 0, 15)}}
     @endif
 
 @endsection
@@ -30,14 +30,19 @@
                 <div class="col-12">
                     <div class="fancy-top-features-content">
                         <div class="row no-gutters">
-                            <div class="col-6 col-md-6">
+                          <div class="col-6 col-md-6">
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
                                             <img class="d-block w-100" src="{{asset("size5/".$project->img)}}"
                                                  alt="First slide">
                                         </div>
-
+                                        @foreach($imgs as $img)
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src="{{asset("size2/".$img->the_media)}}"
+                                                     alt="Second slide">
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                                        data-slide="prev">
@@ -49,9 +54,19 @@
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
+
                                     <div class="container pt-4 pb-5">
                                         <div class="row carousel-indicators">
-
+                                            <div class="col-md-2 item">
+                                                <img src="{{asset("size5/".$project->img)}}" class="img-fluid"
+                                                     data-target="#carouselExampleIndicators" data-slide-to="0"/>
+                                            </div>
+                                            @foreach($imgs as $img)
+                                                <div class="col-md-2 item">
+                                                    <img src="{{asset("size2/".$img->the_media)}}" class="img-fluid"
+                                                         data-target="#carouselExampleIndicators" data-slide-to="0"/>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +79,7 @@
                                         @elseif(config('app.locale')=='tr')
                                             {{$project->p_categories->first()->name_tr}}
                                         @elseif(config('app.locale')=='ar')
-                                            {{$project->p_categories->first()->name_ar}};
+                                            {{$project->p_categories->first()->name_ar}}
                                         @endif
                                     </p>
                                     <h4>@if(config('app.locale')=='en')
@@ -72,19 +87,19 @@
                                         @elseif(config('app.locale')=='tr')
                                             {{$project->title_tr}}
                                         @elseif(config('app.locale')=='ar')
-                                            {{$project->title_ar}};
+                                            {{$project->title_ar}}
                                         @endif</h4>
                                     <div class="comment-list">
                                         <div class="user justify-content-between d-flex">
-                                            <div class="desc">
+                                            <div class="desc" style="width: 100%;">
                                                 <p class="comment">
 
                                                     @if(config('app.locale')=='en')
-                                                        {{substr($project->details_en, 0, 300)}}
+                                                        {{mb_substr($project->details_en, 0, 300)}}
                                                     @elseif(config('app.locale')=='tr')
-                                                        {{substr($project->details_tr, 0, 300)}}
+                                                        {{mb_substr($project->details_tr, 0, 300)}}
                                                     @elseif(config('app.locale')=='ar')
-                                                        {{substr($project->details_ar, 0, 300)}};
+                                                        {{mb_substr($project->details_ar, 0, 300)}}
                                                     @endif
                                                 </p>
 
@@ -92,15 +107,16 @@
                                                     <div class="custom_progress_bar">
                                                         <div class="balance d-flex justify-content-between align-items-center">
                                                             <span> {{$project->come_amount}} $  USD</span>
-                                                            <span>{{ ($project->come_amount/$project->need_amount)*100 }} %</span>
+                                                            
+                                                            <span>{{trans('my-word.Beneficiaries')}}: {{$project->usefull}}   </span>
                                                         </div>
                                                         <div class="progress">
                                                             <div class="progress-bar" role="progressbar"
-                                                                 style="width:{{ ($project->come_amount/$project->need_amount)*100 }} %;"
-                                                                 aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}" aria-valuemin="0"
+                                                                 style="width:{{ $project->need_amount?($project->come_amount/$project->need_amount)*100:100 }}%;"
+                                                                 aria-valuenow="{{ $project->need_amount?($project->come_amount/$project->need_amount)*100 :100}}" aria-valuemin="0"
                                                                  aria-valuemax="100">
                                                                 <span class="progres_count">
-                                                                    {{ ($project->come_amount/$project->need_amount)*100 }} %
+                                                                    {{ $project->need_amount?number_format(($project->come_amount/$project->need_amount)*100, 2, '.', ' '):100 }}%
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -171,7 +187,7 @@
                                                 @elseif(config('app.locale')=='tr')
                                                     {{$project->title_tr}}
                                                 @elseif(config('app.locale')=='ar')
-                                                    {{$project->title_ar}};
+                                                    {{$project->title_ar}}
                                                 @endif</span></h3>
                                     </div>
                                 </div>
@@ -182,7 +198,7 @@
                                 @elseif(config('app.locale')=='tr')
                                     {{$project->details_tr}}
                                 @elseif(config('app.locale')=='ar')
-                                    {{$project->details_ar}};
+                                    {{$project->details_ar}}
                                 @endif
 
                             </p>
@@ -234,17 +250,17 @@
                         @foreach($projects_related as $project)
                             <div class="single_cause">
                                 <div class="thumb">
-                                    <img src="{{asset("size6/".$project->img)}}" alt="">
+                                    <a href="/projects/{{$project->id}}">  <img src="{{asset("size6/".$project->img)}}" alt=""></a>
                                 </div>
                                 <div class="causes_content">
                                     <div class="custom_progress_bar">
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar"
-                                                 style="width: {{ ($project->come_amount/$project->need_amount)*100 }}%;"
-                                                 aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}"
+                                                 style="width: {{ $project->need_amount?($project->come_amount/$project->need_amount)*100 :100}}%;"
+                                                 aria-valuenow="{{$project->need_amount? ($project->come_amount/$project->need_amount)*100:100 }}"
                                                  aria-valuemin="0" aria-valuemax="100">
                                             <span class="progres_count">
-                                                    {{ ($project->come_amount/$project->need_amount)*100 }} %
+                                                    {{ $project->need_amount?($project->come_amount/$project->need_amount)*100 :100}}%
                                                 </span>
                                             </div>
                                         </div>
@@ -252,20 +268,25 @@
                                     <div class="balance d-flex justify-content-between align-items-center">
                                         <span>{{trans('my-word.Raised')}}: {{$project->come_amount}} $</span>
                                         <span>{{trans('my-word.Goal')}}: {{$project->need_amount}} $ </span>
+                                        <span>{{trans('my-word.Beneficiaries')}}: {{$project->usefull}}   </span>
                                     </div>
-                                    <a href="/projects/{{$project->id}}"><h4>@if(config('app.locale')=='en')
-                                                {{substr($project->title_en, 0, 100)}}
+                                    <a href="/projects/{{$project->id}}"><h4 style="max-height: 50px;
+    height: 50px;
+    overflow: hidden;">@if(config('app.locale')=='en')
+                                                {{mb_substr($project->title_en, 0, 100)}}
                                             @elseif(config('app.locale')=='tr')
-                                                {{substr($project->title_tr, 0, 100)}}
+                                                {{mb_substr($project->title_tr, 0, 100)}}
                                             @elseif(config('app.locale')=='ar')
-                                                {{substr($project->title_ar, 0, 100)}};
+                                                {{mb_substr($project->title_ar, 0, 100)}}
                                             @endif</h4></a>
-                                    <p>@if(config('app.locale')=='en')
-                                            {{substr($project->details_en, 0, 300)}}
+                                    <p style="max-height: 200px;
+    height: 200px;
+    overflow: hidden;">@if(config('app.locale')=='en')
+                                            {{mb_substr($project->details_en, 0, 300)}}
                                         @elseif(config('app.locale')=='tr')
-                                            {{substr($project->details_tr, 0, 300)}}
+                                            {{mb_substr($project->details_tr, 0, 300)}}
                                         @elseif(config('app.locale')=='ar')
-                                            {{substr($project->details_ar, 0, 300)}};
+                                            {{mb_substr($project->details_ar, 0, 300)}}
                                         @endif</p>
 
                                 </div>

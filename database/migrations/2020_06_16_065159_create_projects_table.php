@@ -15,9 +15,11 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->boolean('status')->default(0);
             $table->boolean('fixing');
             $table->integer('user_id');
             $table->string('img')->nullable();
+            $table->integer('usefull')->default(0);
             $table->double('need_amount')->default(0);
             $table->double('come_amount')->default(0);
             $table->string('title_ar');

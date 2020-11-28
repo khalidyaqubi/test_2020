@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Visitor;
 
 use App\Http\Controllers\Controller;
+use App\Media;
 use App\Project;
 use App\Setting;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $items = Project::orderByDesc('created_at')->paginate(20);
+        $items = Project::where('status',1)->orderByDesc('created_at')->paginate(10);
         $setting = Setting::find(1);
         return view('visitor.project.index', compact('items', 'setting'));
     }
@@ -52,12 +53,13 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
-        $projects = Project::orderBy("created_at", 'DESC')->limit(5)->get();
-        $projects_related = Project::whereHas('p_categories', function ($q) use ($project) {
+        $projects = Project::where('status',1)->orderBy("created_at", 'DESC')->limit(5)->get();
+        $projects_related = Project::where('status',1)->whereHas('p_categories', function ($q) use ($project) {
             $q->whereIn('p_category_id', $project->p_categories->pluck('p_category_id')->toArray());
         })->orderBy("created_at", 'DESC')->limit(5)->get();
         $setting = Setting::find(1);
-        return view('visitor.project.show', compact('project', 'projects', 'setting', 'projects_related'));
+        $imgs = Media::where('status',1)->where('project_id',$project->id)->get();
+        return view('visitor.project.show', compact('project','imgs', 'projects', 'setting', 'projects_related'));
 
     }
 

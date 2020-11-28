@@ -30,7 +30,21 @@
             @method('put')
             <!-- Start Row -->
                 <div class="row">
-
+  <!-- Start col -->
+                    <input type="hidden" name="status"
+                           value="0">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12"> تفعيل الوسائط
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input type="checkbox" name="status"
+                                       {{$item->status?"checked":" "}} value="1"
+                                       style="width: 39px; height: 39px; margin: 0px 35px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
                     @if($item->type==2)
                     <!-- Start col -->
                     <div class="col-md-6">

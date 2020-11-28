@@ -87,15 +87,18 @@
         @csrf
         <div class="container">
             <div class="row justify-content-center">
+                <?php if(!empty($response['code'])) { ?>
                 <div class="col-lg-6">
                     <div class="section_title text-center mb-55">
-                        <h5>    <?php if(!empty($response['code'])) { ?>
+                        <h5>    
                             <div class="alert alert-<?php echo $response['code']; ?>">
                                 <?php echo $response['message']; ?>
                             </div>
-                            <?php } ?></h5>
+                            </h5>
                     </div>
+                    
                 </div>
+                <?php } ?>
                 <div class="col-lg-6">
                     <div class="section_title text-center mb-55">
                         <h3><span> {{trans('my-word.1- I Would Like To Make A')}}</span></h3>
@@ -165,15 +168,15 @@
             <div class="row ">
                 <div class="col-md-3 col-sm-5 col-xs-4 "><a href="#the_price"
                                                             class="btn btn-sm animated-button victoria-one"
-                                                            onclick="javascript:document.getElementById('price').value=20">$20</a>
+                                                            onclick="javascript:document.getElementById('price').value=20">20<span>$</span></a>
                 </div>
                 <div class="col-md-3 col-sm-5 col-xs-4 "><a href="#the_price"
                                                             class="btn btn-sm animated-button victoria-one"
-                                                            onclick="javascript:document.getElementById('price').value=50">$50</a>
+                                                            onclick="javascript:document.getElementById('price').value=50">50<span>$</span></a>
                 </div>
                 <div class="col-md-3 col-sm-5 col-xs-4 "><a href="#the_price"
                                                             class="btn btn-sm animated-button victoria-one"
-                                                            onclick="javascript:document.getElementById('price').value=100">$100</a>
+                                                            onclick="javascript:document.getElementById('price').value=100">100<span>$</span></a>
                 </div>
                 <div class="col-md-3 col-sm-5 col-xs-4 "><a href="#the_price"
                                                             class="btn btn-sm animated-button victoria-one"

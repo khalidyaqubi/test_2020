@@ -18,6 +18,10 @@ class CheckPermission
      */
     public function handle($request, Closure $next)
     {
+        
+        
+           // return redirect("/");
+        
         $user = auth()->user();
         if (!$user)
             return redirect('/');

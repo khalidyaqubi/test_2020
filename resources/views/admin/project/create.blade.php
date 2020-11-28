@@ -30,7 +30,7 @@
             <!-- Start Row -->
                 <div class="row">
                     <!-- Start col -->
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12">فئات المشروع
                                 <span style="color:red;">*</span></label>
@@ -50,7 +50,7 @@
                     <!-- Start col -->
                     <input type="hidden" name="fixing"
                            value="0">
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <div class="form-group row">
                             <label class="col-form-label col-lg-12"> تثبيت المشروع
                                 <span style="color:red;">*</span></label>
@@ -62,8 +62,23 @@
                         </div>
                     </div>
                     <!-- End col -->
+                       <!-- Start col -->
+                    <input type="hidden" name="status"
+                           value="0">
+                    <div class="col-md-2">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12"> تفعيل المشروع
+                                <span style="color:red;">*</span></label>
+                            <div style="width: 95%;">
+                                <input  type="checkbox" name="status"
+                                        {{old('status')?"checked":" "}} value="1"
+                                        style="width: 39px; height: 39px; margin: 0px 35px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
                     <!-- Start col -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <div class="form-group ">
                             <label class="col-form-label col-lg-12">تاريخ الرفع
                                 <span
@@ -75,7 +90,7 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="form-group ">
                             <label class="col-form-label col-lg-12"> الحاجة للتمويل
                             </label>
@@ -91,7 +106,7 @@
                     </div>
                     <!-- End col -->
                     <!-- Start col -->
-                    <div class="col-lg-4" id="donation" style="display: none">
+                    <div class="col-lg-3" id="donation" style="display: none">
                         <div class="form-group">
                             <label class="col-form-label col-lg-12">المبلغ المطلوب بالدولار
                                 <span style="color:red;">*</span></label>
@@ -99,6 +114,19 @@
                                     type="number"
                                     value="{{old("need_amount")}}"
                                     name="need_amount"
+                                    maxlength="16" min="0">
+                        </div>
+                    </div>
+                    <!-- End col -->
+                     <!-- Start col -->
+                    <div class="col-lg-3" id="donation" >
+                        <div class="form-group">
+                            <label class="col-form-label col-lg-12">عدد المستفيدين  
+                                </label>
+                            <input  class="form-control "
+                                    type="number"
+                                    value="{{old("usefull")}}"
+                                    name="usefull"
                                     maxlength="16" min="0">
                         </div>
                     </div>
@@ -134,6 +162,18 @@
                         </div>
                     </div>
                     <!-- end col -->
+                       <!-- Start col -->
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-12">صور أخرى
+                               </label>
+                            <div style="width: 95%;">
+                                <input  class="form-control arabic" id="imgs" multiple type="file" name="imgs[]"
+                                        placeholder="صور أخرى">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
                     <!-- Start col -->
                     <div class="col-md-6">
                         <div class="form-group row">

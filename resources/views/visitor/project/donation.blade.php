@@ -3,11 +3,11 @@
 @section('pageTitle')
 
     @if(config('app.locale')=='en')
-        {{substr($project->title_en, 0, 6)}}
+        {{mb_substr($project->title_en, 0, 15)}}
     @elseif(config('app.locale')=='tr')
-        {{substr($project->title_tr, 0, 6)}}
+        {{mb_substr($project->title_tr, 0,  15)}}
     @elseif(config('app.locale')=='ar')
-        {{substr($project->title_ar, 0, 6)}};
+        {{mb_substr($project->title_ar, 0,  15)}}
     @endif
     {{trans('my-word.Donate')}}
 @endsection
@@ -70,7 +70,7 @@
                         @elseif(config('app.locale')=='tr')
                             {{$project->p_categories->first()->name_tr}}
                         @elseif(config('app.locale')=='ar')
-                            {{$project->p_categories->first()->name_ar}};
+                            {{$project->p_categories->first()->name_ar}}
                         @endif </h4>
                     <br>
                     <h2>@if(config('app.locale')=='en')
@@ -78,7 +78,7 @@
                         @elseif(config('app.locale')=='tr')
                             {{$project->title_tr}}
                         @elseif(config('app.locale')=='ar')
-                            {{$project->title_ar}};
+                            {{$project->title_ar}}
                         @endif</h2>
                     <h5>    <?php if(!empty($response['code'])) { ?>
                         <div class="alert alert-<?php echo $response['code']; ?>">
@@ -142,15 +142,15 @@
 
                 <div class="col-md-3 col-sm-5 col-xs-4 "><a href="#the_price"
                                                             class="btn btn-sm animated-button victoria-one"
-                                                            onclick="javascript:document.getElementById('price').value=20">$20</a>
+                                                            onclick="javascript:document.getElementById('price').value=20">20<span>$</span></a>
                 </div>
                 <div class="col-md-3 col-sm-5 col-xs-4 "><a href="#the_price"
                                                             class="btn btn-sm animated-button victoria-one"
-                                                            onclick="javascript:document.getElementById('price').value=50">$50</a>
+                                                            onclick="javascript:document.getElementById('price').value=50">50<span>$</span></a>
                 </div>
                 <div class="col-md-3 col-sm-5 col-xs-4 "><a href="#the_price"
                                                             class="btn btn-sm animated-button victoria-one"
-                                                            onclick="javascript:document.getElementById('price').value=100">$100</a>
+                                                            onclick="javascript:document.getElementById('price').value=100">100<span>$</span></a>
                 </div>
                 <div class="col-md-3 col-sm-5 col-xs-4 "><a href="#the_price"
                                                             class="btn btn-sm animated-button victoria-one"

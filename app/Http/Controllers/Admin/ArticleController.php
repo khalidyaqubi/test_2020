@@ -111,10 +111,12 @@ class ArticleController extends Controller
             $path2 = 'size2/uploads/articles/';
             $path3 = 'size3/uploads/articles/';
             $path4 = 'size4/uploads/articles/';
+            $path7 = 'size7/uploads/articles/';
             Image::make($request['img']->getRealPath())->resize(277, 405)->save($path1 . $filename, 60);
             Image::make($request['img']->getRealPath())->resize(270, 187)->save($path2 . $filename, 60);
             Image::make($request['img']->getRealPath())->resize(750, 375)->save($path3 . $filename, 60);
             Image::make($request['img']->getRealPath())->resize(80, 80)->save($path4 . $filename, 60);
+            Image::make($request['img']->getRealPath())->save($path7 . $filename, 60);
 
             $item->img = $path . $filename;
             $item->save();
@@ -197,22 +199,25 @@ class ArticleController extends Controller
                 $path2 = 'size2/uploads/articles/';
                 $path3 = 'size3/uploads/articles/';
                 $path4 = 'size4/uploads/articles/';
-
+$path7 = 'size7/uploads/articles/';
                 $mypath1 = public_path() . "/size1/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
                 $mypath2 = public_path() . "/size2/" . $tempreroy;
                 $mypath3 = public_path() . "/size3/" . $tempreroy;
                 $mypath4 = public_path() . "/size4/" . $tempreroy;
-
+$mypath7 = public_path() . "/size7/" . $tempreroy;
                 if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath1);
                     unlink($mypath2);//يقوم بحذف القديم
+                    unlink($mypath3);
+                    unlink($mypath4);
+                     unlink($mypath7);
                 }
 
                 Image::make($request['img']->getRealPath())->resize(277, 405)->save($path1 . $filename, 60);
                 Image::make($request['img']->getRealPath())->resize(270, 187)->save($path2 . $filename, 60);
                 Image::make($request['img']->getRealPath())->resize(750, 375)->save($path3 . $filename, 60);
                 Image::make($request['img']->getRealPath())->resize(80, 80)->save($path4 . $filename, 60);
-
+ Image::make($request['img']->getRealPath())->save($path7 . $filename, 60);
                 $item->img = $path . $filename;
                 $item->save();
 
@@ -246,14 +251,21 @@ class ArticleController extends Controller
     {
 
         $item = Article::find($id);
+        $tempreroy = $item->img;
         $item->a_categories()->sync([]);
         if ($item) {
 
-            $mypath1 = public_path() . "/size1/" . $item->img; // مكان التخزين في البابليك ثم مجلد ابلودز
-            $mypath2 = public_path() . "/size1/" . $item->img;
+            $mypath1 = public_path() . "/size1/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
+            $mypath2 = public_path() . "/size2/" . $tempreroy;
+            $mypath3 = public_path() . "/size3/" . $tempreroy;
+            $mypath4 = public_path() . "/size4/" . $tempreroy;
+            $mypath7 = public_path() . "/size7/" . $tempreroy;
             if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
                 unlink($mypath1);//يقوم بحذف القديم
                 unlink($mypath2);//يقوم بحذف القديم
+           unlink($mypath3);
+           unlink($mypath4);
+            unlink($mypath7);
             }
             $item->delete();
             return redirect("/admin/articles")->with('success', 'تم حذف خبر بنجاح');
@@ -290,5 +302,26 @@ class ArticleController extends Controller
                 'message' => 'المحاولة للوصول لخبر غير موجود',
             ], 401);
         }
+    }
+    public function delete_group(Request $request)
+    {
+        if (!(auth()->user()->hasPermissionTo('edit articles'))) {
+            return response()->json([
+                'message' => 'ليس لك صلاحية لهذه العملية',
+            ], 401);
+        }
+        $ids = explode(",", $request['the_ids']);
+        $items = Article::find($ids);
+        if ($items && $items->first()) {
+            foreach ($items as $item) {
+                $old_status=$item->status;
+                $item->update(['status'=>!($old_status)]);
+
+            }
+        } else {
+            return redirect("/admin/articles")->with('error', 'لم يتم تحديد أي عنصر لتغيير حالته')->withInput();
+        }
+        return redirect('admin/articles')->with('success', "تم تغير حالة العنصار بنجاح");
+
     }
 }

@@ -49,8 +49,9 @@ class P_CategoryController extends Controller
      */
     public function show($id)
     {
+        
         $p_category = P_Category::find($id);
-        $items = Project::whereHas('p_categories', function ($q) use ($p_category) {
+        $items = Project::where('status',1)->whereHas('p_categories', function ($q) use ($p_category) {
             $q->where('p_categories.id', $p_category->id);
 
         })->orderByDesc('created_at')->paginate(20);

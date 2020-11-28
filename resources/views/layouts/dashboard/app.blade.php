@@ -281,6 +281,16 @@
 </script>
 
 <script src="{{  asset('js/app_3.js') }}"></script>
+<script>
+    $(document).ready(function () {
+            $('form').submit(function () {
+                $(this).find(':submit').attr('disabled', 'disabled');
+                $('#wating').show();
+            });
+
+
+        });
+</script>
 @yield('footerCSS')
 @yield('footerJS')
 

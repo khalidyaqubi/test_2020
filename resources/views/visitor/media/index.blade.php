@@ -64,9 +64,9 @@
                             <a href="\medias\{{$item_1->id}}">
                                 {{ \Carbon\Carbon::parse($item_1->created_at)->toFormattedDateString()}}</a>
                         </h3>
-                        <div class="row owl-carousel owl-theme">
+                        <div class="row causes_active  owl-carousel owl-theme" style="text-align: center;">
                             @php
-                                $items = \App\Media::where('created_at',$item_1->created_at)->limit(5)->get();
+                                $items = \App\Media::where('created_at',$item_1->created_at)->where('status',1)->limit(5)->get();
                                 ;
                             @endphp
                             @foreach($items as $item)
@@ -100,29 +100,70 @@
 @endsection
 
 @section('footerCSS')
+<style>
+    .owl-carousel .nav-btn{
+  height: 47px;
+  position: absolute;
+  width: 26px;
+  cursor: pointer;
+  top: 100px !important;
+}
+
+.owl-carousel .owl-prev.disabled,
+.owl-carousel .owl-next.disabled{
+pointer-events: none;
+opacity: 0.2;
+}
+
+.owl-carousel .prev-slide{
+  background: url(nav-icon.png) no-repeat scroll 0 0;
+  left: -33px;
+}
+.owl-carousel .next-slide{
+  background: url(nav-icon.png) no-repeat scroll -24px 0px;
+  right: -33px;
+}
+.owl-carousel .prev-slide:hover{
+ background-position: 0px -53px;
+}
+.owl-carousel .next-slide:hover{
+background-position: -24px -53px;
+}
+</style>
 @endsection
 
 @section('footerJS')
     <script>
         $('.owl-carousel').owlCarousel({
-            center: true,
+            center: false,
             items: 2,
-            autoplay: true,
-            loop: true,
+            autoplay: false,
+            loop: false,
             margin: 10,
             nav: false,
+            navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
             responsive: {
                 0: {
-                    items: 1
+                    items: 1,
+                      nav: true,
+	navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
                 },
                 600: {
-                    items: 3
+                    items: 3,
+                      nav: true,
+	navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
                 },
                 1000: {
-                    items: 5
+                    items: 5,
+                      nav: true,
+	navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
                 }
-            }
+            },
+            
         });
+     
+
+     
     </script>
     <script>
 

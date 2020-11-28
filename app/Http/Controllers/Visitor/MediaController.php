@@ -16,8 +16,8 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $items_1 = Media::groupBy('created_at')->paginate(1);
-        $items_2=Media::all();
+        $items_1 = Media::where('status',1)->groupBy('created_at')->paginate(20);
+        $items_2=Media::where('status',1)->get();
 
         $setting = Setting::find(1);
         return view('visitor.media.index',compact('items_1','setting','items_2'));
@@ -96,8 +96,8 @@ class MediaController extends Controller
     public function medias_ajax(){
 
 
-        $items_1 = Media::groupBy('created_at')->paginate(1)->appends(['page'=>request('page')]);
-        $items_2=Media::all();
+        $items_1 = Media::where('status',1)->groupBy('created_at')->paginate(20)->appends(['page'=>request('page')]);
+        $items_2=Media::where('status',1)->get();
         $view = view('visitor.media.part', compact('items_1','items_2'))->render();
 
         return response()->json(

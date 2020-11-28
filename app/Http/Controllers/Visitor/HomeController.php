@@ -29,11 +29,11 @@ class HomeController extends Controller
         $setting = Setting::find(1);
         $fixed_article = Article::where('fixing', 1)->first() ?? Article::orderByDesc('id')->first();
         $last_6_articles = Article::where('fixing', 0)->where('status',1)->orderByDesc('id')->limit(6)->get();
-        $project_funded = Project::where('need_amount', '>', 0)->count();
+        $project_funded = Project::where('status',1)->where('need_amount', '>', 0)->count();
         $international_contributors = Donation::count();
         $total_raised = Donation::sum('amount');
         $fixed_project = Project::where('fixing', 1)->first() ?? Project::orderByDesc('id')->first();
-        $last_6_projects = Project::where('fixing', 0)->orderByDesc('id')->limit(6)->get();
+        $last_6_projects = Project::where('status',1)->where('fixing', 0)->orderByDesc('id')->limit(6)->get();
 
         return view('visitor.home.index', compact('setting', 'last_6_articles', 'fixed_article'
             , 'project_funded', 'international_contributors', 'total_raised'

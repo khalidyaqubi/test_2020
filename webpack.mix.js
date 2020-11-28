@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css');
 
 mix.styles([
     'resources/new_theam/css/bootstrap-datepicker3.css',
@@ -68,3 +68,45 @@ mix.scripts([
     'resources/new_theam/js/bootstrap-datetimepicker.min.js',
     'resources/new_theam/js/bootstrap-datepicker.js',
 ], 'public/js/app_3.js');
+
+
+mix.styles([
+    'resources/visitor/css/bootstrap.min.css',
+    'resources/visitor/css/owl.carousel.min.css',
+    'resources/visitor/css/magnific-popup.css',
+    'resources/visitor/css/font-awesome.min.css',
+    'resources/visitor/css/themify-icons.css',
+    'resources/visitor/css/nice-select.css',
+    'resources/visitor/css/flaticon.css',
+    'resources/visitor/css/gijgo.css',
+    'resources/visitor/css/animate.css',
+    'resources/visitor/css/slicknav.css',
+    'resources/visitor/css/style.css',
+], 'public/css/app_vis.css');
+
+mix.scripts([
+    'resources/visitor/js/vendor/modernizr-3.5.0.min.js',
+    'resources/visitor/js/vendor/jquery-1.12.4.min.js',
+    'resources/visitor/js/popper.min.js',
+    'resources/visitor/js/bootstrap.min.js',
+    'resources/visitor/js/owl.carousel.min.js',
+    'resources/visitor/js/isotope.pkgd.min.js',
+    'resources/visitor/js/ajax-form.js',
+    'resources/visitor/js/waypoints.min.js',
+    'resources/visitor/js/jquery.counterup.min.js',
+    'resources/visitor/js/imagesloaded.pkgd.min.js',
+    'resources/visitor/js/scrollIt.js',
+    'resources/visitor/js/jquery.scrollUp.min.js',
+    'resources/visitor/js/wow.min.js',
+    'resources/visitor/js/nice-select.min.js',
+    'resources/visitor/js/jquery.slicknav.min.js',
+    'resources/visitor/js/jquery.magnific-popup.min.js',
+    'resources/visitor/js/plugins.js',
+    'resources/visitor/js/js/gijgo.min.js',
+    'resources/visitor/js/jquery.ajaxchimp.min.js',
+    'resources/visitor/js/jquery.form.js',
+    'resources/visitor/js/jquery.validate.min.js',
+    'resources/visitor/js/mail-script.js',
+    'resources/visitor/js/main.js',
+], 'public/js/app_vis.js');
+

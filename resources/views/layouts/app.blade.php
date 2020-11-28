@@ -1,5 +1,25 @@
+@php
+ $lang = config('app.locale');
+
+ 
+if(config('app.locale')=='en' || config('app.locale')=='tr'){
+$dir = "ltr";
+     $js_file = asset('js/app_vis.js');
+      $css_file =asset('css/app_vis.css');
+      $rOL='left';
+                                                
+                                            }else{
+                      
+     $dir = "rtl";
+     $js_file = asset('js/app_vis_rtl.js');
+       $css_file = asset('css/app_vis_rtl.css');
+       $rOL='right';
+       
+       
+                                            }
+@endphp
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="{{$lang}}" dir="{{$dir}}">
 
 <head>
     <meta charset="utf-8">
@@ -8,24 +28,23 @@
         {{trans('my-word.Gaza Charitable Endowment')}}
     </title>
     <meta name="description" content="">
+    <meta data-rh="true" name="description" content="وقف غزة ، وقف غزة الخيري، غزة الخيري ، تبرع غزة ، Gaza Endowment Charity ، Gaza Endowment ، Charity Endowment ، donations" data-reactroot=""/>
+	
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('/visitor/img/23.png')}}">
+  
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="{{  asset('visitor/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/nice-select.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/flaticon.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/gijgo.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/animate.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/slicknav.css')}}">
-    <link rel="stylesheet" href="{{  asset('visitor/css/style.css')}}">
+    <link rel="stylesheet" href="{{$css_file}}">
+    <style>
+       .owl-carousel{ text-align:-webkit-center}
+       span{direction:{{$dir}} !important}
+    </style>
+
+  
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     @yield('headerCSS')
     @yield('headerJS')
@@ -84,19 +103,34 @@
 <!-- header-end -->
 
 
-<div class="header-area ">
+<div class="header-area " style="
+    padding-top: 0;
+    background-image: url('{{asset('/img/Footer Background Picture-8.png')}}');
+">
 
     <div id="sticky-header" class="main-header-area">
         <div class="container-fluid">
             <div class="row align-items-center">
-                <div class="col-xl-3 col-lg-3 col-sm-3">
+                <div class="col">
                     <div class="logo">
-                        <a href="/">
-                            <img src="{{asset($setting->icon_img)}}" alt="">
+                        <a href="/" style="
+    float:{{$rOL}};
+">
+                            <img src="{{asset($setting->icon_img)}}" alt="" style="
+    width: 100px;
+">
                         </a>
+                      
+                        <a href="/"> <h1 style="
+    font-size: 24px;
+    color: #3CC78F;
+    padding-top: 40px;
+    padding-right: 112px;
+    padding-left: 112px;
+"> {{trans('my-word.Gaza Charitable Endowment')}}</h1></a>
                     </div>
                 </div>
-                <div class="col-xl-9 col-lg-9 col-sm-9">
+                <div class="col-xl-3 col-lg-3 col-sm-3">
                     <div class="main-menu">
                         <div class="Appointment">
                             <div class="book_btn d-none d-lg-block">
@@ -133,14 +167,18 @@
                                     <a href="/"> <i class="fa fa-home fa-5x"></i></a>
                                 </li>
                                 <li>
-                                    <a href="/about_us">{{trans('my-word.ABOUT US')}}</a>
+                                    <a href="/about_us" style="font-weight: 500;
+    font-size: 18px;">{{trans('my-word.ABOUT US')}}</a>
                                 </li>
                                 @php
                                     $two_categories= \App\P_Category::limit(3)->get();
                                 @endphp
                                 @foreach($two_categories as $category)
                                     <li>
-                                        <a class="text-uppercase" href="/p_categories/{{$category->id}}">@if(config('app.locale')=='en')
+                                        <a class="text-uppercase"
+                                        style="font-weight: 500;
+    font-size: 18px;"
+                                           href="/p_categories/{{$category->id}}">@if(config('app.locale')=='en')
                                                 {{$category->name_en}}
                                             @elseif(config('app.locale')=='ar')
                                                 {{$category->name_ar}}
@@ -178,7 +216,7 @@
             <div class="row text-center">
                 <div class="col-xl-12 col-md-12 col-lg-12">
                     <div class="donate_now_btn text-center">
-                        <a href="/login" class="boxed-btn4">{{trans('my-word.Join Us')}}</a>
+                        <a href="/contact_us" class="boxed-btn4">{{trans('my-word.Join Us')}}</a>
                     </div>
                 </div>
 
@@ -216,25 +254,27 @@
                         <script>
                             document.write(new Date().getFullYear());
                         </script>
-                        All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                                                            aria-hidden="true"></i> by
-                        <a href="" target="_blank">MohammedAzzam</a>
+                        All rights reserved 
+                      
                     </p>
                 </div>
 
-                <div class="copy_footer col-xl-2 col-lg-3 col-md-3 m-0 ">
+                <div class="copy_footer col-xl-2 col-lg-3 col-md-3 m-0 " style="font-size: 12px;
+    padding: 0;font-weight: bold;">
                     <a href="/contact_us" target="_blank">{{trans('my-word.Contacts')}} |</a>
+                     <a href="/about_us" target="_blank">{{trans('my-word.ABOUT US')}} |</a>
+                      <a href="/donations/create" target="_blank">{{trans('my-word.Donate')}} </a>
                 </div>
                 <div class=" col-xl-5 m-0">
                     <p href="#" class="copy_right" target="_blank">{{$setting->phone}} | {{$setting->email}} <br>
-                            @if(config('app.locale')=='en')
-                                {{$setting->address_en}}
-                            @elseif(config('app.locale')=='ar')
-                                {{$setting->address_ar}}
-                            @elseif(config('app.locale')=='tr')
-                                {{$setting->address_tr}}
-                            @endif
-                        </p>
+                        @if(config('app.locale')=='en')
+                            {{$setting->address_en}}
+                        @elseif(config('app.locale')=='ar')
+                            {{$setting->address_ar}}
+                        @elseif(config('app.locale')=='tr')
+                            {{$setting->address_tr}}
+                        @endif
+                    </p>
                 </div>
             </div>
         </div>
@@ -243,41 +283,32 @@
 <!-- footer_end  -->
 
 <!-- JS here -->
-<script src="{{  asset('visitor/js/vendor/modernizr-3.5.0.min.js')}}"></script>
-<script src="{{  asset('visitor/js/vendor/jquery-1.12.4.min.js')}}"></script>
-<script src="{{  asset('visitor/js/popper.min.js')}}"></script>
-<script src="{{  asset('visitor/js/bootstrap.min.js')}}"></script>
-<script src="{{  asset('visitor/js/owl.carousel.min.js')}}"></script>
-<script src="{{  asset('visitor/js/isotope.pkgd.min.js')}}"></script>
-<script src="{{  asset('visitor/js/ajax-form.js')}}"></script>
-<script src="{{  asset('visitor/js/waypoints.min.js')}}"></script>
-<script src="{{  asset('visitor/js/jquery.counterup.min.js')}}"></script>
-<script src="{{  asset('visitor/js/imagesloaded.pkgd.min.js')}}"></script>
-<script src="{{  asset('visitor/js/scrollIt.js')}}"></script>
-<script src="{{  asset('visitor/js/jquery.scrollUp.min.js')}}"></script>
-<script src="{{  asset('visitor/js/wow.min.js')}}"></script>
-<script src="{{  asset('visitor/js/nice-select.min.js')}}"></script>
-<script src="{{  asset('visitor/js/jquery.slicknav.min.js')}}"></script>
-<script src="{{  asset('visitor/js/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{  asset('visitor/js/plugins.js')}}"></script>
-<script src="{{  asset('visitor/js/js/gijgo.min.js')}}"></script>
+<script src="{{$js_file}}"></script>
 
-<!--contact js-->
 <script src="{{  asset('visitor/js/contact.js')}}"></script>
-<script src="{{  asset('visitor/js/jquery.ajaxchimp.min.js')}}"></script>
-<script src="{{  asset('visitor/js/jquery.form.js')}}"></script>
-<script src="{{  asset('visitor/js/jquery.validate.min.js')}}"></script>
-<script src="{{  asset('visitor/js/mail-script.js')}}"></script>
 
-<script src="{{  asset('visitor/js/main.js')}}"></script>
 <script>
-    function lang(lang){
-        var url=window.location.href;
-        url=url.replace("/ar", "/"+lang);
-        url=url.replace("/en", "/"+lang);
-        url=url.replace("/tr", "/"+lang);
+for(i=0;i<document.querySelectorAll('.owl-carousel').length;i++){
+document.querySelectorAll('.owl-carousel')[i].setAttribute("dir","ltr");
+}
+
+
+    function lang(lang) {
+        var url = window.location.href;
+        url = url.replace("/ar", "/" + lang);
+        url = url.replace("/en", "/" + lang);
+        url = url.replace("/tr", "/" + lang);
         window.location.replace(url);
     }
+            $(document).ready(function () {
+            $('form').submit(function () {
+                $(this).find(':submit').attr('disabled', 'disabled');
+                $('#wating').show();
+            });
+
+
+        });
+    
 </script>
 @yield('footerJS')
 @yield('footerCSS')

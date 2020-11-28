@@ -2,11 +2,11 @@
 
 @section('pageTitle')
     @if(config('app.locale')=='en')
-        {{substr($p_category->name_en, 0, 100)}}
+        {{mb_substr($p_category->name_en, 0, 16)}}
     @elseif(config('app.locale')=='tr')
-        {{substr($p_category->name_tr, 0, 100)}}
+        {{mb_substr($p_category->name_tr, 0, 16)}}
     @elseif(config('app.locale')=='ar')
-        {{substr($p_category->name_ar, 0, 100)}};
+        {{mb_substr($p_category->name_ar, 0, 16)}}
     @endif
 @endsection
 
@@ -29,7 +29,7 @@
                         @elseif(config('app.locale')=='tr')
                             {{$p_category->name_tr}}
                         @elseif(config('app.locale')=='ar')
-                            {{$p_category->name_ar}};
+                            {{$p_category->name_ar}}
                         @endif </span> </a>
 
             </div>
@@ -42,17 +42,17 @@
                             @foreach($projects as $project)
                                 <div class="single_cause">
                                     <div class="thumb">
-                                        <img src="{{asset("size6/".$project->img)}}" alt="">
+                                        <a href="/projects/{{$project->id}}">  <img src="{{asset("size6/".$project->img)}}" alt=""></a>
                                     </div>
                                     <div class="causes_content">
                                         <div class="custom_progress_bar">
                                             <div class="progress">
                                                 <div class="progress-bar" role="progressbar"
-                                                     style="width: {{ ($project->come_amount/$project->need_amount)*100 }}%;"
-                                                     aria-valuenow="{{ ($project->come_amount/$project->need_amount)*100 }}"
+                                                     style="width: {{ $project->need_amount?($project->come_amount/$project->need_amount)*100:100 }}%;"
+                                                     aria-valuenow="{{ $project->need_amount?($project->come_amount/$project->need_amount)*100:100 }}"
                                                      aria-valuemin="0" aria-valuemax="100">
                                             <span class="progres_count">
-                                                     {{   number_format(($project->come_amount/$project->need_amount)*100, 2, '.', ' ')  }} %
+                                                     {{   $project->need_amount?number_format(($project->come_amount/$project->need_amount)*100, 2, '.', ' ') :100 }} %
                                                 </span>
                                                 </div>
                                             </div>
@@ -60,27 +60,32 @@
                                         <div class="balance d-flex justify-content-between align-items-center">
                                             <span>{{trans('my-word.Raised')}}: {{$project->come_amount}} $</span>
                                             <span>{{trans('my-word.Goal')}}: {{$project->need_amount}} $ </span>
+                                            <span>{{trans('my-word.Beneficiaries')}}: {{$project->usefull}}   </span>
                                         </div>
-                                        <a href="/projects/{{$project->id}}">
-                                            <h4>
+                                        <a  href="/projects/{{$project->id}}">
+                                            <h4 style="max-height: 50px;
+    height: 50px;
+    overflow: hidden;">
                                                 @if(config('app.locale')=='en')
-                                                    {{substr($project->title_en, 0, 100)}}
+                                                    {{mb_substr($project->title_en, 0, 100)}}
                                                 @elseif(config('app.locale')=='tr')
-                                                    {{substr($project->title_tr, 0, 100)}}
+                                                    {{mb_substr($project->title_tr, 0, 100)}}
                                                 @elseif(config('app.locale')=='ar')
-                                                    {{substr($project->title_ar, 0, 100)}};
+                                                    {{mb_substr($project->title_ar, 0, 100)}}
                                                 @endif</h4>
                                         </a>
-                                        <p>@if(config('app.locale')=='en')
-                                                {{substr($project->details_en, 0, 300)}}
+                                        <p style="max-height: 200px;
+    height: 200px;
+    overflow: hidden;">@if(config('app.locale')=='en')
+                                                {{mb_substr($project->details_en, 0, 300)}}
                                             @elseif(config('app.locale')=='tr')
-                                                {{substr($project->details_tr, 0, 300)}}
+                                                {{mb_substr($project->details_tr, 0, 300)}}
                                             @elseif(config('app.locale')=='ar')
-                                                {{substr($project->details_ar, 0, 300)}};
+                                                {{mb_substr($project->details_ar, 0, 300)}}
                                             @endif</p>
                                         <h6>{{$project->donations->pluck('id')->count()}} {{trans('my-word.supports')}} </h6>
                                         <div>
-                                            <a href="projects/{{$project->id}}/donations" data-scroll-nav="1"
+                                            <a href="projects/{{$project->id}}/donations" 
                                                class="boxed-btn">
                                                 <span class="fa fa-heart"> {{trans('my-word.DONATE NOW')}}</span> </a>
                                         </div>

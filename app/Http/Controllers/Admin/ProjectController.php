@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
+use App\Media;
 use App\P_Category;
 use Illuminate\Http\Request;
 use App\Project;
@@ -27,6 +28,7 @@ class ProjectController extends Controller
         $title_en = $request["title_en"] ?? "";
         $title_ar = $request["title_ar"] ?? "";
         $title_tr = $request["title_tr"] ?? "";
+         $status = $request["status"] ?? "";
         $fixing = $request["fixing"] ?? "";
         $users = $request["users"] ? array_filter($request["users"]) : [];
         $categories_ids = $request["categories_ids"] ? array_filter($request["categories_ids"]) : [];
@@ -42,6 +44,8 @@ class ProjectController extends Controller
             $query->where('title_ar', 'like', '%' . $title_ar . '%');
         })->when($title_tr, function ($query) use ($title_tr) {
             $query->where('title_tr', 'like', '%' . $title_tr . '%');
+        })->when($status || $status == '0', function ($query) use ($status) {
+            return $query->where('status', '=', $status);
         })->when($fixing || $fixing == '0', function ($query) use ($fixing) {
             return $query->where('fixing', '=', $fixing);
         })->when($users, function ($query) use ($users) {
@@ -63,7 +67,7 @@ class ProjectController extends Controller
             return $query->whereBetween('come_amount', [$from_come_amount, $to_come_amount]);
         })->orderBy("projects.title_ar")->paginate(20)
             ->appends(["title_en" => $title_en, "title_ar" => $title_ar, "title_tr" => $title_tr
-                , "fixing" => $fixing, "users" => $users, "categories_ids" => $categories_ids
+                , "fixing" => $fixing, "users" => $users, "categories_ids" => $categories_ids, "status" => $status
                 , "need" => $need, "from_need_amount" => $from_need_amount, "to_need_amount" => $to_need_amount
                 , "from_come_amount" => $from_come_amount, "to_come_amount" => $to_come_amount]);
 
@@ -72,7 +76,7 @@ class ProjectController extends Controller
 
 
         return view('admin.project.index', compact('items', 'title_ar', 'title_tr', 'title_en'
-            , "fixing", "the_users", "users", "categories", "categories_ids", "need"
+            , "fixing", "the_users", "users","status", "categories", "categories_ids", "need"
         ,"from_need_amount", "to_need_amount","from_come_amount", "to_come_amount"));
 
     }
@@ -107,7 +111,7 @@ class ProjectController extends Controller
         if($old_fixing && $request['fixing']==1)
             $massege=" وتم إزالة تثبيت مشروع".$old_fixing->title_ar;
 
-        $item = Project::create($request->except('img', 'p_categories_ids', 'super_donation'));
+        $item = Project::create($request->except('img','imgs', 'p_categories_ids', 'super_donation'));
         $item->p_categories()->sync(array_filter($request['p_categories_ids']));
 
         if ($request->hasFile('img')) {
@@ -129,6 +133,22 @@ class ProjectController extends Controller
             Image::make($request['img']->getRealPath())->resize(420, 407)->save($path6 . $filename, 60);//كل الأخبار
             $item->img = $path . $filename;
             $item->save();
+
+        }
+             if ($request->hasFile('imgs')) {
+
+            foreach ($request['imgs'] as $img) {
+                $filename = rand() . '.' . $img->getClientOriginalExtension();
+                $path = 'uploads/medias/';
+                $path1 = 'size1/uploads/medias/';
+                $path2 = 'size2/uploads/medias/';
+                Image::make($img->getRealPath())->resize(263, 180)->save($path1 . $filename, 60);
+                Image::make($img->getRealPath())->resize(550, 550)->save($path2 . $filename, 60);//الريشس
+                $my_img= $path . $filename;
+                Media::create(['the_media' => $my_img, 'type' => 1, 'project_id' => $item->id]);
+
+            }
+
 
         }
         /**************start Notification*******************/
@@ -176,6 +196,10 @@ class ProjectController extends Controller
         $item = Project::find($id);
 
         if ($item) {
+            
+            
+          
+            
             $tempreroy = $item->img;
 
             $old_fixing= Project::where('fixing',1)->first();
@@ -186,7 +210,7 @@ class ProjectController extends Controller
             if($old_fixing && $request['fixing']==1)
                 $massege=" وتم إزالة تثبيت مشروع".$old_fixing->title_ar;
 
-            $item->update($request->except('img', 'p_categories_ids', 'super_donation'));
+            $item->update($request->except('img', 'imgs','p_categories_ids', 'super_donation'));
             $item->p_categories()->sync(array_filter($request['p_categories_ids']));
 
             if ($request->hasFile('img')) {
@@ -202,9 +226,18 @@ class ProjectController extends Controller
                 $path6 = 'size6/uploads/projects/';
                 $mypath1 = public_path() . "/size1/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
                 $mypath2 = public_path() . "/size2/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
+                $mypath3 = public_path() . "/size3/" . $tempreroy; 
+                 $mypath4 = public_path() . "/size4/" . $tempreroy; 
+                  $mypath5 = public_path() . "/size5/" . $tempreroy; 
+                   $mypath6 = public_path() . "/size6/" . $tempreroy;  
                 if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
                     unlink($mypath1);//يقوم بحذف القديم
                     unlink($mypath2);//يقوم بحذف القديم
+                unlink($mypath3);
+                unlink($mypath4);
+                unlink($mypath5);
+                unlink($mypath6);
+                    
                 }
                 Image::make($request['img']->getRealPath())->resize(362, 215)->save($path1 . $filename, 60);//اخبار الريئيسية
                 Image::make($request['img']->getRealPath())->resize(660, 700)->save($path2 . $filename, 60);//المثبت
@@ -215,6 +248,25 @@ class ProjectController extends Controller
                 $item->img = $path . $filename;
                 $item->save();
 
+            }
+              if ($request->hasFile('imgs')) {
+                Media::where('project_id', $item->id)->delete();
+                foreach ($request['imgs'] as $img) {
+                    $filename = rand() . '.' . $img->getClientOriginalExtension();
+                    $path = 'uploads/medias/';
+                    $path1 = 'size1/uploads/medias/';
+                    $path2 = 'size2/uploads/medias/';
+                    $mypath1 = public_path() . "/size2/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
+                    if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
+                        unlink($mypath1);//يقوم بحذف القديم
+                    }
+                    Image::make($img->getRealPath())->resize(263, 180)->save($path1 . $filename, 60);
+                    Image::make($img->getRealPath())->resize(550, 550)->save($path2 . $filename, 60);//الريشس
+                    $my_img = $path . $filename;
+
+                    Media::create(['the_media' => $my_img, 'type' => 1, 'project_id' => $item->id]);
+
+                }
             }
 
             /**************start Notification*******************/
@@ -244,15 +296,24 @@ class ProjectController extends Controller
     public function delete($id)
     {
         $item = Project::find($id);
+         $tempreroy = $item->img;
         $item->p_categories()->sync([]);
         if ($item) {
 
-            $mypath1 = public_path() . "/" . $item->img; // مكان التخزين في البابليك ثم مجلد ابلودز
-            $mypath2 = public_path() . "/" . $item->img; // مكان التخزين في البابليك ثم مجلد ابلودز
+            $mypath1 = public_path() . "/size1/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
+            $mypath2 = public_path() . "/size2/" . $tempreroy; // مكان التخزين في البابليك ثم مجلد ابلودز
 
+$mypath3 = public_path() . "/size3/" . $tempreroy; 
+                 $mypath4 = public_path() . "/size4/" . $tempreroy; 
+                  $mypath5 = public_path() . "/size5/" . $tempreroy; 
+                   $mypath6 = public_path() . "/size6/" . $tempreroy; 
             if (file_exists($mypath1) && $mypath1 != null) {//اذا يوجد ملف قديم مخزن
                 unlink($mypath1);//يقوم بحذف القديم
                 unlink($mypath2);//يقوم بحذف القديم
+              unlink($mypath3);
+                unlink($mypath4);
+                unlink($mypath5);
+                unlink($mypath6);
             }
             $item->delete();
             return redirect("/admin/projects")->with('success', 'تم حذف مشروع بنجاح');
@@ -260,5 +321,57 @@ class ProjectController extends Controller
             return redirect("/admin/projects")->with('error', 'الأخبار غير موجودة');
     }
 
+     public function approve($id)
+    {
+        $item = Project::find($id);
+
+        if (!(auth()->user()->hasPermissionTo('edit projects'))) {
+            return response()->json([
+                'message' => 'ليس لك صلاحية تعديل مشروع',
+            ], 401);
+        }
+
+        if ($item) {
+            if ($item->status == 1) {
+                $item->update(['status' => 0]);
+                return response()->json([
+                    'message' => 'تم إلغاء قبول مشروع بنجاح',
+                ], 200);
+            } else {
+                $item->update(['status' => 1]);
+                return response()->json([
+                    'message' => 'تم قبول مشروع بنجاح',
+                ], 200);
+            }
+
+        } else {
+
+            return response()->json([
+                'message' => 'المحاولة للوصول لمشروع غير موجود',
+            ], 401);
+        }
+    }
+    
+     public function delete_group(Request $request)
+    {
+        if (!(auth()->user()->hasPermissionTo('edit projects'))) {
+            return response()->json([
+                'message' => 'ليس لك صلاحية لهذه العملية',
+            ], 401);
+        }
+        $ids = explode(",", $request['the_ids']);
+        $items = Project::find($ids);
+        if ($items && $items->first()) {
+            foreach ($items as $item) {
+                $old_status=$item->status;
+                $item->update(['status'=>!($old_status)]);
+
+            }
+        } else {
+            return redirect("/admin/projects")->with('error', 'لم يتم تحديد أي عنصر لتغيير حالته')->withInput();
+        }
+        return redirect('admin/projects')->with('success', "تم تغيير حالة العنصار بنجاح");
+
+    }
 
 }

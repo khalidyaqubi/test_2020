@@ -125,7 +125,7 @@
                         @foreach($items as $item)
                             <tr class="text-center">
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->project->title_en??$item->project->title_tr }}</td>
+                                <td>{{ $item->project?( $item->project->title_en??$item->project->title_tr):"مشروع محذوف" }}</td>
 
                                 <td>{{$item->created_at->format('Y-m-d')}}
                                 </td>

@@ -4,5 +4,7 @@
     "/css/app_2.css": "/css/app_2.css",
     "/css/app_3.css": "/css/app_3.css",
     "/js/app_2.js": "/js/app_2.js",
-    "/js/app_3.js": "/js/app_3.js"
+    "/js/app_3.js": "/js/app_3.js",
+    "/css/app_vis.css": "/css/app_vis.css",
+    "/js/app_vis.js": "/js/app_vis.js"
 }

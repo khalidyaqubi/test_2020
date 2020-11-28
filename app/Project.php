@@ -31,6 +31,15 @@ class Project extends Model
     {
         return $this->hasMany(Donation::class);
     }
+     public function media()
+    {
+        return $this->belongsToMany(Media::class,'projects_media', 'project_id', 'media_id');
+    }
+
+    public function projects_media()
+    {
+        return $this->hasMany(ProjectMedia::class);
+    }
 
 
 }
